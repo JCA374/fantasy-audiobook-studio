@@ -1,0 +1,158 @@
+# One entry per skill in .claude/skills/. The tab order on the site follows this file.
+# role: one line. use: how this project uses it (markdown). examples: concrete moments from the books (markdown).
+# cases: training cases (training/NN-*.md) that taught this skill something.
+
+fantasy-novella:
+  stage: "1–5"
+  origin: ours
+  role: "The hub. Owns the book layout, the pipeline order, sizing and drafting, and says which skill runs each stage."
+  use: |
+    Every session starts here. It lists `books/`, reads the active book's `status.md` and reports the stage and the
+    next step. It sizes the book (default 15k words), keeps the world small (one magic system, 2–4 places, 3–5
+    characters who matter) and drafts **one chapter per turn**: read outline, bible, continuity and glossary → write
+    `chNN.md` within ±15 % of target → log new facts to `continuity.md` and names to `glossary.md` → run
+    avoid-ai-writing in detect mode → update `status.md` → stop.
+
+    Its reference `writing-for-the-ear.md` is the checklist that makes these books work as audio: attribute dialogue
+    often, keep sentences under ~30 words, never let italics carry meaning, re-orient the listener at every chapter start.
+  examples: |
+    - **Flat layout, decided by the author.** The first layout had `bible/`, `manuscript/` and `audio/script/`
+      subfolders. The author said "there are too many book subfolders", so the rule became *one folder per book, one
+      `audio/` folder inside it, nothing else*.
+    - **Sizing.** *The One in the Chair* came out at 13 short chapters of ~1,000–1,500 words (~7 min of audio each)
+      instead of the default 6–8 long ones, because short chapters suit listening in short sessions.
+    - **Continuity log.** Each chapter appended facts such as `ch08 | That night the cushion is COLD for the first time
+      in three years`, so later chapters (and the reader test) could check them.
+
+story-structure:
+  stage: "2"
+  origin: vendored
+  role: "Places the landmark beats (Weiland) and checks what each one must do emotionally (Bell's signposts). Map mode before drafting, Audit mode after."
+  use: |
+    Run in **Map** mode on the story bible to produce the chapter outline: where the Inciting Event, Plot Points,
+    Pinch Points, Midpoint and Climax fall as a percentage of the book, and which chapter carries each.
+    In a 15k book the Inciting Event lands around 1,800 words (≈ chapter 1–2) and the Midpoint around 7,500.
+  examples: |
+    - The outline for *The One in the Chair* tags every chapter with its beat and percentage, e.g.
+      **1. Intake (~0–7 %)**: *Hook / Disturbance. Care Package (the chair).* and
+      **2. New Evidence (~7–15 %)**: *Inciting Event. Closing hook: the letter has no Office stamp.*
+    - It forced an "engine" decision before drafting: the supervisor sent the letter, so the panel's condition
+      *can't be met honestly*, and Mira has to expose the only person who helped her. See the
+      [outline](books/the-one-in-the-chair/making-of/outline.html) (spoilers).
+
+fiction-workshop:
+  stage: "1, 4, 5"
+  origin: vendored
+  role: "Story-bible interview, editor personas (developmental, line, continuity) and the fresh-reader test."
+  use: |
+    Stage 1 is its question-driven story bible. In editing it supplies the order of passes (developmental →
+    character/continuity → line edit). Most valuable is **Stage 3, the fresh-reader test**: a separate subagent with
+    no context reads the finished book cold and reports confusion, contradictions and flat spots.
+  examples: |
+    The fresh reader on *The One in the Chair* found, and the revision fixed:
+    - **Two characters called "the archivist"**: the counter woman became "the counter clerk".
+    - **Numbers that drifted**: the testimony count was 36, 35 and 32 in different chapters; Inspector Crane's
+      "two hundred years" contradicted another chapter.
+    - **A death the reader missed**: Mira's own death was never clear; chapter 3 now states it, chapter 10 gives it
+      one line: "A wet road, a delivery van, a Tuesday."
+    - **A climax that didn't hold**: the legal turn was reworked so "trafficked" means *carried across* and forgery
+      is a separate offence Mira confesses to.
+    - **Stated morals and spoilers**: lines that explained the theme, and hints in chapters 3 and 6 that gave the
+      twist away, were cut.
+
+character-archetypes:
+  stage: "1, 4"
+  origin: vendored
+  role: "Archetype and character-function consults (mentor, shadow, threshold guardian…) for the cast."
+  use: |
+    Available for character consults during the bible and the character pass of editing. In a novella with
+    three to five characters who matter, its main job is checking that each one has a distinct function so no two
+    characters do the same work in the story.
+  examples: |
+    Book 1 didn't need a dedicated consult: the bible already fixed each role (Mira the protagonist, Edmund the
+    supervisor as mentor with a secret, Inspector Crane as the institutional antagonist). It stays installed for the
+    next books.
+
+prose-mechanics:
+  stage: "4"
+  origin: vendored
+  role: "Line-level audits: echoes, crutch words, filter words, sentence starters, sentence-length variance, dialogue tags, POV and tense consistency."
+  use: |
+    The line-edit stage. Each audit is a separate reference file and reports findings in a shared format
+    (location, technique, severity), so fixes can be checked off.
+  examples: |
+    The kind of thing it catches, from book 1's edit: repeated words that a listener hears far more than a reader
+    sees (*grey*, *cardigan*), and a tic of "Not X." sentence fragments that had crept into several chapters.
+
+avoid-ai-writing:
+  stage: "3, 4"
+  origin: vendored
+  role: "Detects and removes AI writing tells: em-dash overuse, \"tapestry/testament to\", tidy triplets, every scene ending on a reflective one-liner."
+  use: |
+    Run in **detect** mode on every drafted chapter (step 6 of drafting) and once more over the whole book at the
+    end of editing. Generated fiction drifts toward these patterns, and narration makes them worse: a listener hears
+    every "It wasn't X. It was Y."
+  examples: |
+    Fixes in book 1 included trimming "Not X." fragments, cutting scene-ending one-liners that stated the moral, and
+    removing stock phrases. The author's own chapter 1 keeps its em dashes: they're part of the voice, and Kokoro
+    pauses on them naturally.
+
+speech-flow:
+  stage: "6"
+  origin: ours
+  role: "Fixes punctuation and sentence shapes in the manuscript so the text works when heard, before it's converted to a script."
+  use: |
+    Built after the author heard book 1. A script (`scan.py`) flags candidates: italics with no cue in the words,
+    commas before "and" that split one subject's two verbs, bare short questions, dashes that never close, sentences
+    over 35 words, runs of six or more commas, semicolons, interrupters without commas. Then a **listening
+    read-through** catches what a regex can't: far referents ("find *any*"), contradictions ("ever did, mostly"),
+    garden-path sentences. Fixes go into `chNN.md` only after the author approves them.
+  examples: |
+    First run, on chapter 1: 12 candidates, 7 kept plus 1 from the read-through. The worst was a garden path:
+    *"…teaching herself to hear it as* I know, love. I know.*"* The italics vanish in audio, so a listener hears
+    "hear it as I know…". Fix: *"…to hear it say: I know, love. I know."*
+  cases: ["02"]
+
+narration-prep:
+  stage: "7"
+  origin: ours
+  role: "Converts each chapter to a Kokoro script: strips markdown, spells out numbers, adds pauses, and writes names as phonemes."
+  use: |
+    Claude does the conversion itself (it needs judgement), using `g2p.py` to test pronunciations. The glossary
+    comes first: every invented name gets a "sounds like" from the author and a phoneme string. Scene breaks
+    become `[pause 1.5]`, headings become a spoken title plus `[pause 1.0]`, and long paragraphs are split so the
+    render cache stays granular. Rules learned from the author's examples live in its *Learned rules* section.
+  examples: |
+    - **Names.** Kokoro's American voice said Mira as "MY-uh-ruh" (`mˈIəɹə`) and Elin as "ih-LIN". The glossary
+      fixes them to MEER-uh (`mˈiɹə`) and EL-in (`ˈɛlɪn`), written in the script as `[Mira](/mˈiɹə/)`.
+    - **Short questions** (case 01): "Can I?" ended flat. Fix: stress the key word and double the question mark,
+      `"[Can](+2) I??"`.
+  cases: ["01"]
+
+kokoro-narrate:
+  stage: "8"
+  origin: ours
+  role: "Renders scripts to speech with Kokoro-82M, locally on the CPU, with a per-paragraph cache."
+  use: |
+    Reads the `narration:` block in `book.yaml` (voice, speed, pause between paragraphs, optional character
+    voices). Each paragraph's audio is cached by a hash of voice, speed and text, so editing one paragraph
+    re-renders only that paragraph. A full 15k-word book takes about an hour (≈1.7× real time on a laptop CPU).
+  examples: |
+    - **Voice audition.** Chapter 1 was rendered in several voices for the author to pick. Grades from Kokoro's
+      voice card: af_heart A, af_bella A−, bf_emma B−, bm_george and bm_fable C. The author chose **af_heart** at
+      speed 0.95, now the house default.
+    - **Training renders.** `--script` renders a single test file, which is how every before/after in
+      [Improvements](improvements.html) was made.
+
+audiobook-assemble:
+  stage: "9"
+  origin: ours
+  role: "Masters chapter WAVs to −19 LUFS, writes per-chapter MP3s and one chaptered .m4b with cover and metadata."
+  use: |
+    Per chapter: 1 s lead-in, 2 s tail, two-pass `loudnorm` to −19 LUFS integrated / −3 dBTP (ACX-style), mono
+    44.1 kHz, MP3. Then everything is concatenated into one AAC `.m4b` with chapter markers taken from the real
+    durations, the cover as attached picture, and title/author/narrator tags. The m4b is what goes to the phone
+    (BookPlayer via Google Drive) and to this site.
+  examples: |
+    *The One in the Chair*: 13 chapters, 92 minutes, −19.4 LUFS integrated. The file carries both chapter formats
+    players read (a QuickTime chapter track and Nero `chpl`), so chapters show in BookPlayer and Apple Books.

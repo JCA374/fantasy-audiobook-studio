@@ -1,0 +1,58 @@
+---
+name: narration-prep
+description: "Convert finished manuscript chapters into TTS-ready narration scripts for Kokoro: strip markdown, spell out numbers and symbols, apply glossary pronunciations as phoneme markup, add scene-break pauses and optional character-voice tags. Use when preparing a book or chapter for audio, fixing mispronounced names, building the pronunciation glossary, or before running kokoro-narrate."
+---
+
+# Narration Prep
+
+Turns `books/<slug>/chNN.md` into `books/<slug>/audio/chNN.txt` (format: see the `kokoro-narrate` skill). You do this conversion yourself, reading and writing the files. The manuscript is never modified; it stays the source of truth. If a chapter is edited later, regenerate its script; unchanged paragraphs stay cached and won't re-render.
+
+## 1. Pronunciation glossary first
+
+`books/<slug>/glossary.md` lists every invented name and word. Kokoro mangles many of them. For example "Ys'tharra" → /hˈaɹə/, which drops the first syllable: apostrophes and unusual vowel clusters are the worst. For each glossary entry:
+
+```bash
+.venv/bin/python .claude/skills/narration-prep/scripts/g2p.py "Ys'tharra" "Is tharra" "Iss THAR uh"
+```
+
+Use `--say "…"` to render `say.wav` so the user can hear it.
+
+1. Pick the respelling that matches the author's "sounds like" note.
+2. Join it into one word: remove the spaces and extra stress marks, keeping a single primary `ˈ` before the stressed syllable.
+3. Record it in the glossary table:
+
+```markdown
+| Term | Sounds like | Phonemes | Notes |
+|------|-------------|----------|-------|
+| Ys'tharra | iss-THAR-uh | ɪsθˈɑːɹə | the river goddess |
+```
+
+If the author never gave a "sounds like", ask the author. Don't invent one. Names that Kokoro already says correctly get the phonemes column filled with `ok` and no markup.
+
+## 2. Convert each chapter
+
+Rules, in order:
+
+1. **Heading** → spoken title paragraph: `Chapter Three. The Drowned Bell.` followed by `[pause 1.0]`.
+2. **Strip markdown**: `*italics*`/`**bold**` markers, links, HTML, footnotes. If italics carry meaning (telepathy, a letter, a foreign word), make that clear in words or leave a note for the author; the voice can't do italics.
+3. **Scene breaks** (`***`, `* * *`, `#`, `---`) → `[pause 1.5]`.
+4. **Numbers and symbols** → words: "1,204" → "twelve hundred and four", "3rd" → "third", "&" → "and", "—" stays (Kokoro pauses on it), "…" → "...".
+5. **Abbreviations** → spoken forms: "Mr." → "Mister", "St." → "Saint" or "Street" depending on context.
+6. **Glossary names** → wrap **every** occurrence, including possessives, in markup: `[Ys'tharra](/ɪsθˈɑːɹə/)`. For a possessive, put the markup on the name and keep the 's outside: `[Ys'tharra](/ɪsθˈɑːɹə/)'s`.
+7. **Long paragraphs** (> ~120 words): split at a natural sentence boundary. This keeps the per-paragraph cache granular.
+8. **Character voices**: only if `narration.characters` in `book.yaml` maps characters. Tag a paragraph `[[Name]]` only when it is **pure dialogue** by that character. If a paragraph mixes narration and speech ("Run," Mira said, grabbing his arm), leave it with the narrator; splitting mid-sentence sounds choppy.
+
+## 3. Check
+
+- Grep each script for leftover `*`, `#`, `_`, digits and `[` without a matching `](/`.
+- Word count of script ≈ word count of the chapter (± 5 %).
+- Hand off to **kokoro-narrate**. Suggest a `--sample` of the most name-dense paragraph first.
+
+## Learned rules
+
+Rules learned from the author's examples in `training/` (see `training/README.md` and `training/cases.md`). They take precedence over the general rules above. When the author reports something that sounds wrong:
+1. Save the original text as `training/NN-slug.md` with a note on what sounded wrong and the book/chapter it came from.
+2. Write `NN-slug.before.txt` with the current rules and render it; write `NN-slug.after.txt` with the fix and render it (`narrate.py --script … --speed 0.95`). Try several variants if the first fix doesn't sound right.
+3. When the author approves, add the rule below, mark the case `fixed` in `cases.md`, and re-check every earlier case's `.after.txt` still follows all the rules.
+
+- **Short questions (case 01).** A question of three words or fewer often gets no main stress from Kokoro (check with `g2p.py`: only `ˌ` marks, no `ˈ`), so it ends flat and sounds cut off. Put `(+2)` on the word the speaker leans on and double the question mark: `"[Can](+2) I??"`. If it still sounds weak, flag it to the author: a tag or action beat after the line fixes it better than markup.

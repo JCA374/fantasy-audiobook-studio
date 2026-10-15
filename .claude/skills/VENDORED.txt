@@ -1,0 +1,1 @@
+author-toolkit @ b782870 (MIT, rhavekost/author-toolkit) — copied 2026-10-14; narrative-nonfiction omitted
