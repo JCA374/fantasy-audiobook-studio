@@ -18,7 +18,8 @@ SUBJECT = r"\b(?:I|he|she|they|we|you)\b"
 # after a single dash, a new clause (not an appositive tail) means the aside never closes
 CLAUSE = r"^\s*(?:I|he|she|they|we|you|it|people|everyone|nobody)\s+\w+|,\s+(?:and|but|or)\s+(?:[A-Z]\w*|I|he|she|they|we|you|it)\s+\w+"
 
-SENT_RE = re.compile(r"(?<=[.!?…])[\"”]?\s+(?=[\"“*]?[A-Z])")
+SENT_RE = re.compile(r"(?<=[.!?…])[\"”*]?\s+(?=[\"“*]?[A-Z])")
+HEDGES = r"exactly|really|quite|precisely|entirely|perhaps|necessarily|just|simply|only"
 
 
 def sentences(par):
@@ -47,9 +48,9 @@ def scan(path):
                 continue  # spoken emphasis: lost in audio, harmless
             if not re.search(CUES, before, re.I):
                 hit("italics-without-cue", f"…{before[-40:]}*{m.group(1)}*")
-        # bare short questions in dialogue
+        # bare short questions in dialogue (fine when a beat or tag follows)
         for m in re.finditer(r'["“]([^"”]+\?)["”]', par):
-            if words(m.group(1)) <= 3:
+            if words(m.group(1)) <= 3 and not par[m.end():].strip():
                 hit("short-question", m.group(0))
         for s in sentences(par):
             w = words(s)
@@ -69,6 +70,12 @@ def scan(path):
                 nxt = m.group(1).lower()
                 if not re.fullmatch(r"(i|he|she|they|we|you|it|the|a|an|her|his|their|my|then|there|that|this|for|when|so|now|in|on|at)", nxt) and nxt.endswith(("ed", "s")):
                     hit("comma-before-and (one subject, two verbs?)", m.group(0))
+            # "so much of X that by the time…": the listener needs a breath before the result clause (case 03)
+            for m in re.finditer(r"\bso\s+\w+\b[^,.;:!?—]{25,}?\s+that\b", s):
+                hit("so…that without a breath before 'that'", m.group(0))
+            # "not softness, exactly, but attention": tiny comma pauses around a one-word hedge break the contrast (case 04)
+            for m in re.finditer(rf"\b\w+,\s+({HEDGES}),\s+(?:but|and|or|yet)\b", s, re.I):
+                hit("hedge boxed in commas (choppy)", m.group(0))
             m = re.search(rf"\b(?:had|has|was|were|is|are|would|could)\s+({INTERRUPTERS})\s+\w+", s, re.I)
             if m:
                 hit("interrupter-without-commas", m.group(0))

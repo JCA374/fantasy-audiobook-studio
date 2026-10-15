@@ -16,4 +16,4 @@ Source: *The One in the Chair*, ch01. Scan: `scan.py` found 12 candidates; 7 kep
 
 Dismissed: ¶2 dash (an appositive tail reads fine), ¶23 notice italics (already cued by "script:").
 
-Status: open, awaiting the author's listen.
+Status: **applied to ch01** (2026-10-15), with two additions from the author, cases 03 and 04. ¶15 became "who they were, that by the time they died," and ¶8 "not softness exactly, but attention".

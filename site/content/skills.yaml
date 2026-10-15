@@ -111,7 +111,7 @@ speech-flow:
     First run, on chapter 1: 12 candidates, 7 kept plus 1 from the read-through. The worst was a garden path:
     *"…teaching herself to hear it as* I know, love. I know.*"* The italics vanish in audio, so a listener hears
     "hear it as I know…". Fix: *"…to hear it say: I know, love. I know."*
-  cases: ["02"]
+  cases: ["02", "03", "04"]
 
 narration-prep:
   stage: "7"

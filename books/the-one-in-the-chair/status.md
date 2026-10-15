@@ -24,3 +24,8 @@ Edits later: change chNN.md, regenerate audio/chNN.txt (narration-prep), re-run 
 
 **Done 2026-10-14:** title "The One in the Chair"; cover.jpg (drawn with Python: `python3 cover.py cover.jpg`);
 voice-audition files deleted.
+
+**2026-10-15, speech-flow on ch01:** 9 fixes applied (training cases 02–04: commas, unclosed dashes, cued italics,
+split long sentences, "find new evidence", "Can I?" + beat, "who they were, that…", "not softness exactly, but…").
+ch01 re-rendered (8 paragraphs), m4b rebuilt (92.1 min, 13 chapters, −19.4 LUFS) and copied to export/.
+Next: run speech-flow on ch02–ch13.

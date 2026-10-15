@@ -27,6 +27,10 @@ It prints candidates by paragraph number (¶, heading excluded). They are only c
 | comma-run (≥ 6 commas) | Too many pauses in a row sounds choppy. Keep the run only if the choppiness is intended. |
 | semicolon | Kokoro reads it as a comma, so the clauses blur together. Use a full stop instead. |
 | interrupter-without-commas | "had by all accounts been": the voice has nowhere to breathe. Put commas around the interrupter. |
+| so…that without a breath | "spent so much of their lives arguing about who they were that by the time…": a long *so … that* runs the cause into the result. Put a comma before *that*. The pause matters more here than the grammar rule (case 03). |
+| hedge boxed in commas | "not softness, exactly, but attention": three tiny pauses break the contrast apart. Drop the commas around the one-word hedge so the only pause comes before *but*: "not softness exactly, but attention" (case 04). |
+
+**Commas are pauses here, not grammar.** Add a comma where a listener needs a breath (a multi-word interrupter, the turn of a long *so … that*). Remove one where it only chops the rhythm (a one-word hedge, a comma that splits one subject's two verbs). If the two rules seem to conflict, read the sentence aloud and keep the version where the pauses fall on the meaning.
 
 ## 2. Listening read-through (the script can't do this)
 
