@@ -60,4 +60,5 @@ Read the whole chapter as a listener hearing it once, at narration speed. Look f
 1. Give the author a table: ¶, what's wrong as heard, the current text, and the proposed rewrite. Order it by severity: misheard meaning first, then wrong pauses, then polish. Keep rewrites minimal and in the book's voice. This is punctuation and phrasing, not a line edit.
 2. Apply only the fixes the author approves to `chNN.md`. Copy the old version to the scratchpad first.
 3. Re-run `narration-prep` on the chapter, then `kokoro-narrate`. Only the changed paragraphs re-render.
-4. **Training**: save each fix that taught something new as a case in `training/` (see `training/README.md`). Include before and after audio of the affected paragraphs. Add any recurring pattern to the check table above. If it can be detected mechanically, add it to `scan.py` as well.
+4. **Test**: add a before/after pair to `training/rule-tests.yaml` for any new scanner check, then run `python3 .claude/skills/speech-flow/scripts/test_rules.py`. All tests must pass.
+5. **Training**: save each fix that taught something new as a case in `training/` (see `training/README.md`). Include before and after audio of the affected paragraphs. Add any recurring pattern to the check table above. If it can be detected mechanically, add it to `scan.py` as well.

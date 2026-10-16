@@ -39,7 +39,8 @@ STAGES = [  # n, name, group, skills, output
     (6, "Speech flow", "voice", ["speech-flow"], "chapters fixed for the ear"),
     (7, "Narration prep", "voice", ["narration-prep"], "audio/chNN.txt"),
     (8, "Narrate", "voice", ["kokoro-narrate"], "audio/chNN.wav"),
-    (9, "Assemble & publish", "ship", ["audiobook-assemble"], ".m4b · .mp3 · .epub · this site"),
+    (9, "Listen check", "voice", ["listen-check"], "timestamps to listen to"),
+    (10, "Assemble & publish", "ship", ["audiobook-assemble"], ".m4b · .mp3 · .epub · this site"),
 ]
 GROUPS = {"write": "Writing", "voice": "Voice", "ship": "Package"}
 MAKING_OF = ["story-bible", "outline", "continuity", "glossary", "status"]
@@ -179,7 +180,7 @@ def skill_group(name):
 
 
 def stage_track(name, root):
-    """The 9 pipeline stages as a row, with the ones this skill works in highlighted."""
+    """The pipeline stages as a row, with the ones this skill works in highlighted."""
     cells = "".join(
         f'<li class="g-{g}{" on" if name in sk else ""}" title="{n}. {esc(nm)}"><span>{n}</span><em>{esc(nm)}</em></li>'
         for n, nm, g, sk, _ in STAGES)
@@ -214,7 +215,7 @@ def build_skills(skills, cases):
 <h1>Skills</h1>
 <p class="lede">A <b>skill</b> is a written instruction manual that Claude follows for one job, like "turn this
 chapter into a narration script". Each one is a folder with a <code>SKILL.md</code> file (the instructions) and
-sometimes a small program for the mechanical parts. Together, ten skills cover the whole path from idea to audiobook.</p>
+sometimes a small program for the mechanical parts. Together, {len(skills)} skills cover the whole path from idea to audiobook.</p>
 <h2>How a skill works</h2>
 <ol class="howflow">
 <li><b>You ask</b><span>"Check chapter 2 for speech flow."</span></li>
@@ -313,18 +314,72 @@ def wav_to_mp3():
             print("  mp3:", mp3.name)
 
 
+def rule_tests():
+    sys.path.insert(0, str(SKILLS_DIR / "speech-flow" / "scripts"))
+    from test_rules import run
+    return run()
+
+
+def listen_reports():
+    out = []
+    for f in sorted(BOOKS.glob("*/audio/ch*.listen.json")):
+        out.append((f.parent.parent.name, json.loads(f.read_text(encoding="utf-8"))))
+    return out
+
+
+def slug_for(cases, cid):
+    return next((c["slug"] for c in cases if c["id"] == cid), "")
+
+
 def build_training(cases, skills):
     owner = {cid: s["name"] for s in skills for cid in s.get("cases", [])}
     cards = "".join(f"""<a class="case" href="improvements/{c["slug"]}.html">
 <span class="cid">{c["id"]}</span><div><h3>{esc(c["title"])}</h3>
 <p>{md(c["problem"])}</p><p class="rule"><b>Rule:</b> {md(c["rule"])}</p></div>
 <span class="status {c["state"]}">{esc(c["status"])}</span></a>""" for c in reversed(cases))
+    tests = rule_tests()
+    passed = sum(t["ok"] for t in tests)
+    test_rows = "".join(
+        f'<tr><td>{"✅" if t["ok"] else "❌"}</td><td><a href="improvements/{slug_for(cases, t["case"])}.html">case {t["case"]}</a></td>'
+        f'<td><code>{esc(t["check"])}</code></td><td class="q">{esc(t["before"])}</td><td class="q">{esc(t["after"])}</td></tr>'
+        for t in tests)
+    reports = listen_reports()
+    rep_rows = []
+    for book, r in reports:
+        flags = [f'<li><b>{mmss(w["time"])}</b> {esc(w["kind"])}: expected “{esc(w["expected"]) or "–"}”, heard “{esc(w["heard"]) or "–"}”</li>' for w in r["words"]]
+        flags += [f'<li><b>¶{p["para"]}</b> pace {esc(p["kind"])}: {p["wps"]} words/s (chapter {p["median"]})</li>' for p in r["pace"]]
+        flags += [f'<li><b>¶{x["para"]}</b> flat short line: {esc(x["text"])}</li>' for x in r["stress"]]
+        n = len(flags)
+        rep_rows.append(f'<tr><td><a href="books/{book}/{r["chapter"]}.html">{r["chapter"]}</a></td><td>{mmss(r["duration"])}</td>'
+                        f'<td>{r["checked"]}</td><td><span class="status {"fixed" if not n else "open"}">{n or "clean"}{" to check" if n else ""}</span>'
+                        f'{f" <span class=hint>{len(r.get(chr(100) + "ismissed", []))} dismissed by the second model</span>" if r.get("dismissed") else ""}'
+                        f'{"<ul class=flags>" + "".join(flags) + "</ul>" if n else ""}</td></tr>')
+    proposals = TRAINING / "proposals.md"
+    prop_html = md(re.sub(r"^#.*\n", "", proposals.read_text(encoding="utf-8"), count=1)) if proposals.exists() else ""
     page("improvements.html", "Improvements", f"""
 <h1>Improvements</h1>
-<p class="lede">Every time the author hears something wrong, it becomes a training case: the original text, what was
-heard, why it happened, and rendered audio of the <i>before</i> and each attempted fix. The winning fix becomes a rule in a
-skill, and earlier cases are re-checked against it. Newest first.</p>
-<div class="caselist">{cards or "<p>No cases yet.</p>"}</div>""", "Improvements")
+<p class="lede">The skills get better in four ways. Two depend on the author's ear, and two are automatic. Every lesson ends
+up as a rule in a skill, so the next book starts with it already in place.</p>
+<ol class="howflow improve">
+<li><b>The author reports</b><span>"This sounds wrong." It becomes a training case with before/after audio; the author picks the fix.</span></li>
+<li><b>The automatic listener</b><span>Speech recognition transcribes every chapter and compares it with the script, and turns up problems nobody reported.</span></li>
+<li><b>Rule tests</b><span>Every rule has a before/after test that must pass before publishing, so a new rule can't undo an old fix.</span></li>
+<li><b>Rule proposals</b><span>When a pattern repeats, Claude drafts the rule; the author approves it. Taste stays with the author.</span></li>
+</ol>
+<h2 id="cases">1 · Training cases</h2>
+<p>The original text, what was heard, why it happened, and audio of the <i>before</i> and each attempted fix. Newest first.</p>
+<div class="caselist">{cards or "<p>No cases yet.</p>"}</div>
+<h2 id="listener">2 · Automatic listener</h2>
+<p>The latest <a href="skills/listen-check.html">listen-check</a> report for each chapter. A flag means "worth a listen",
+not a confirmed error: each one is double-checked with a second model, then by ear.</p>
+<table class="reports"><thead><tr><th>Chapter</th><th>Length</th><th>Checked</th><th>Result</th></tr></thead>
+<tbody>{"".join(rep_rows) or "<tr><td colspan=4>No reports yet.</td></tr>"}</tbody></table>
+<h2 id="tests">3 · Rule tests <span class="status {"fixed" if passed == len(tests) else "open"}">{passed}/{len(tests)} passing</span></h2>
+<p>Run at every build. The scanner must flag the <i>before</i> text and leave the <i>after</i> text alone.</p>
+<table class="tests"><thead><tr><th></th><th>From</th><th>Check</th><th>Must flag</th><th>Must not flag</th></tr></thead>
+<tbody>{test_rows}</tbody></table>
+<h2 id="proposals">4 · Rule proposals</h2>
+<div class="prose">{prop_html}</div>""", "Improvements")
 
     for c in cases:
         before = TRAINING / f"{c['slug']}.before.txt"
@@ -484,6 +539,7 @@ def build_home(skills, books, cases):
 <p>{len(b["chapters"])} chapters · {sum(c["words"] for c in b["chapters"]):,} words{" · " + mmss(total) + " of audio" if total else ""}</p>
 <p class="more">Listen, read, or download the .m4b and .epub →</p></div></a>"""
     fixed = sum(c["state"] == "fixed" for c in cases)
+    tests = rule_tests()
     page("index.html", "Overview", f"""
 <section class="hero">
 <p class="kicker">A process, documented</p>
@@ -504,6 +560,7 @@ calls; everything else is a repeatable pipeline. Every passage that sounded wron
 <ul class="stats">
 <li><b>{len(skills)}</b> skills, {sum(s["origin"] == "ours" for s in skills)} written for this project</li>
 <li><b>{len(cases)}</b> training cases, {fixed} turned into rules</li>
+<li><b>{sum(t["ok"] for t in tests)}/{len(tests)}</b> rule tests passing</li>
 <li><b>~1 h</b> to narrate a 15k-word book on a laptop CPU</li>
 <li><b>−19 LUFS</b> audiobook loudness standard</li></ul>
 {f'<h2>Recent changes</h2><ul class="log">{log}</ul>' if log else ""}

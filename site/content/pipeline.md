@@ -84,14 +84,19 @@ Pronunciations are tested with `g2p.py`, which shows the phonemes Kokoro would u
 
 [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) is a small open text-to-speech model that runs locally, free, on the CPU. The script is rendered one paragraph at a time, with a configurable pause between paragraphs. Every paragraph's audio is cached under a hash of *voice + speed + text*, so after an edit only the changed paragraphs are re-rendered. A whole book takes about an hour. The voice was chosen by ear from full-chapter auditions: **af_heart** at speed 0.95.
 
+### 9 · Listen check
+**Skill:** listen-check · **Output:** `audio/chNN.listen.json`, a list of timestamps to listen to
+
+An automatic first listen. [Whisper](https://github.com/SYSTRAN/faster-whisper), a speech-recognition model, runs locally (about 6× real time, so ~16 minutes per book). It transcribes every chapter, and the transcript is aligned word by word with the script. Words Kokoro skipped, swapped or garbled come back with a timestamp. Two more checks run alongside it: the speaking pace of every paragraph (a paragraph much faster or slower than the rest usually means garbled audio), and the stress of bare short lines (no stressed word means a flat ending). Each flag is re-checked with a slower, more careful model before the author is asked to listen. Confirmed problems become training cases with the audio clip already cut.
+
 ## Package and publish
 
-### 9 · Assemble
+### 10 · Assemble
 **Skill:** audiobook-assemble · **Output:** `audio/chNN.mp3`, `audio/<Title>.m4b`
 
 Each chapter gets a second of silence before and two after, then two-pass loudness normalisation to **−19 LUFS integrated, −3 dBTP** (the ACX audiobook standard), mono 44.1 kHz. The chapters are concatenated into one AAC `.m4b` with chapter markers taken from the real durations, the cover embedded, and title, author and narrator tags. The m4b is what goes on the phone: copied to Google Drive and imported into BookPlayer.
 
-### 10 · This website
+### 11 · This website
 **Generator:** `site/build.py` · **Deploy:** GitHub Actions → GitHub Pages
 
 The site is built entirely from the files above: the skill pages from each `SKILL.md`, the book pages from `book.yaml` and the chapters, the improvements from `training/`. The EPUB for Kindle and other e-readers is generated from the same chapters. After any change to text or audio:
@@ -107,9 +112,16 @@ It converts new training audio to MP3, builds the site locally as a check, commi
 1. Edit `chNN.md` (or run speech-flow on it).
 2. Regenerate `audio/chNN.txt` with narration-prep.
 3. Re-run kokoro-narrate. Only the changed paragraphs re-render, so this takes seconds to minutes.
-4. Re-run audiobook-assemble for new MP3s and the m4b.
-5. `site/publish.sh "ch01: speech-flow fixes"`.
+4. Run listen-check on the chapter.
+5. Re-run audiobook-assemble for new MP3s and the m4b.
+6. `site/publish.sh "ch01: speech-flow fixes"`.
 
 ## The training loop
 
 When the author hears something wrong, they paste the passage and describe what they heard. Claude finds the cause (often visible in the phonemes), writes a *before* script and one or more *after* variants, renders them all, and the author picks by ear. The winning fix becomes a rule in the relevant skill, and every earlier case is re-checked against the new rules. All of it, including the audio, is kept in `training/` and shown on the [Improvements](improvements.html) page.
+
+Three things make this loop partly automatic:
+
+- **The automatic listener** (stage 9) finds problems nobody reported, and turns confirmed ones into cases.
+- **Rule tests**: every rule the scanner can check has a before/after test. The tests run before every publish, so a new rule can't silently undo an old fix.
+- **Rule proposals**: when the same kind of fix turns up twice, Claude drafts the rule, the check and the test, and the author approves it or not. Whether something *sounds* right stays the author's call.

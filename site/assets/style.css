@@ -182,7 +182,7 @@ sup { font: 10px var(--mono); color: var(--muted); }
 .io b { color: var(--accent); }
 .whos { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 !important; }
 .track-link { text-decoration: none; }
-.track { list-style: none; padding: 0; margin: 20px 0; display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; }
+.track { list-style: none; padding: 0; margin: 20px 0; display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
 .track li { border-top: 4px solid var(--line); padding-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.25; min-width: 0; }
 .track li span { font: 600 14px var(--display); display: block; }
 .track li em { font-style: normal; display: block; overflow: hidden; text-overflow: ellipsis; }
@@ -205,3 +205,10 @@ sup { font: 10px var(--mono); color: var(--muted); }
 .ba-arrow { align-self: center; color: var(--accent); font-size: 22px; }
 @media (max-width: 520px) { .ba { grid-template-columns: 1fr; } .ba-arrow { transform: rotate(90deg); justify-self: center; } }
 .pager.wide { max-width: none; }
+.improve li::before { color: var(--voice); }
+.tests td.q { font: 14px/1.45 var(--serif); }
+.tests td:first-child { width: 28px; }
+.reports td { vertical-align: top; }
+.flags { margin: 6px 0 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
+h2 .status { vertical-align: 5px; margin-left: 8px; }
+h2[id], h3[id] { scroll-margin-top: 84px; }

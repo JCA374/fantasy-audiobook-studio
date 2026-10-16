@@ -164,6 +164,26 @@ kokoro-narrate:
     after: "8 of 26 paragraphs re-rendered, in 1.7 minutes instead of 6"
     note: Only changed paragraphs are recorded again; the whole book takes about an hour the first time.
 
+listen-check:
+  plain: A robot proof-listener. It transcribes the finished audio and compares it with the script, so problems come back as a short list of timestamps instead of 90 minutes of listening.
+  when: After narration, before the audiobook is assembled, and after any re-render.
+  input: The chapter audio and its script
+  output: A list of moments to listen to (chapter, time, what was expected, what was heard)
+  who:
+    script: transcribes the audio with Whisper, compares word by word, and checks pace and stress
+    claude: double-checks each flag with a second model and turns confirmed problems into training cases
+    author: listens to the short list and confirms
+  steps:
+    - Transcribe each chapter with a speech-recognition model running on the laptop.
+    - Line the transcript up against the script, word by word.
+    - Flag skipped, swapped or garbled words, odd pacing, and flat short lines.
+    - Re-check each flag with a second, more careful model.
+    - Hand over the remaining timestamps; confirmed problems become training cases.
+  example:
+    before: "92 minutes of audio. Is anything wrong?"
+    after: "ch06 1:05: expected \"A wall.\", heard \"A while.\" (both models agree)"
+    note: "About 90 raw flags in the whole book became 2 after filtering and a second opinion. One was a real problem nobody had reported."
+
 audiobook-assemble:
   plain: The sound engineer and packager. It evens out the volume, then builds one audiobook file with chapters, a cover and the title.
   when: After narration, as the last step before publishing.

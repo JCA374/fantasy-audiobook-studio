@@ -32,8 +32,12 @@ def words(s):
 
 
 def scan(path):
+    return scan_text(path.read_text(encoding="utf-8"))
+
+
+def scan_text(text):
+    """Return [(paragraph number, check name, excerpt)] for a chapter or a snippet."""
     hits = []
-    text = path.read_text(encoding="utf-8")
     pars = [p for p in re.split(r"\n\s*\n", text) if p.strip() and not p.startswith("#")]
     for n, par in enumerate(pars, 1):
         par = " ".join(par.split())

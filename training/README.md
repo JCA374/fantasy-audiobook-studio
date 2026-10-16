@@ -21,3 +21,12 @@ Render a script:
 .venv/bin/python .claude/skills/kokoro-narrate/scripts/narrate.py \
   --script training/NN-slug.after.txt --speed 0.95 -o training/NN-slug.after.wav
 ```
+
+## How the skills improve
+
+1. **Author reports**: "this sounds wrong" becomes a case with before/after audio; the author picks; the fix becomes a rule.
+2. **Automatic listener** (`listen-check` skill): Whisper transcribes every chapter and compares it with the script,
+   and also checks pace and stress. Confirmed findings become cases (clip cut with `listen.py --clip`).
+3. **Rule tests**: `rule-tests.yaml` holds a before/after pair for every scanner rule. `test_rules.py` must pass
+   before publishing, so a new rule can't silently break an old fix.
+4. **Rule proposals**: `proposals.md`. When a pattern repeats, Claude drafts the rule; the author approves it.

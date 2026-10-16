@@ -19,7 +19,8 @@ This is the hub skill for the whole pipeline. It owns the project layout, sizing
 | 6 | Speech flow | `speech-flow` (punctuation & phrasing for the ear) | revised `chNN.md` |
 | 7 | Audio prep | `narration-prep` | `audio/chNN.txt` |
 | 8 | Narrate | `kokoro-narrate` | `audio/chNN.wav` |
-| 9 | Package | `audiobook-assemble` | `audio/chNN.mp3`, `audio/<Title>.m4b` |
+| 9 | Listen check | `listen-check` (automatic listener: Whisper vs script, pace, stress) | `audio/chNN.listen.json` |
+| 10 | Package | `audiobook-assemble` | `audio/chNN.mp3`, `audio/<Title>.m4b` |
 
 **At session start**:
 1. List `books/`.

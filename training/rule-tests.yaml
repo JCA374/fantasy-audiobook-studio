@@ -1,0 +1,54 @@
+# Regression tests for the speech-flow scanner, one or more per training case.
+# Each test: the scanner MUST flag `before` with a check whose name contains `check`,
+# and MUST NOT flag `after` with that check. Run: python3 .claude/skills/speech-flow/scripts/test_rules.py
+# Add a test whenever a training case teaches the scanner something new.
+
+- case: "01"
+  check: bare short line
+  before: '"Can I?"'
+  after: '"Can I?" He sat up a little.'
+
+- case: "02"
+  check: comma-before-and
+  before: She finally looked up at him, and allowed herself the smallest flicker of kindness.
+  after: She finally looked up at him and allowed herself the smallest flicker of kindness.
+
+- case: "02"
+  check: italics-without-cue
+  before: Mira had spent three years teaching herself to hear it as *I know, love. I know.*
+  after: "Mira had spent three years teaching herself to hear it say: *I know, love. I know.*"
+
+- case: "02"
+  check: italics-without-cue
+  before: Mira nodded slowly and stamped the file. *No appeal filed.* Case closed.
+  after: "Mira nodded slowly and stamped the file: *No appeal filed.* Case closed."
+
+- case: "02"
+  check: interrupter-without-commas
+  before: a sugar bowl that had by all accounts been a very sweet man
+  after: a sugar bowl that had, by all accounts, been a very sweet man
+
+- case: "02"
+  check: unclosed-dash
+  before: The chair creaked again — longer this time, a low settling groan that might have meant anything, or nothing, and Mira had spent three years listening to it.
+  after: The chair creaked again — longer this time, a low settling groan that might have meant anything, or nothing. Mira had spent three years listening to it.
+
+- case: "02"
+  check: long-sentence
+  before: She logged it, tagged it for collection, and moved it gently to the shelf behind her desk, where it joined a coat rack, a sugar bowl that had, by all accounts, been a very sweet man, and a rather handsome mantel clock that hummed faintly when it was pleased.
+  after: She logged it, tagged it for collection, and moved it gently to the shelf behind her desk. There it joined a coat rack, a sugar bowl that had, by all accounts, been a very sweet man, and a rather handsome mantel clock that hummed faintly when it was pleased.
+
+- case: "03"
+  check: so…that
+  before: People spent so much of their lives arguing about who they were that by the time they died, most of them were relieved.
+  after: People spent so much of their lives arguing about who they were, that by the time they died, most of them were relieved.
+
+- case: "04"
+  check: hedge boxed in commas
+  before: the thing that passed for kindness in this job — not softness, exactly, but attention.
+  after: the thing that passed for kindness in this job — not softness exactly, but attention.
+
+- case: "05"
+  check: bare short line
+  before: '"I know."'
+  after: '"I know." She didn''t look up.'

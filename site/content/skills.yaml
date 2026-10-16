@@ -144,8 +144,32 @@ kokoro-narrate:
     - **Training renders.** `--script` renders a single test file, which is how every before/after in
       [Improvements](improvements.html) was made.
 
-audiobook-assemble:
+listen-check:
   stage: "9"
+  origin: ours
+  cases: ["06"]
+  role: "Automatic listener: transcribes each chapter with Whisper and compares it with the script, checks the pace of every paragraph and the stress of short lines."
+  use: |
+    Runs after narration, before assembling. Whisper (`base.en`, local, about 6× real time, so ~16 minutes per book)
+    transcribes the audio, and the transcript is aligned word by word with the script. Skipped, swapped or garbled
+    words come back as timestamps. Two cheap checks run alongside it: words per second per paragraph (rushed or
+    garbled audio), and Kokoro's own phonemes for bare short lines (no main stress means a flat ending).
+    Known Whisper noise is filtered out: digits for number words, words echoed at its 30-second window joins,
+    dropped "the", and spelling variants. Each finding is double-checked with the slower `small.en` model before the
+    author is asked to listen, and confirmed problems become training cases with the clip already cut.
+  examples: |
+    - **First run, chapter 1:** 8 raw flags. Three were numbers ("31" for "thirty-one"), and five were doubled words
+      ("someone someone"). Re-transcribing short clips with both models showed each word only once, so the doubling
+      was Whisper, not Kokoro. Both filters went into the script; chapter 1 now reports **0 issues**.
+    - **Whole book, first run:** about 90 raw flags. Sound-based filters (homophones, British spelling, names compared
+      by phonemes) and the automatic second opinion from `small.en` brought it down to **2 word flags in 92 minutes**,
+      plus a few pace and stress notes. One was real: in chapter 6, "A wall." is heard as **"A while."** It became
+      training case 06, the first problem the listener found that nobody had reported.
+    - **Limit:** Whisper prefers familiar spellings, so it confirms that names aren't badly wrong, not that the
+      stress is perfect. Names are still checked by ear once, in narration-prep.
+
+audiobook-assemble:
+  stage: "10"
   origin: ours
   role: "Masters chapter WAVs to −19 LUFS, writes per-chapter MP3s and one chaptered .m4b with cover and metadata."
   use: |
