@@ -1,0 +1,19 @@
+title: Do Not Resubmit
+author: Jonas
+narrator: Kokoro TTS (af_heart)
+year: 2026
+edition: 1
+cover: cover.jpg
+chapters:
+  ch01: "Chapter One: Intake"
+  ch02: "Chapter Two: The Queue"
+  ch03: "Chapter Three: Witness"
+  ch04: "Chapter Four: The Archive"
+  ch05: "Chapter Five: The Cold Chair"
+  ch06: "Chapter Six: The Hearing"
+  ch07: "Chapter Seven: Passage"
+narration:
+  narrator: af_heart    # same voice as book 1 (author, 2026-10-16)
+  speed: 0.95
+  paragraph_pause: 0.6
+  characters: {}
