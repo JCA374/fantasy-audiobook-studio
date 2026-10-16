@@ -21,7 +21,7 @@ It prints candidates by paragraph number (¶, heading excluded). They are only c
 |---|---|
 | italics-without-cue | Italic thoughts, stamps and voices become plain narration. "hear it as *I know, love*" is heard as "as I know". Fix it with a cue in words: "hear it say: …", "the stamp read: …". |
 | comma-before-and | "She looked up at him, and allowed…": one subject with two verbs shouldn't take a comma, and Kokoro pauses on it in the wrong place. |
-| short-question | A question of three words or fewer has no stressed word to rise from, so it ends flat (training case 01). Add a beat or tag after it. |
+| bare short line | A line of dialogue of six words or fewer, alone in its paragraph with no tag or beat. The listener hears the words but not the feeling, and a short question ends flat (cases 01, 05). Add an **emotion beat**, see below. |
 | unclosed-dash | A dash opens an aside, then a new clause runs on. The listener loses the main thread. Close it, or split the sentence. |
 | long-sentence (> 35 words) | Hard to follow by ear. Split it where the subject changes. |
 | comma-run (≥ 6 commas) | Too many pauses in a row sounds choppy. Keep the run only if the choppiness is intended. |
@@ -31,6 +31,20 @@ It prints candidates by paragraph number (¶, heading excluded). They are only c
 | hedge boxed in commas | "not softness, exactly, but attention": three tiny pauses break the contrast apart. Drop the commas around the one-word hedge so the only pause comes before *but*: "not softness exactly, but attention" (case 04). |
 
 **Commas are pauses here, not grammar.** Add a comma where a listener needs a breath (a multi-word interrupter, the turn of a long *so … that*). Remove one where it only chops the rhythm (a one-word hedge, a comma that splits one subject's two verbs). If the two rules seem to conflict, read the sentence aloud and keep the version where the pauses fall on the meaning.
+
+### Emotion beats for short lines (case 05)
+
+The author's rule: when a line is only one or two short sentences, like `"Can I?"`, follow it with a beat that shows the emotion behind it.
+
+```
+"You want to appeal it?"
+"Can I?" He sat up a little.          <- hope, shown by the body
+```
+
+- **Show it through a small physical action**, in under about eight words: *He sat up a little. / She didn't look up. / His hand stopped on the latch.* Avoid adverb tags like "he said hopefully" and named emotions like "he felt hopeful". They tell instead of show, and they sound flat when spoken.
+- **Fit the moment.** The beat should carry what the line can't: hope, dread, defiance, relief. If the emotion is already obvious from the line before, a plain tag ("she said") is enough.
+- **Pace it.** In a fast back-and-forth, beat about every second or third line (the same rhythm as the dialogue-attribution rule in `writing-for-the-ear.md`). Don't beat every line, or the exchange loses its speed.
+- **Skip it** for lines that aren't speech: letters, sign-offs, stamps, signs.
 
 ## 2. Listening read-through (the script can't do this)
 

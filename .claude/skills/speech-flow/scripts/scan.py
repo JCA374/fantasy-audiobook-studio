@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 
 LONG = 35          # words; writing-for-the-ear says prefer < ~30
+BARE_LINE = 6      # words; a lone quoted line this short gets an emotion beat
 COMMAS = 6         # commas in one sentence -> choppy run of pauses
 INTERRUPTERS = r"by all accounts|of course|in fact|after all|apparently|it seemed|at least|for once|for a moment|in the end"
 CUES = r"(:|thought|read|said|says|wrote|written|stamped|whispered|meant|saying)\s*$"
@@ -48,10 +49,9 @@ def scan(path):
                 continue  # spoken emphasis: lost in audio, harmless
             if not re.search(CUES, before, re.I):
                 hit("italics-without-cue", f"…{before[-40:]}*{m.group(1)}*")
-        # bare short questions in dialogue (fine when a beat or tag follows)
-        for m in re.finditer(r'["“]([^"”]+\?)["”]', par):
-            if words(m.group(1)) <= 3 and not par[m.end():].strip():
-                hit("short-question", m.group(0))
+        # a bare short line of dialogue on its own: no tag, no beat, so the listener gets no emotion (cases 01, 05)
+        if re.fullmatch(r'["“][^"”]+["”]', par) and words(par) <= BARE_LINE:
+            hit("bare short line (add an emotion beat)" + (" + short question" if par.rstrip('"”').endswith("?") else ""), par)
         for s in sentences(par):
             w = words(s)
             if w > LONG:
