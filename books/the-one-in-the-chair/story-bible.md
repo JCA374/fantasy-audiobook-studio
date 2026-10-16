@@ -4,12 +4,25 @@ _Series context, other premises and audio notes: `books/collection.md`._
 
 ## 3. World rules (Novel 1)
 
-- **Judgement.** When someone dies they are judged by the emotional residue they leave behind, not by simple good or bad. They become an object reflecting how they were remembered, not necessarily how they actually were. Examples so far: a dentist remembered as warm and reliable becomes a teapot; a man everyone let wipe their feet on becomes a doormat.
+- **Judgement (second edition).** When someone dies, some of them come through as an object and some simply go on. *Which* is arbitrary and never explained: not about being good or bad, and not about how strongly someone was remembered (the doormat man, barely remembered, is an object too). The Office treats it with a shrug: not our department, that's just how death goes sometimes.
+  - **What the object is** still reflects how the person was remembered, not necessarily how they were: a dentist remembered as warm and reliable becomes a teapot.
+  - **The real judgement is the term.** Most objects serve a limited term, then move on. Where they go is never explained. The length is never spoken as a number; only light remarks hint at it ("it's not forever", "this one won't take long").
+  - **Indefinite is the punishment.** It is reserved for cases like Elin's (classified negligent) and, centuries ago, Agnes's. An appeal fights for a term instead of "forever".
+- **Placement.** Objects are not just filed away. When the term is set they are *placed*, set back into the world to be used, and where an object ends up matters ("put me somewhere nice"). Porters in canvas aprons collect them from the reapers' shelves.
+  - Indefinite objects are not placed. They go to storage (Lost Correspondence and Unclaimed Effects, the archive).
+  - Mira quietly bent the rules to have her mother's chair placed in her own flat; Edmund did the same with Agnes on his shelf. Because it was a bent placement, the Boundary Section can take the chair as evidence (ch10).
 - **Reapers** do not kill. They process the newly dead through judgement, catalogue what they become, and file appeals when a classification seems wrong. They are essentially caseworkers in a grief bureaucracy, which gives built-in dark comedy.
 - **Objects are aware.** A chair-soul can still feel warmth, cold, being sat on, being ignored. This is the horror hook: the mother is not gone, she is trapped and waiting.
 - **Appeals** require proof that the living misremembered the dead, so the work is part detective story. The Office only accepts consistent testimony, and one fair account does not outweigh many agreeing ones. Primary accounts in the dead person's own hand count as unusually strong evidence.
 - **No cost to the reaper.** The user explicitly rejected an idea where each appeal drains something from the reaper. Mira has no ticking clock beyond the case itself.
 - **The Office** is the afterlife bureaucracy. Its stationery is grey, stamped and smells of nothing. Time there moves more like weather than a schedule. The city the dead live in exists "slightly sideways" from the living one. The newly dead keep human shape briefly, as a courtesy, before the sentence takes hold. Crossing messages between the living and dead worlds is rare, expensive and unsanctioned, and the Office fears it would collapse the appeals system.
+- **The cost of crossing (second edition).** An old crossing key holds the way open only as long as the carrier's warmth lasts, roughly an hour, and each crossing takes warmth that comes back slowly, if at all. Edmund needed **three crossings**, which means three rings in a week for Crane:
+  1. **The shelter:** refitted last year. The bureau is gone, and a house-clearance receipt is pinned to the noticeboard.
+  2. **A second-hand shop:** the bureau is there with its drawers empty. A tag shows the contents were boxed and returned to the shelter "for the family, if anyone asks".
+  3. **The shelter's back office:** the box holds the good paper, the stamps, the tin of mints and the letter, which still smells of the third drawer.
+
+  In ch03 his hands are cold and his coat is wet. He stays cold for weeks afterwards, and people notice.
+- **How Edmund knew the letter existed.** At her intake, Elin said she had "written it down once, for her daughter". The intake officer noted it and did not pursue it. Hollis copied that note into the archive registry, beside his pencil ticks, and Edmund found both there.
 
 ## 4. Cast
 
@@ -18,6 +31,8 @@ _Series context, other premises and audio notes: `books/collection.md`._
 - **The supervisor** is unnamed so far (the user chose to leave him mysterious). He is a centuries-old former reaper, now part administrator and part archivist, and thoroughly worn down. His office is on the third floor behind a door with no nameplate. He is not evil. He represents what Mira could become if she stops fighting. He turns out to be a quiet ally: he advises her to file the appeal formally and openly, and asks her to come to him before acting on whatever she learns about the letter's origin.
 - **The three judges** on the appeals panel have faces that never quite resolve into anything memorable, which is deliberate. The centre judge is flat and procedural. The left-hand judge is dry and slightly more humane.
 - **A grey clerk** reads evidence aloud in the hearing room.
+- **Hollis, the ledger clerk** (second edition; name proposed, author to confirm). Narrow, ink on his cuffs, pushes the effects ledgers between Intake and the archive every morning before anyone else is in. He also copies every effects ledger and case file into the archive registry at the end of each season, and has done for a very long time, for nobody. Clerks copy; they are not supposed to read. Four years ago, copying Elin's file, he noticed the same five words ("walk out into the night") over and over, and left a tiny pencil tick in the margin of the registry copy beside each one, the only protest a clerk could make. He told no one. Edmund, who keeps the archive, found the ticks and asked him to put the letter on Mira's desk, because the supervisor is never seen on the reapers' floor. Hollis said yes to ease his conscience. He is a real suspect for Mira (route, hours, access, the lights remark in ch02) and partly guilty; he never crossed anything. He confesses in ch12 and speaks at the hearing.
+- **The counter clerk** at Lost Correspondence and Unclaimed Effects: half-moon glasses, laminated answers. She has always known the Keeper's key was never destroyed, and she stonewalls Mira to protect him. Third lead; pays off when she kisses Edmund's cheek after the hearing.
 
 ## 5. Chapter summaries (Novel 1)
 
@@ -54,3 +69,15 @@ _Series context, other premises and audio notes: `books/collection.md`._
 - **Ending:** Elin's classification is overturned and she moves on. The chair becomes just a chair; Mira sits in it for the first time and opens the window.
 - **The woman from the shelter** stays offstage in Novel 1.
 - Chapters 2–4 are redrafted from the summaries in section 5; the chat versions are not used.
+
+## 10. Second edition decisions (2026-10-16)
+
+From `rewrite-notes.md` and the planning discussion with the author.
+- **Keep exactly:** the five intake scenes (teapot, diary, mirror, nightlight, umbrella; no new intake characters), the chair and its warmth, the echo payoff (stays Mira's discovery).
+- **Sentencing logic:** see §3 Judgement and Placement. Ch04's ruling suspends the *indefinite term*; ch13's ruling sets it aside ("the deceased has served four years; the panel considers that sufficient"), and Elin is released at the turning of the season.
+- **Letter chain:** Edmund crosses (three times, at a visible cost) and Hollis places the letter on Mira's desk. Mira's false leads: Hollis (half true), the counter clerk (protecting Edmund). Midpoint reveal stays in the archive with Agnes's file.
+- **Ch04 condition** becomes "show where the letter came from, and by whose hand", so the ch13 Article Nine ruling answers it directly (fixes the continuity wrinkle in the notes).
+- **Article Nine at the hearing** separates three people: Edmund carried the letter across, Hollis carried it down a corridor, Mira forged an entry.
+- **Intakes in the plot chapters:** the existing intake characters recur through placement (the porters collect the shelf objects; "put me somewhere nice").
+- **Length:** up to ~18k words, 14 chapters. New ch07 "Placement"; old ch07–13 become ch08–14.
+- **Editions:** v1 is kept (git tag `v1-first-edition`, `books/the-one-in-the-chair-v1/`).

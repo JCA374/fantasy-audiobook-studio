@@ -116,6 +116,17 @@ It converts new training audio to MP3, builds the site locally as a check, commi
 5. Re-run audiobook-assemble for new MP3s and the m4b.
 6. `site/publish.sh "ch01: speech-flow fixes"`.
 
+## Revising a finished book (second editions)
+
+Small fixes go through the change workflow above. A **rewrite** changes the story itself. *The One in the Chair* got one after the first edition was finished: new rules for the afterlife, a mystery with more than one suspect, and a new chapter. A rewrite runs the pipeline again from stage 1, but most stages only touch what changed:
+
+1. **Keep the old edition.** Tag it in git (`v1-first-edition`) and copy it to `books/<slug>-v1/` with `edition` and `superseded_by` in its `book.yaml`. The website lists it under *Earlier editions*.
+2. **Rewrite notes.** The author writes down what to keep exactly, what is decided and what is still open. The notes become a making-of page (`rewrite-notes.md`).
+3. **Bible and outline first** (stages 1–2). The new rules and the decisions on the open problems go into the story bible. The outline is redone with structure Map mode, and the author approves it before any prose changes.
+4. **Rewrite chapter by chapter** (stage 3). Scenes the author froze stay word for word. `continuity.md` gets a *Second edition* section of facts that replace the old ones.
+5. **Reader test again** (stage 5). A fresh subagent reads the new edition cold, with questions aimed at the changes: is there more than one suspect, does the new rule feel cheap, do the condition and the ruling agree.
+6. **Voice stages as usual** (6–10). The render cache is keyed on each paragraph's text, so only new or edited paragraphs are rendered. A rewrite that keeps two thirds of its sentences costs about a third of a full render.
+
 ## The training loop
 
 When the author hears something wrong, they paste the passage and describe what they heard. Claude finds the cause (often visible in the phonemes), writes a *before* script and one or more *after* variants, renders them all, and the author picks by ear. The winning fix becomes a rule in the relevant skill, and every earlier case is re-checked against the new rules. All of it, including the audio, is kept in `training/` and shown on the [Improvements](improvements.html) page.

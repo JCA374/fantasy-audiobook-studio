@@ -43,7 +43,7 @@ STAGES = [  # n, name, group, skills, output
     (10, "Assemble & publish", "ship", ["audiobook-assemble"], ".m4b · .mp3 · .epub · this site"),
 ]
 GROUPS = {"write": "Writing", "voice": "Voice", "ship": "Package"}
-MAKING_OF = ["story-bible", "outline", "continuity", "glossary", "status"]
+MAKING_OF = ["story-bible", "outline", "continuity", "glossary", "status", "rewrite-notes"]
 
 
 # ---------------------------------------------------------------- helpers
@@ -463,12 +463,27 @@ def build_epub(b, dest):
 <spine>{"".join(spine)}</spine></package>''')
 
 
+def edition_note(b, books):
+    """Link between editions: an old edition points forward, the current one lists earlier ones."""
+    meta = b["meta"]
+    if meta.get("superseded_by"):
+        return (f'<p class="spoiler">Earlier edition {meta.get("edition", "")}. {esc(meta.get("note", ""))} '
+                f'<a href="../{meta["superseded_by"]}/index.html">Read the current edition →</a></p>')
+    older = [o for o in books if o["meta"].get("superseded_by") == b["slug"]]
+    if not older:
+        return ""
+    items = "".join(f'<li><a href="../{o["slug"]}/index.html">Edition {o["meta"].get("edition", "")}</a>: '
+                    f'{esc(o["meta"].get("note", ""))}</li>' for o in older)
+    return f"<h2>Earlier editions</h2><ul class=making>{items}</ul>"
+
+
 def build_books(books):
+    current = [b for b in books if not b["meta"].get("superseded_by")]
     cards = "".join(f"""<a class="bookcard" href="{b["slug"]}/index.html">
 {f'<img src="{b["slug"]}/cover.jpg" alt="">' if b["cover"] else ""}
 <div><h2>{esc(b["meta"]["title"])}</h2><p>{esc(b["meta"].get("author", ""))} · {len(b["chapters"])} chapters ·
 {sum(c["words"] for c in b["chapters"]):,} words{f' · {mmss(sum(c["dur"] or 0 for c in b["chapters"]))} of audio' if b["m4b"] else ""}</p></div></a>"""
-                    for b in books)
+                    for b in current)
     page("books/index.html", "Books", f"<h1>Books</h1><div class=books>{cards}</div>", "Books")
 
     for b in books:
@@ -513,13 +528,14 @@ def build_books(books):
         page(f"books/{s}/index.html", title, f"""
 <div class="bookhead">
 {f'<img class="cover" src="cover.jpg" alt="Cover of {esc(title)}">' if b["cover"] else ""}
-<div><p class="kicker">Book</p><h1>{esc(title)}</h1>
+<div><p class="kicker">Book{f" · edition {meta['edition']}" if meta.get("edition") else ""}</p><h1>{esc(title)}</h1>
 <p class="lede">by {esc(meta.get("author", ""))} · narrated by Kokoro TTS ({esc(nar.get("narrator", ""))}, speed {nar.get("speed", 1)})</p>
 <p class="facts">{len(b["chapters"])} chapters · {sum(c["words"] for c in b["chapters"]):,} words{" · " + mmss(total) + " of audio" if total else ""}</p>
 <div class="downloads">{downloads and "".join(downloads)}</div>
 <p class="hint">Kindle: send the .epub with Amazon's <a href="https://www.amazon.com/sendtokindle">Send to Kindle</a>.
 Phone: put the .m4b in Google Drive or Files and open it in an audiobook player such as BookPlayer.</p>
 </div></div>
+{edition_note(b, books)}
 <h2>Chapters</h2><ol class="chapters">{"".join(rows)}</ol>
 <h2>Making of</h2>
 <p>The working files behind this book, exactly as the skills left them (spoilers):</p><ul class="making">{making}</ul>""", "Books")
@@ -529,7 +545,7 @@ Phone: put the .m4b in Google Drive or Files and open it in an audiobook player 
 
 def build_home(skills, books, cases):
     log = "".join(f"<li><time>{d}</time> {esc(m)}</li>" for d, m in changelog())
-    b = books[0] if books else None
+    b = next((x for x in books if not x["meta"].get("superseded_by")), None)
     book = ""
     if b:
         total = sum(c["dur"] or 0 for c in b["chapters"])

@@ -31,6 +31,8 @@ If the author never gave a "sounds like", ask the author. Don't invent one. Name
 
 ## 2. Convert each chapter
 
+The mechanical rules below are implemented in `scripts/prep.py` (`.venv/bin/python .claude/skills/narration-prep/scripts/prep.py books/<slug>`). Run it, then read the diff of each script and handle what it can't: italics that carry meaning, numbers that need context, anything the author flagged.
+
 Rules, in order:
 
 1. **Heading** → spoken title paragraph: `Chapter Three. The Drowned Bell.` followed by `[pause 1.0]`.

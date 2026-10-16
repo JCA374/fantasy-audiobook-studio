@@ -1,21 +1,46 @@
-# Outline: The Reaper and the Furniture
+# Outline: The One in the Chair (second edition)
 
-**Target:** ~15,000 words, 13 chapters of ~1,000–1,300 words (about 7 min of audio each). One POV (Mira, close third, past tense).
-**Status:** Approved 2026-10-14. All ⚑ decisions resolved (see the end of this file and story-bible.md §9).
+**Target:** ~18,000 words in 14 chapters (about 105 min of audio). One POV: Mira, close third, past tense.
+**Status:** Draft for author approval, 2026-10-16. First-edition outline is in git (tag `v1-first-edition`).
+**Source:** `rewrite-notes.md` and story-bible.md §10.
+
+## What changes and what doesn't
+
+- **Frozen:**
+  - The five intake scenes: teapot (ch1), diary (ch5), nightlight (ch8), mirror (ch10), umbrella (ch12). Their dialogue stays as written.
+  - The chair and its warmth.
+  - The echo payoff: forty-one testimonies that are one headline.
+- **New logic:**
+  - Becoming an object at all is arbitrary.
+  - The judgement is the length of the term.
+  - Elin's term is **indefinite**, and that is the punishment.
+  - Hints at terms are never numbers.
+- **New idea:** objects are placed back into the world, and where they end up matters.
+- **New chain:** Edmund crosses three times, at a visible cost. Hollis, the ledger clerk, places the letter on Mira's desk.
+- **Mystery shape:** two false leads before the truth.
+  - **Hollis:** suspected, half right. He placed the letter but never crossed.
+  - **The counter clerk:** stonewalling, protecting the Keeper.
+  - The register, then Agnes's file, then Edmund.
 
 ## The engine
 
-The supervisor sent the letter. He used an old reaper's crossing key that the archive was supposed to have destroyed. The panel's condition (show the provenance, and show no boundary was violated) therefore **can't be met honestly**. To prove where the letter came from, Mira has to expose the only person in the Office who helped her. The antagonist force is the Office's fear of precedent, embodied in **Inspector Crane** of the Boundary Section. Crane's goal is to have the letter declared contraband and the appeal voided.
+The panel's condition is to show where the letter came from and by whose hand. Mira can't meet it without naming the only people in the Office who helped her. Crane's Article Nine says that if no one else is named, she counts as the trafficker.
 
-**Theme (from Elin's letter):** do we lock doors on the people we love to keep them safe, or trust them with their own choices? Mira wins by trusting other people with their own choices: first the supervisor, then her mother.
+**Theme (from Elin's letter):** do we lock doors on the people we love to keep them safe, or trust them with their own choices?
 
 - **Mira's Lie:** the system only gives way to people who work it quietly and alone.
 - **Mira's Truth:** say it openly, and let others choose their own cost.
-- **Supervisor's arc:** he stopped fighting his own case centuries ago and became what Mira fears becoming. Sending the letter was his first act of fighting in a very long time. Confessing it is his second.
+- **Hollis's version of the theme:** he saw the truth and kept quiet, because quiet was his job.
+- **Edmund's version of the theme:** he stopped fighting and kept his sister on a shelf.
 
-## Recurring device: intake openings
+## Recurring device: intakes and placement
 
-Like Chapter One's teapot, chapters 5, 7, 9 and 11 open with a short intake (150–250 words). Each mirrors the chapter's theme. This keeps the case-of-the-week rhythm from the bible without a second subplot.
+Intakes run through the plot chapters, using only existing characters:
+- **Intake openings:** ch5 (diary), ch8 (nightlight), ch10 (mirror), ch12 (umbrella).
+- **The porters' placement rounds** take the shelf objects back out into the world: ch6, ch7, ch9.
+- **Mira's ordinary workday** goes on as short beats in between.
+
+Each placement echoes the theme: where you end up, who chooses, and "put me somewhere nice".
 
 ---
 
@@ -23,124 +48,194 @@ Like Chapter One's teapot, chapters 5, 7, 9 and 11 open with a short intake (150
 
 ### Act I
 
-**1. Intake** (done, 1,013 words, ~0–7%)
-- **Contents:** Teapot dentist, seventeen more intakes, the chair, the file notice.
-- **Beats:** Hook / Disturbance. Care Package (the chair). Argument Against Transformation: Mira believes appeals go nowhere through the front door.
+**1. Intake** (1,050 words, 0–6%). Light touch.
+- The intake dialogue is unchanged.
+- In the narration only:
+  - The teapot is "tagged for placement" rather than "for collection".
+  - Elin's file notice gains one line: *Term: indefinite.*
+  - "Under appeal for going on four years" stays.
+- Beats: Hook, Care Package, Argument Against Transformation.
 
-**2. New Evidence** (~1,100 words, ~7–15%)
-- **Contents:** The cream-coloured letter appears on her desk, smelling of an old drawer. Elin's words: "one more person locking a door on her". Hope for the first time in four years, and suspicion that it comes with a price.
-- **Beats:** Inciting Event. Trouble Brewing: a clerk mentions in passing that the Boundary Section "has been busy".
-- **Closing hook:** the letter has no Office stamp. Everything that enters the Office is stamped.
+**2. New Evidence** (1,300 words, 6–13%)
+- As before: the letter, the smell, Elin's words, hope.
+- Hollis gets his name and a little more space:
+  - He pushes the trolley past her door earlier than usual.
+  - He makes the "Boundary Section had their lights on all night" remark.
+  - He lingers a beat too long and looks at her blotter.
 
-**3. The Supervisor** (~1,100 words, ~15–23%)
-- **Contents:**
-  - Third floor, the door with no nameplate. He says nobody retrieves letters. This is a lie, but the reader can't know that yet.
-  - Plant: his hands are cold in the warm room and his coat is damp, as if he'd been out in weather.
-  - Plant: a hook on his wall where a key used to hang.
-  - He advises filing formally and openly, and asks her to come to him first once she learns where it came from.
-- **Beats:** Key Event. Mira chooses the open route over her usual quiet rule-bending, leaving her normal world.
+  On a second read, this is a guilty man deflecting.
+- **World-building:** the cardigan woman, a short beat. She asks, delighted, where cardigans *go*. Mira says "out into the world, somewhere," and notes a wish on the slip (a cat). This is the first sign of placement. Keep it vague.
+- Trouble Brewing.
+- Closing hook: no stamp; it came in *around* the Office.
 
-**4. The Hearing** (~1,200 words, ~23–31%)
-- **Contents:**
-  - Case 4471 before three judges in the bone-coloured room. The grey clerk reads the letter into the record.
-  - The ruling: **suspended, not overturned**, until the provenance is shown and it's shown that no boundary was violated.
-  - New: Inspector Crane sits at the back taking notes.
-  - At home the chair creaks "well?", then holds her firmly: "be careful".
-- **Beats:** First Plot Point / Doorway #1. Now on the record, she can't go back to quiet work.
+**3. The Supervisor** (1,350 words, 13–21%)
+- As before: the door with no nameplate, the shelves, the wet coat, the empty hook.
+- The cold hands become a visible toll: the room is warm, and he keeps a cardigan on and his hands round a cup.
+- Edmund adds the Office's shrug about the system:
+  - why some of the dead come through as objects and some just go on: "Nobody upstairs has ever explained it. Not our department."
+  - that the classification hardly matters; "it's the term they argue about".
+  - Elin's term is indefinite, and the desk is never offered to the negligent.
+- He advises filing openly and asks her to come to him first.
+- Key Event.
+
+**4. The Hearing** (1,500 words, 21–29%)
+- As before: the room, the clerk reading the letter, "It's a good letter", Crane in the back row.
+- **The new ruling:** "The indefinite term is suspended. Not set aside. Suspended."
+- **The new condition:** "Should the appellant establish where this document came from, and by whose hand it came here, the panel will reconvene and weigh it in full."
+- The "released at the turning" paragraph is rewritten in term language: a term set is a term that ends, and when it ends the chair is just a chair.
+- Mira's laugh line changes to fit: "I win by naming whoever broke the rules for me."
+- First Plot Point / Doorway #1.
 
 ### Act II-A
 
-**5. Lost Correspondence** (~1,200 words, ~31–38%)
-- **Intake opening:** a woman remembered as "a locked diary". She wants to appeal, then realises she'd rather stay closed.
-- **Contents:** Mira works the letter like a case: the paper, the drawer smell, the missing stamp. The archive refuses her; it's the supervisor's own department. Crane opens a formal Boundary inquiry into Mira personally.
-- **Beats:** Kick in the Shins.
+**5. Lost Correspondence** (1,300 words, 29–36%)
+- The diary intake, unchanged.
+- The letter worked like a case: paper, watermark, smell, stamp. Then the forty-one testimonies and the five words. This stays Mira's discovery.
+- **The counter clerk** now stonewalls *protectively*:
+  - The laminated answers as before, but when Mira mentions the register she says, "The Keeper's records are the Keeper's business," a little too fondly.
+  - She glances at the stairs.
+  - Lead #2 is planted.
+- The notice of Boundary inquiry arrives.
+- Kick in the Shins.
 
-**6. The Boundary Section** (~1,200 words, ~38–46%)
-- **Contents:**
-  - Crane interviews Mira in a cold, tidy room. He explains the rule that matters, planted here for the climax: **contraband taints the appeal of whoever trafficked it, not the testimony itself.** If Mira smuggled the letter, the appeal dies.
-  - He reveals that a crossing key registered to the archive as "destroyed" was used the night before the letter appeared.
-  - Mira suspects a clerk. She does not yet suspect the supervisor.
-- **Beats:** First Pinch Point. The opposition shows its strength and gives a real clue.
+**6. The Boundary Section** (1,300 words, 36–43%)
+- **Opening intake beat:** the porters' first placement round in Mira's office.
+  - They take the teapot and the coat rack. A porter says, "This one won't take long," patting the teapot. That is the first term hint.
+  - Mira signs the slips. The nightlight space is still empty; the diary stays.
+- **Crane:** the wall, Article Nine and its second sentence.
+  - The boundary rang **three times in a week**, each with the same note: a key the register says was melted down two hundred years ago.
+  - "Someone went back twice. People don't go back twice for a stranger."
+- **Hollis on the stairs** with the effects ledgers.
+  - Mira lists what fits: his route, his hours, his access to the archive, the lights remark, how he looked at her blotter.
+  - The suspicion now has evidence behind it.
+- First Pinch Point.
 
-**7. The Door With No Nameplate** (~1,300 words, ~46–54%)
-- **Intake opening:** Pet the Dog. A frightened boy remembered as "a nightlight". Mira bends a rule to let him keep his shape a little longer, at real risk with Crane watching.
-- **Contents:**
-  - She checks the archive's key ledger and finds the supervisor's sealed personal file. Centuries ago he abandoned his own appeal for his sister ⚑ (sister, or someone else?).
-  - She confronts him. He admits everything: he crossed because he once stopped fighting and couldn't watch her do the same.
-- **Beats:** Midpoint / Mirror Moment. Mira sees her own future in him and asks what she's willing to become to win.
+**7. Placement** (NEW, 1,300 words, 43–51%)
+- **Intake weave:** the porters' second round. Mira fills placement slips for the ch02 cardigan woman and the revolving door.
+  - The cardigan woman's wish from ch2 pays off: Mira writes "somewhere with a cat" in the box marked Preferences, which nobody ever reads.
+  - "Put me somewhere nice" is a feeling, not a required quote. Use the line only if it fits naturally.
+- **Tailing Hollis:**
+  - Mira comes in before dawn and watches his round.
+  - He stops at her door every morning, and only hers.
+  - She follows the trolley to the registry copies and finds her mother's file copied in his round hand, with **tiny pencil ticks** beside every "walk out into the night".
+  - Someone else read that file and saw what she saw.
+- **The confrontation:**
+  - Hollis is frightened. "I never crossed anything, miss. I've never been anywhere."
+  - That is true, and he refuses to say more.
+  - Mira half believes him and half doesn't.
+- **The pressure:**
+  - Mira goes down to the basement corridor to give Crane his name. She stands outside room nine.
+  - She doesn't go in: Hollis can't have crossed, and handing Crane the wrong man would close the case on a lie. It's the first crack in her old method.
+- **The counter clerk again:**
+  - Mira asks for the register outright and is refused.
+  - "Ask the Keeper. If you can find his door."
+  - That sends Mira to the register, at night.
+- Strengthens the Pinch Point and builds to the Midpoint.
 
 ### Act II-B
 
-**8. A Clean Provenance** (~1,200 words, ~54–62%)
-- **Contents:** The old Mira returns. She builds a false provenance: the letter came in with Elin's own effects four years ago and was misfiled. This protects the supervisor and clears herself. He tells her to let him take the blame instead; she refuses. She's good at this, and it nearly works.
+**8. The Door With No Nameplate** (1,450 words, 51–59%)
+- The nightlight intake, unchanged, with the hold slip.
+- The register at night:
+  - Every entry is initialled "Keeper of the Archive".
+  - The unlocked drawer holds Agnes's file: a music box with a broken key, an **indefinite** term, sixty years of appeals, and an unfinished form.
+- Edmund in the doorway. His confession now includes:
+  - **How he knew:** the intake note ("wrote it down once, for her daughter") in Hollis's registry copy, beside the ticks.
+  - **Three crossings,** each lasting only as long as his warmth: the shelter (refitted, the bureau gone, a clearance receipt); a second-hand shop (the bureau with its drawers empty, a tag saying the contents went back "for the family"); the shelter's back office (the box with the paper, the stamps, the mints and the letter). "I haven't been warm since."
+  - **Hollis:** "The supervisor isn't seen on your floor. I found his pencil marks in your mother's file. He'd seen it too. I asked him to carry it the last forty yards." Mira understands that her suspicion was half right.
+- "Tell him it was me." "No."
+- Midpoint / Mirror Moment.
 
-**9. Sequestered** (~1,200 words, ~62–69%)
-- **Intake opening:** a man who lied his whole life and is classified as "a mirror".
-- **Contents:** Crane moves. Because the appeal is under Boundary inquiry, its subject is sequestered: **they take the chair from Mira's flat.** Mira's forged misfiling record is flagged as suspicious.
-- **Beats:** Second Pinch Point (a concrete cost) and Mounting Forces.
+**9. A Clean Provenance** (1,100 words, 59–65%)
+- As before: the bath, the effects-ledger forgery, three days, the notice of correction.
+- It now protects two people: no crossing means no carrier, and no carrier means no Hollis.
+- **Intake weave:** her ordinary days carry on while she forges.
+  - The porters collect the diary.
+  - Mira writes "somewhere quiet. With a lock." under Preferences.
+- The corridor with Edmund: "Somebody always pays for the version where everyone wins."
+- The cushion goes cold.
 
-**10. Floor** (~1,100 words, ~69–77%)
-- **Contents:**
-  - Night in the flat with no chair. She sits on the floor where it stood, with no warmth.
-  - She recites the letter from memory and finally hears it: Elin refused to be one more person locking a door, and Mira has been locking doors on everyone, including the supervisor's right to choose.
-  - He comes to her. He tells her his name ⚑ and says he wants to confess, openly, at the reconvened hearing. She lets him choose.
-- **Beats:** Third Plot Point / Lights Out / Doorway #2. The low point is where she faces her Lie.
+**10. Sequestered** (1,200 words, 65–72%)
+- The mirror intake, unchanged.
+- **Crane exposes the forgery** using the archive registry copy, which is *Hollis's* copy.
+  - "I do the copies," Hollis says from the doorway. It is now painful: Crane doesn't know Hollis also carried the letter, and Mira does.
+  - Hollis looks at her, and she says nothing to save him and nothing to sink him.
+- The chair is taken. This works because her placement was bent ("the subject was never properly placed; it's been held at the appellant's address irregularly").
+- Second Pinch Point / Mounting Forces.
+
+**11. Floor** (1,250 words, 72–79%). Light touch.
+- As before: the night on the floor, reciting the letter, hearing it, Edmund on the floorboards, his name, his choice.
+- One added line: Edmund says he will name Hollis only with Hollis's leave. "It's his to choose too."
+- Third Plot Point / Lights Out / Doorway #2.
 
 ### Act III
 
-**11. Testimony** (~1,100 words, ~77–85%)
-- **Intake opening:** an old woman remembered as "an umbrella". Mira asks "tell me why it's wrong" and means it again.
-- **Contents:** Mira withdraws the forged record herself and requests the panel reconvene. She and the supervisor prepare. Crane builds his case that Mira was complicit, and the forgery is real evidence against her.
-- **Beats:** Third Act Turning Point.
+**12. Testimony** (1,250 words, 79–86%)
+- The umbrella intake, unchanged.
+- The forgery is withdrawn in writing. Crane: "Why?" "You told me you were a wall."
+- The count with Edmund in the third-floor office. **Hollis knocks.**
+  - He has heard about the confession.
+  - He tells them about the pencil ticks, four years old: he saw it and said nothing, because clerks copy and don't read.
+  - He asks to speak at the hearing.
 
-**12. Reconvened** (~1,500 words, ~85–96%)
-- **Contents:**
-  - The hearing. Mira tells the truth: the letter crossed illegally, the supervisor carried it, and she tried to cover for him.
-  - The supervisor gives his testimony under his own name.
-  - Crane argues the whole appeal is poisoned. The left-hand judge invokes Crane's own rule from chapter 6: the taint attaches to the trafficker, not to the dead woman's words in her own hand.
-  - Rulings:
-    - Elin's classification is **overturned**.
-    - The supervisor is referred for his own long-delayed judgement ⚑.
-    - Mira is reprimanded and demoted to junior intake, which she accepts.
-- **Beats:** Climactic Moment / Final Battle. Transformation in action: open honesty at her own cost, trusting others' choices.
+  The echo count stays Mira's, and Hollis confirms it rather than revealing it.
+- The season begins to turn.
+- Third Act Turning Point.
 
-**13. Air** (~800 words, ~96–100%)
-- **Contents:** The chair comes home, briefly. Elin's sentence is lifted and she is free to move on ⚑. For the first time Mira sits *in* the chair, not beside it. One last creak, the warmth goes, and Mira opens the window (Elin's "she asked for air").
-- **Beats:** Resolution, answering the Hook. The dentist accepted how he was remembered; Elin gets to be remembered as she was.
+**13. Reconvened** (1,650 words, 86–95%)
+- The hearing.
+  - Mira tells the truth.
+  - Edmund testifies under his own name.
+  - Hollis gives a short, shaking statement: "I carried it from the third-floor landing to her desk. I didn't read it. I'd read enough."
+- Crane argues that hiding the route is part of trafficking.
+- The judge on the left on Article Nine: *trafficked* means to carry across.
+  - Edmund carried it across.
+  - Hollis carried it down a corridor; "We don't have an article for that. I'm not minded to write one."
+  - Mira sat in a storeroom with old ink; that is forgery, a different offence, and it was confessed.
+- The ch04 condition is answered explicitly: "The appellant was asked to show where the letter came from and by whose hand. She has shown us both."
+- The echo is laid out with Edmund's sheet of marks and Hollis's ticks.
+- **Rulings:**
+  - The negligence finding is overturned. "The indefinite term is set aside. The deceased has served four years. The panel considers that sufficient." Release at the turning of the season.
+  - Edmund is relieved of his post and referred for judgement. The left judge, lightly: "It's not forever, usually."
+  - Mira is reprimanded and on probation, with countersigned files.
+  - Hollis receives no finding.
+- Corridor: Agnes's unfinished form, Crane's handshake, "it'll be on your head", "a very good letter".
+- Climax.
+
+**14. Air** (900 words, 95–100%). Light touch.
+- As before: the chair comes back and Mira sits in it.
+- One placement nod:
+  - The porter asks whether it's to be placed, now the term's done.
+  - Mira says it already is. "Somewhere nice. By the window."
+- The warmth goes, and she opens the window.
+- Resolution.
 
 ---
 
-## Structure profile (story-structure Map mode)
+## Structure profile (story-structure Map mode, re-check)
 
 ```
-Structure profile:
+Structure profile (second edition):
 - Hook: ch1 (teapot intake)
-- Inciting Event (~12%): ch2, the letter appears
-- Key Event (end of Act 1): ch3, Mira chooses to file openly instead of working it quietly
-- First Plot Point (25%): ch4, suspended ruling, Crane notices her. Doorway #1 check: she could withdraw
-  and go back to quiet work, and doesn't. Lands ~23% (slightly past Bell's 1/5, acceptable for a novella).
-- First Pinch Point (37.5%): ch6, Crane's interview, the "destroyed" key was used
-- Midpoint / Moment of Truth (50%): ch7, the supervisor is the sender. Mirror Moment check: "what am I
-  willing to become?". She sees her future self in him.
-- Second Pinch Point (62.5%): ch9, the chair is sequestered (concrete cost)
-- Third Plot Point (70-75%): ch10, the night on the floor, facing the Lie. Doorway #2 check: once the
-  supervisor chooses to confess, the hearing is unavoidable.
-- Third Act Turning Point (88%): end of ch11, the forgery withdrawn, panel reconvened
-- Climactic Moment (90-98%): ch12, the ruling. Faux-climax check: ch4's suspension is the decoy climax;
-  the real goal (Elin freed) is only met here. Transformation check: Mira confesses her own forgery
-  unprompted.
-- Resolution: ch13, Mira sits in the chair, opens the window
-- Optional signposts planned: Care Package (ch1), Argument Against Transformation (ch1), Trouble
-  Brewing (ch2), Kick in the Shins (ch5), Pet the Dog (ch7), Mounting Forces (ch9), Lights Out (ch10),
-  Q Factor (Crane's own ch6 rule wins the ch12 hearing; the window/"air" motif from ch2 lands in ch13)
-- Last structure check: Map, 2026-10-14
+- Inciting Event (~10%): ch2, the letter appears
+- Key Event: ch3, Mira chooses to file openly
+- First Plot Point (~25%): ch4, the indefinite term is suspended, the condition is "by whose hand", Crane notices
+- First Pinch Point (~37%): ch6, three rings and Article Nine's presumption
+- Midpoint (~50-55%): ch7 ends with the trail turning to the register; ch8 brings the truth (Edmund + Hollis).
+  The Mirror Moment lands at ~57%, a few points late but acceptable. If the draft runs long, trim ch5-6.
+- Second Pinch Point (~66%): ch10, forgery exposed via Hollis's copy, the chair sequestered
+- Third Plot Point (~75%): ch11, the night on the floor; Edmund chooses
+- Third Act Turning Point (~85%): ch12, the forgery withdrawn, Hollis comes forward
+- Climax (~88-95%): ch13. Faux-climax check: ch4's suspension is the decoy; the real goal is met here
+- Resolution: ch14
+- Signposts: Care Package (ch1), Trouble Brewing (ch2), Kick in the Shins (ch5), Pet the Dog (ch8 nightlight),
+  Mounting Forces (ch10), Lights Out (ch11), Q Factor (Article Nine; "put me somewhere nice" -> ch14 window)
+- Last structure check: Map, 2026-10-16
 ```
 
-## ⚑ Decisions (resolved 2026-10-14)
+## Author answers (2026-10-16)
 
-1. Mira is **dead**: a soul who took the reaper's job instead of judgement, about a year after Elin died.
-2. The supervisor is **Edmund**. His abandoned case was for his sister.
-3. Elin **moves on**; the chair becomes just a chair.
-4. Edmund **faces his own judgement** at the end.
-5. Inspector Crane is the antagonist as proposed.
-6. The woman from the shelter stays offstage.
+1. Hollis: yes.
+2. "Put me somewhere nice" is a feeling, not a required quote. Plant the cardigan woman early (ch2) and pay her off in ch7.
+3. Where objects go: stay vague. Vague is always fine.
+4. Three crossings: each needs a real reason. Revised to: shelter (the bureau gone), shop (drawers empty), shelter back office (the box). Each is limited by the carrier's warmth.

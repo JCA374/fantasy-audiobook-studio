@@ -1,0 +1,27 @@
+title: The One in the Chair
+author: Jonas
+narrator: Kokoro TTS (af_heart)
+year: 2026
+edition: 1
+superseded_by: the-one-in-the-chair
+note: "First edition (2026-10-14). Replaced by the second edition after the rewrite notes; kept to show the revision."
+cover: cover.jpg
+chapters:
+  ch01: "Chapter One: Intake"
+  ch02: "Chapter Two: New Evidence"
+  ch03: "Chapter Three: The Supervisor"
+  ch04: "Chapter Four: The Hearing"
+  ch05: "Chapter Five: Lost Correspondence"
+  ch06: "Chapter Six: The Boundary Section"
+  ch07: "Chapter Seven: The Door With No Nameplate"
+  ch08: "Chapter Eight: A Clean Provenance"
+  ch09: "Chapter Nine: Sequestered"
+  ch10: "Chapter Ten: Floor"
+  ch11: "Chapter Eleven: Testimony"
+  ch12: "Chapter Twelve: Reconvened"
+  ch13: "Chapter Thirteen: Air"
+narration:
+  narrator: af_heart    # chosen by the author 2026-10-14 (American female, Kokoro grade A)
+  speed: 0.95
+  paragraph_pause: 0.6
+  characters: {}        # single narrator; the chair stays wordless anyway

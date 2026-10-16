@@ -12,3 +12,4 @@ Check with: `.venv/bin/python .claude/skills/narration-prep/scripts/g2p.py <word
 | Edmund | ok | ok | the supervisor; name revealed ch10 |
 | Crane | ok | ok | Inspector, Boundary Section |
 | Agnes | ok | ok | Edmund's sister, music box (ch07) |
+| Hollis | ok | ok | the ledger clerk (second edition) |

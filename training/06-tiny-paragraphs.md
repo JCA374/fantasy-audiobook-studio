@@ -14,4 +14,4 @@ Source: *The One in the Chair*, ch06 (Crane's interview). **Found by the automat
 
 `before` = the passage exactly as it is in the audiobook; `after` = with both changes.
 
-Status: open. See rule proposal P2.
+Status: fixed in the second edition of the book (2026-10-16): "She sat." merged into the next paragraph, and "A wall." She didn't make it a question. The general rule is still rule proposal P2.

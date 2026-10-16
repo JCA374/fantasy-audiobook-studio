@@ -61,3 +61,35 @@ ch12 | Edmund: supervisor of the third floor and keeper of the archive for 311 y
 ch12 | Left judge: "trafficked" = carried across; forgery is a separate offence (confessed). Ruling: testimonies derived from a single published source; letter admitted; negligence OVERTURNED; released at the turning of the season. Edmund relieved of post, referred for judgement. Mira reprimanded (forgery + hold slip), one year probation, files countersigned
 ch12 | Edmund gives Mira Agnes's unfinished appeal form to complete; Crane gets the key; Crane's line "it'll be on your head" / Mira: "it was a very good letter"
 ch13 | Chair returned to the pale square; season turns that night; Mira sits IN the chair for the first time; long low creak = "I know, love. I know."; warmth leaves edges-first; it becomes just a chair; Mira opens the painted-shut window, leaves it open, goes to work
+
+## Second edition (2026-10): facts that supersede or add to the above
+
+ch01 | The teapot is "tagged for placement" and waits on the shelf for the porters (was "for collection")
+ch01 | Elin's file: "Classified negligent, for an indefinite term." Most terms end eventually; "indefinite" is the word for the ones that don't
+ch02 | The ledger clerk is named Hollis: narrow, ink on his cuffs, pushes the morning files from Intake, always early. On the letter's morning he stops at her door, glances at the cream paper on her blotter, holds on to the folders too long and leaves fast
+ch02 | Cardigan woman (eleven cats) asks where cardigans go: "Out into the world. Somewhere. The porters see to it." Her wish, "somewhere with a cat", is written on the placement slip under Preferences, which nobody ever reads
+ch03 | Supervisor sits close to a fire built far higher than the room needs (cold since the crossings). His line: "Why some of us come through as furniture and some of us simply go on, nobody upstairs has ever explained. Not our department. But how long you stay furniture, that's ours." Elin appealed the indefinite term, not the chair
+ch04 | Classification read as "negligent ... rendered as a chair, for an indefinite term". Ruling: the INDEFINITE TERM is suspended ("Not set aside. Suspended."). Condition: show where the letter came from "and by whose hand it came here". Supersedes "no boundary violated"
+ch04 | If the term is set aside, Elin gets a term like everyone, terms end, she is released at some turning of the season; the chair becomes just a chair
+ch05 | Counter clerk glances up at the ceiling (towards the third floor): "The Keeper keeps the Keeper's records. And the Keeper's records are the Keeper's business." Said too fondly
+ch06 | Porters (two, canvas aprons, trolley lined with blankets) come weekly-ish; take the teapot and coat rack; the clock "not ready yet". "This one won't take long." Teapots go "out ... somewhere it's wanted. Kitchens, mostly"
+ch06 | Mira bent the chair's placement: a carefully filled, not-quite-correct form from when she was new; indefinite objects should go to storage
+ch06 | THREE rings: fourteen, eleven and eight nights before the interview; the third was the night before the letter. Same key note each time ("melted down two hundred years ago")
+ch06 | Mira greets "Morning, Hollis"; suspicion based on: in before anyone, archive access with an unsearched trolley, looked at her blotter, held the folders too long
+ch07 | Registry: a long low room on the second floor through a plain side door past the archive counter; thin grey copy books per season. Hollis copies there before going back up. A pencilled number (the line count) at the foot of every page
+ch07 | In the registry copy of Elin's file: a faint pencil tick beside every "walk out into the night". Intake Remarks: "Deceased states she once wrote it down, for her daughter. Not pursued." with a pencil line under it
+ch07 | Hollis: "I never crossed anything, miss. I've never been anywhere." Won't say who did (doesn't say he doesn't know)
+ch07 | Porter collects the cardigan: "Somewhere with a cat"; he reads Preferences: "Most of them would only say somewhere nice, if anybody asked. Hardly anyone asks."
+ch07 | Mira stands outside room nine to give Crane Hollis's name; doesn't knock
+ch07 | Counter clerk refuses the register: "Not one of them ever asked what it would cost him." / "Ask the Keeper yourself. If you can find his door."
+ch08 | Agnes: music box with a broken key, for an indefinite term
+ch08 | Edmund took the key down a week before the letter. Three crossings, each lasting only while the carrier has warmth (about an hour): 1) the shelter, refitted, bureau gone, house-clearance receipt on the noticeboard; 2) a shop at the end of a high street, bureau there, drawers empty, tag "Contents returned to the shelter, for the family, if anyone asks"; 3) the shelter back office, box with the good paper, stamps, tin of mints and the letter. Raining. Fingertips "pale as candle wax"; "I haven't been warm since"
+ch08 | Edmund knew from the Remarks line in Hollis's copy; found Hollis's ticks "last winter"; Hollis carried the letter "the last forty yards" (Edmund is never seen on the reapers' floor)
+ch09 | Mira forges BOTH the green effects ledger and the registry copy (in Hollis's round hand). The porters collect the diary: Preferences "Somewhere quiet. With a lock."
+ch10 | Crane catches the forgery by Hollis's pencil line count: "Four lines on the page. Three in the count." Hollis: "I count them, miss. I always have." Mira does not reveal Hollis carried the letter
+ch10 | Crane cites the irregular placement: an indefinite object held at the appellant's address for three years
+ch11 | Edmund won't name Hollis without his leave: "It's his to choose, too."
+ch12 | Hollis comes to the third floor with a pencil list of thirty-six page numbers from four years ago; asks to speak at the hearing ("I'd like to be asked something, for once")
+ch13 | Hollis on the front bench; testifies he carried the letter from the third-floor landing to her blotter. Judge on the left: "Mister Hollis carried it down a corridor. We don't have an article for that." Condition answered: "where this letter came from, and by whose hand. You have shown us both."
+ch13 | Ruling: "The finding of negligence is overturned, and the indefinite term is set aside. The deceased has served four years. The panel considers that sufficient." Edmund referred for judgement; left judge: "It isn't forever. Usually." No finding against the clerk
+ch14 | Porter offers to place the chair afterwards; Mira: "It's placed. It's somewhere nice."
