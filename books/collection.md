@@ -1,13 +1,13 @@
 # Fantasy Novel Collection
 
-_Split from the original project brief (`story-bible.md` in the project root, kept unchanged). Series-wide notes live here; per-book facts live in each book's folder (`story-bible.md`, `glossary.md`, `continuity.md`)._
+_Split from the original project brief (kept unchanged, outside git, as `books/the-one-in-the-chair-v1/original-brief.md`). Series-wide notes live here; per-book facts live in each book's folder (`story-bible.md`, `glossary.md`, `continuity.md`)._
 
 ## 1. Project overview
 
 - A collection of standalone fantasy novels, written as short chapters, drafted with Claude.
 - The finished text is meant to become an audiobook: Claude writes the manuscript, then a separate text-to-speech (TTS) tool reads it aloud.
 - Language: English, British spelling throughout (colour, grey, recognise, centre, etc.). The user sometimes switches to Swedish in conversation, but the story itself is written and read in English.
-- Current stage: world rules and cast are settled, and Chapters 1 to 4 of the first novel are drafted.
+- Current stage: novel 1 is finished (second edition, 2026-10-16). Novel 2 is next: pick one of the premises below.
 
 ## 2. The collection
 

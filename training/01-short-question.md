@@ -12,18 +12,13 @@ Source: *The One in the Chair*, ch01 (Elin's reply to Mira at intake).
 With no stressed word to carry the pitch, a short question has nothing to rise from and ends flat.
 Longer questions have a stressed word, which is why they sound fine.
 
-**Variants** (each rendered with the paragraph before and the first line after, for context):
-- `before`: unchanged, `"Can I?"`
-- `after-a`: stress on I, `"Can [I](+2)?"` → `kˌæn ˈI?` (rising "can *I*?")
-- `after-b`: stress on Can, `"[Can](+2) I?"` → `kˈæn ˌI?` ("*can* I?")
+**Tried** (each rendered with the paragraph before and the first line after, for context). Only `before` and
+the chosen fix (`after`) are kept; the other renders are in git history (tag `v1-first-edition`).
+- stress on I, `"Can [I](+2)?"` → `kˌæn ˈI?`, and stress on Can, `"[Can](+2) I?"` → `kˈæn ˌI?`.
+  Author: "b is the best but not quite there".
+- refinements of stress on Can: `I` fully unstressed, a trailing `I…?`, a doubled `??`, both words stressed,
+  a lengthened "Can".
 
-**Round 2** (author: "b is the best but not quite there"). Refinements of after-b:
-- `b2`: `"[Can](+2) [I](-1)?"` → `kˈæn I?` (I fully unstressed, so the question lifts off "Can")
-- `b3`: `"[Can](+2) I…?"` → hesitant, trailing question
-- `b4`: `"[Can](+2) I??"` → doubled question mark, a stronger rise
-- `b5`: `"[Can I](/kˈæn ˈI/)?"` → both words fully stressed, emphatic
-- `b6`: `"[Can](/kˈæːn/) I?"` → lengthened "Can", drawn out with surprise
-
-**Decision:** author picked `b4` (`"[Can](+2) I??"`) as the best markup fix, but feels the real fix is in the
+**Decision:** author picked the doubled question mark (`"[Can](+2) I??"`, now `after`) as the best markup fix, but feels the real fix is in the
 writing: a bare two-word question gives the voice too little to work with. Writing alternative to consider
 in the manuscript: add an action beat or tag after it (`"Can I?" He sounded surprised.`).

@@ -6,6 +6,5 @@ training/.cache/
 _site/
 _shots/
 export/
-# the author's original drop-in files (copied into books/the-one-in-the-chair/)
-/Chapter 1.txt
-/story-bible.md
+# the author's original drop-in files, kept locally only
+books/*/original-*
