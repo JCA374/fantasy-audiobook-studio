@@ -1,0 +1,183 @@
+# Plain-language "at a glance" for each skill page, merged with skills.yaml by site/build.py.
+# plain: one sentence a non-programmer understands. when: when it runs, in everyday words.
+# input / output: what goes in and comes out. who: claude | script | author, with what each does.
+# steps: 3–6 short steps. example: a concrete before -> after (before/after are plain text; note explains).
+
+fantasy-novella:
+  plain: The project manager and the main writer. It knows the order of the work, keeps each book's files tidy, and writes the chapters.
+  when: At the start of every session, and whenever a chapter is being planned or written.
+  input: An idea, then the story bible and outline
+  output: Chapter files (ch01.md …) plus notes on facts, names and progress
+  who:
+    claude: plans, writes each chapter, keeps the notes up to date
+    author: decides the story, approves each stage
+  steps:
+    - Check where the book is and say what comes next.
+    - Read the outline, the story bible and the notes for this chapter.
+    - Write one chapter in a voice that works when heard aloud.
+    - Log new facts and names so later chapters stay consistent.
+    - Stop and hand back to the author.
+  example:
+    before: "Chapter 8 is drafted, but did the cushion stay warm?"
+    after: "continuity.md: ch08 | That night the cushion is COLD for the first time in three years"
+    note: Every chapter adds facts like this one, so later chapters and the final read-through can check them.
+
+story-structure:
+  plain: Maps where the big turning points of the story should fall, so the middle doesn't sag and the ending lands.
+  when: Before any chapter is written (to plan), or on a finished draft (to check).
+  input: The story bible
+  output: outline.md, with every chapter and the turning point it carries
+  who:
+    claude: places the turning points and explains why
+    author: approves or moves them
+  steps:
+    - Read the story idea and characters.
+    - Place the main turning points at their usual positions (about 12 %, 25 %, 50 %, 75 % of the book).
+    - Check that each turning point actually changes something for the hero.
+    - Hand the map back for approval.
+  example:
+    before: "13 chapters, but where does the story turn?"
+    after: "Chapter 2 (~7–15 %): Inciting event. The letter arrives, and it has no Office stamp."
+    note: Each chapter in the outline gets a job like this before a word of it is written.
+
+fiction-workshop:
+  plain: A team of editors in a box. It interviews the author to build the story bible, edits like a professional, and tests the book on a reader who has never seen it.
+  when: At the very start (the story bible), during editing, and once the book is finished (the reader test).
+  input: The author's answers, then the full manuscript
+  output: story-bible.md, edit notes, and a fresh-reader report
+  who:
+    claude: asks the questions, edits, and runs a separate "fresh reader" with no memory of the project
+    author: answers, and decides which notes to act on
+  steps:
+    - Ask questions to build the story bible (world, characters, tone).
+    - Edit in order, biggest problems first, from plot down to sentences.
+    - Give the finished book to a fresh reader with no context.
+    - Report everything that confused or contradicted.
+  example:
+    before: "Two different characters are both called 'the archivist'."
+    after: "One becomes 'the counter clerk'."
+    note: One of about a dozen problems the fresh reader caught in book 1 before any audio was made.
+
+character-archetypes:
+  plain: Checks that every important character has a clear, distinct job in the story, such as mentor, rival or gatekeeper.
+  when: While building the story bible, or when a character feels flat during editing.
+  input: The character list in the story bible
+  output: Notes on each character's role and how to sharpen it
+  who:
+    claude: compares the cast against classic story roles
+    author: decides what to change
+  steps:
+    - List the characters who matter.
+    - Name the role each one plays.
+    - Flag overlaps (two characters doing the same job) and gaps.
+  example:
+    before: "Who is Edmund in this story?"
+    after: "Mentor with a secret: he helps Mira, and he also sent the letter."
+    note: Book 1's roles were clear from the bible, so this skill is mostly on standby for the next books.
+
+prose-mechanics:
+  plain: A sentence-level proofreader for style. It finds repeated words, weak verbs, monotonous sentence lengths and other habits that wear on a reader.
+  when: During the line edit, after the plot is settled.
+  input: Finished chapters
+  output: A list of findings, each with where it is and how serious it is
+  who:
+    claude: runs the audits and suggests fixes
+    author: accepts or rejects them
+  steps:
+    - Run one audit at a time, for example repeated words.
+    - List each finding with its location.
+    - Fix the clear ones and flag the debatable ones.
+  example:
+    before: "grey … grey … grey cardigan … grey light"
+    after: "One 'grey', with the others changed or cut"
+    note: An illustration of the kind of repetition trimmed in book 1 (grey, cardigan). It gets very noticeable when read aloud.
+
+avoid-ai-writing:
+  plain: Finds and removes the tell-tale habits of AI-generated text, so the prose sounds like a person wrote it.
+  when: After every drafted chapter, and once more over the whole book.
+  input: A chapter
+  output: A list of AI-sounding phrases, or a cleaned-up chapter
+  who:
+    claude: scans for the patterns and rewrites the clear cases
+  steps:
+    - Scan for stock phrases ("a testament to", "tapestry").
+    - Scan for patterns, such as "It wasn't X. It was Y." and every scene ending on a neat moral.
+    - Rewrite the clear hits and keep anything that is part of the author's voice.
+  example:
+    before: "It wasn't kindness. It was something else. It was attention."
+    after: "not softness exactly, but attention"
+    note: An illustration of the pattern, not a quote. The fix keeps the meaning and drops the formula.
+
+speech-flow:
+  plain: Fixes the text so it sounds right when read aloud. A listener can't see commas, italics or where a sentence is heading.
+  when: After editing, right before the text is turned into audio, and whenever something sounds wrong.
+  input: A finished chapter
+  output: A table of suggested fixes; once approved, the corrected chapter
+  who:
+    script: flags suspicious commas, dashes, italics, long sentences and short lines
+    claude: listens through the chapter, judges each flag and proposes a fix
+    author: approves the fixes, and teaches new rules from what they hear
+  steps:
+    - Run the scanner to flag likely problems.
+    - Read the chapter as a listener would, catching what a scanner can't.
+    - Propose fixes in a table, worst first.
+    - Apply only what the author approves.
+    - Turn every new lesson into a rule (see training cases).
+  example:
+    before: "\"Can I?\""
+    after: "\"Can I?\" He sat up a little."
+    note: A two-word line carries no feeling when heard. A small action shows it, and the question no longer ends flat.
+
+narration-prep:
+  plain: Turns each chapter into a script the voice engine can read correctly, with names spelled out phonetically and pauses written in.
+  when: After speech flow, before the audio is recorded.
+  input: A finished chapter, plus the pronunciation list
+  output: A script file (audio/ch01.txt …)
+  who:
+    claude: converts each chapter, using judgement for names and numbers
+    script: tests how the voice will pronounce a word
+  steps:
+    - Make sure every invented name has an agreed pronunciation.
+    - Remove formatting the voice can't use, such as italics and headings.
+    - Write numbers out as words and mark scene breaks as pauses.
+    - Spell names phonetically so the voice gets them right.
+  example:
+    before: "Mira (the voice said MY-uh-ruh)"
+    after: "[Mira](/mˈiɹə/) (now MEER-uh)"
+    note: The bracket gives the voice exact sounds instead of letting it guess.
+
+kokoro-narrate:
+  plain: The narrator. It reads the scripts aloud with a free AI voice that runs on this laptop, with no cloud service.
+  when: After narration prep, and again (quickly) after any edit.
+  input: Script files
+  output: One audio file per chapter (audio/ch01.wav …)
+  who:
+    script: generates the speech, paragraph by paragraph
+    author: chose the voice (af_heart) by listening to auditions
+  steps:
+    - Read the voice settings for the book.
+    - Speak each paragraph and store it.
+    - Reuse stored paragraphs that haven't changed, so edits re-render in seconds.
+    - Join the paragraphs into one file per chapter.
+  example:
+    before: "Edit two sentences in chapter 1"
+    after: "8 of 26 paragraphs re-rendered, in 1.7 minutes instead of 6"
+    note: Only changed paragraphs are recorded again; the whole book takes about an hour the first time.
+
+audiobook-assemble:
+  plain: The sound engineer and packager. It evens out the volume, then builds one audiobook file with chapters, a cover and the title.
+  when: After narration, as the last step before publishing.
+  input: The chapter audio files, the cover and the book details
+  output: One .m4b audiobook with chapters, plus an .mp3 per chapter
+  who:
+    script: masters the sound and builds the files
+    claude: checks the result (chapters, volume) and publishes it
+  steps:
+    - Add a short silence before and after each chapter.
+    - Bring every chapter to the same audiobook-standard volume.
+    - Join everything into one .m4b with chapter markers and the cover.
+    - Copy it for the phone and publish it to this site.
+  example:
+    before: "13 separate chapter recordings, each a slightly different volume"
+    after: "The One in the Chair.m4b: 92 minutes, 13 chapters, cover, even volume"
+    note: This is the file that goes into BookPlayer on the phone.

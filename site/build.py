@@ -165,48 +165,117 @@ def load_skills():
     return skills
 
 
+WHO = {"claude": ("Claude", "judgement: reads, writes, decides what to flag"),
+       "script": ("Script", "mechanical: same input, same output, every time"),
+       "author": ("Author", "creative decisions and approval")}
+
+
+def who_chips(who):
+    return "".join(f'<li class="who who-{k}"><b>{WHO[k][0]}</b> {esc(v)}</li>' for k, v in who.items())
+
+
+def skill_group(name):
+    return next((g for _, _, g, sk, _ in STAGES if name in sk), "write")
+
+
+def stage_track(name, root):
+    """The 9 pipeline stages as a row, with the ones this skill works in highlighted."""
+    cells = "".join(
+        f'<li class="g-{g}{" on" if name in sk else ""}" title="{n}. {esc(nm)}"><span>{n}</span><em>{esc(nm)}</em></li>'
+        for n, nm, g, sk, _ in STAGES)
+    return f'<a class="track-link" href="{root}pipeline.html"><ol class="track">{cells}</ol></a>'
+
+
 def build_skills(skills, cases):
+    guide = yaml.safe_load((CONTENT / "skills-guide.yaml").read_text(encoding="utf-8"))
+
     def tabs(current):
         items = "".join(
             f'<a href="{s["name"]}.html"{" aria-current=page" if s["name"] == current else ""}>'
             f'<span class="tab-stage">{s["stage"]}</span>{s["name"]}</a>' for s in skills)
         return f'<div class="tabs wrap" role="tablist">{items}</div>'
 
-    rows = "".join(
-        f'<tr><td><a href="{s["name"]}.html">{s["name"]}</a></td><td>{s["stage"]}</td>'
-        f'<td><span class="badge {s["origin"]}">{s["origin"]}</span></td><td>{esc(s["role"])}</td></tr>' for s in skills)
+    groups = []
+    for g, label in GROUPS.items():
+        cards = []
+        for s in skills:
+            if skill_group(s["name"]) != g:
+                continue
+            gd = guide.get(s["name"], {})
+            who = "".join(f'<span class="whotag who-{k}">{WHO[k][0]}</span>' for k in gd.get("who", {}))
+            cards.append(f"""<a class="skillcard g-{g}" href="{s["name"]}.html">
+<p class="sc-top"><span class="sc-stage">Stage {s["stage"]}</span><span class="badge {s["origin"]}">{s["origin"]}</span></p>
+<h3>{s["name"]}</h3><p>{esc(gd.get("plain", s["role"]))}</p>
+<p class="io"><span>{esc(gd.get("input", ""))}</span><b>→</b><span>{esc(gd.get("output", ""))}</span></p>
+<p class="whos">{who}</p></a>""")
+        groups.append(f'<h2 class="grouphead g-{g}">{label}</h2><div class="skillgrid">{"".join(cards)}</div>')
+
     page("skills/index.html", "Skills", f"""
 <h1>Skills</h1>
-<p class="lede">A skill is a folder in <code>.claude/skills/</code> with a <code>SKILL.md</code>: instructions Claude loads
-when the task matches its description, plus any scripts it needs. Five of them were written for this project
-(<span class="badge ours">ours</span>); five are vendored unchanged from
-<a href="https://github.com/rhavekost/author-toolkit">rhavekost/author-toolkit</a> (MIT,
-<span class="badge vendored">vendored</span>) so they can be re-synced from upstream.</p>
-<table class="skills"><thead><tr><th>Skill</th><th>Stage</th><th>Origin</th><th>What it does</th></tr></thead>
-<tbody>{rows}</tbody></table>""", "Skills", tabs(""))
+<p class="lede">A <b>skill</b> is a written instruction manual that Claude follows for one job, like "turn this
+chapter into a narration script". Each one is a folder with a <code>SKILL.md</code> file (the instructions) and
+sometimes a small program for the mechanical parts. Together, ten skills cover the whole path from idea to audiobook.</p>
+<h2>How a skill works</h2>
+<ol class="howflow">
+<li><b>You ask</b><span>"Check chapter 2 for speech flow."</span></li>
+<li><b>Claude picks the skill</b><span>Every skill has a short description of when to use it. Claude matches your request to it.</span></li>
+<li><b>It follows the steps</b><span>Claude does the parts that need judgement and runs scripts for the mechanical parts.</span></li>
+<li><b>It stops and hands back</b><span>You see the result and decide. Nothing goes further without your OK.</span></li>
+</ol>
+<h2>Who does what</h2>
+<ul class="wholegend">{who_chips({k: v[1] for k, v in WHO.items()})}</ul>
+<p class="hint"><span class="badge ours">ours</span> written for this project ·
+<span class="badge vendored">vendored</span> copied unchanged from
+<a href="https://github.com/rhavekost/author-toolkit">rhavekost/author-toolkit</a> (MIT), so they can be updated from the original.</p>
+{"".join(groups)}""", "Skills", tabs(""))
 
-    for s in skills:
+    for i, s in enumerate(skills):
+        gd = guide.get(s["name"], {})
+        g = skill_group(s["name"])
         my_cases = [c for c in cases if c["id"] in s.get("cases", [])]
         case_html = "".join(
             f'<li><a href="../improvements/{c["slug"]}.html"><b>Case {c["id"]}</b> · {esc(c["title"])}</a>'
             f' <span class="status {c["state"]}">{esc(c["status"])}</span></li>' for c in my_cases)
         files = "".join(f"<li><code>{esc(f)}</code></li>" for f in s["files"]) or "<li>(SKILL.md only)</li>"
         src = f"{REPO_URL}/tree/main/.claude/skills/{s['name']}"
+        steps = "".join(f"<li>{esc(st)}</li>" for st in gd.get("steps", []))
+        ex = gd.get("example")
+        example = f"""<section class="example"><h2>Example</h2><div class="ba">
+<div><span class="ba-label">Before</span><p>{esc(ex["before"])}</p></div><b class="ba-arrow">→</b>
+<div class="after"><span class="ba-label">After</span><p>{esc(ex["after"])}</p></div></div>
+<p class="hint">{esc(ex.get("note", ""))}</p></section>""" if ex else ""
+        prev = skills[i - 1] if i else None
+        nxt = skills[i + 1] if i + 1 < len(skills) else None
+        pager = (f'<a href="{prev["name"]}.html">← {prev["name"]}</a>' if prev else "<span></span>") + \
+                (f'<a href="{nxt["name"]}.html">{nxt["name"]} →</a>' if nxt else "<span></span>")
         page(f"skills/{s['name']}.html", s["name"], f"""
-<p class="kicker">Stage {s["stage"]} · <span class="badge {s["origin"]}">{s["origin"]}</span></p>
+<p class="kicker">Stage {s["stage"]} · {GROUPS[g]} · <span class="badge {s["origin"]}">{s["origin"]}</span></p>
 <h1>{s["name"]}</h1>
-<p class="lede">{esc(s["role"])}</p>
+<p class="lede">{esc(gd.get("plain", s["role"]))}</p>
+{stage_track(s["name"], "../")}
+<div class="glance">
+<div><h3>When it runs</h3><p>{esc(gd.get("when", ""))}</p></div>
+<div><h3>What goes in</h3><p>{esc(gd.get("input", ""))}</p></div>
+<div><h3>What comes out</h3><p>{esc(gd.get("output", ""))}</p></div>
+<div><h3>Who does the work</h3><ul class="wholist">{who_chips(gd.get("who", {}))}</ul></div>
+</div>
 <div class="cols">
-<section><h2>How this project uses it</h2>{md(s.get("use", ""), "../")}</section>
-<section class="aside"><h2>Examples from the books</h2>{md(s.get("examples", ""), "../")}
+<section><h2>Step by step</h2><ol class="steps">{steps}</ol></section>
+{example}
+</div>
+<h2>In this project</h2>
+<div class="cols">
+<section>{md(s.get("use", ""), "../")}</section>
+<section class="aside"><h3>From the books</h3>{md(s.get("examples", ""), "../")}
 {f'<h3>Training cases</h3><ul class="cases">{case_html}</ul>' if case_html else ""}</section>
 </div>
-<details class="skillfile"><summary>The skill file: <code>.claude/skills/{s["name"]}/SKILL.md</code></summary>
-<p class="trigger"><b>Triggers when:</b> {esc(s["desc"])}</p>
+<details class="skillfile"><summary>For the curious: the instructions Claude reads (<code>SKILL.md</code>)</summary>
+<p class="trigger"><b>Claude uses this skill when:</b> {esc(s["desc"])}</p>
 <div class="prose">{md(s["body"], "../")}</div>
 <h3>Other files in the skill</h3><ul class="files">{files}</ul>
 <p><a href="{src}">View the skill on GitHub →</a></p>
-</details>""", "Skills", tabs(s["name"]))
+</details>
+<nav class="pager wide">{pager}</nav>""", "Skills", tabs(s["name"]))
 
 
 # ---------------------------------------------------------------- training
