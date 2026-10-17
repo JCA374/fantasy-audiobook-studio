@@ -2,6 +2,24 @@
 # role: one line. use: how this project uses it (markdown). examples: concrete moments from the books (markdown).
 # cases: training cases (training/NN-*.md) that taught this skill something.
 
+story-seed:
+  stage: "0"
+  origin: ours
+  role: "Grows a one-line premise into material to choose from: premise twists, heroes, what the magic implies, scenes, endings. Then cuts it to novella size."
+  use: |
+    Runs before the story bible when a book starts as a one-liner (the premises in `books/collection.md`). One step per
+    turn, the author picks each time: **premise ladder** (6–10 what-if twists) → **protagonist** (3–4 candidates with
+    want / need / wound / lie, checked by character-archetypes) → **magic implications** (who profits, who is hurt,
+    cost / limit / counter) → **set pieces, 2–3 endings and the central question** → **novella fit check** (1 magic
+    system, 2–4 places, 3–5 characters; the rest goes to *Parked*) → **names by ear** (starts `glossary.md`).
+
+    Output is `seed.md`, which keeps the author's own decisions (*Author said*) apart from Claude's open suggestions
+    and the rejected ideas, so the story bible is built only from what the author chose.
+  examples: |
+    - **Why it exists.** Book 2 changed course halfway with "I want a happy ending". Story-seed asks which ending the
+      author wants before there is an outline.
+    - **Parked ideas.** Ideas cut for size are kept with a reason, as raw material for later books in the collection.
+
 fantasy-novella:
   stage: "1–5"
   origin: ours

@@ -11,6 +11,7 @@ This is the hub skill for the whole pipeline. It owns the project layout, sizing
 
 | # | Stage | Skill | Output (`books/<slug>/…`) |
 |---|---|---|---|
+| 0 | Seed (idea → material) | `story-seed` | `seed.md` |
 | 1 | Story bible | **this skill** + `fiction-workshop` Stage 1 | `story-bible.md`, `glossary.md` |
 | 2 | Structure | `story-structure` (Map mode) | `outline.md` |
 | 3 | Draft | **this skill** | `chNN.md` |
@@ -41,6 +42,7 @@ Keep it flat: one folder per book, one `audio/` folder inside it, nothing else. 
 books/collection.md    series premises + house style (British spelling, tone)
 books/<slug>/
   status.md            stage, word count per chapter, open questions
+  seed.md              Stage 0 ideation from story-seed: chosen premise, options, rejected, parked
   book.yaml            title/author/chapter titles + `narration:` voice settings
   story-bible.md       from fiction-workshop/assets/story-bible-template.md; magic system goes in a
                        "Magic" section (see references/fantasy-worldbuilding.md), not a separate file
@@ -52,6 +54,10 @@ books/<slug>/
 ```
 
 ## Stage 1: Story bible (fantasy additions)
+
+If the book has no `seed.md` and the author only has a one-line idea, run `story-seed` first. If `seed.md` exists,
+build the bible from its chosen material (*Author said* and the kept sections) and don't re-ask what it already
+answers. Never copy *Suggestions not yet chosen* or *Parked* into the bible.
 
 Follow fiction-workshop's Stage 1 questions and template. In addition:
 - Load `references/fantasy-worldbuilding.md` and fill the bible's Magic section.

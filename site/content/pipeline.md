@@ -14,6 +14,7 @@ Three rules hold it together:
 books/collection.md         series premises and house style (British spelling, tone)
 books/<slug>/
   status.md                 current stage, words per chapter, open questions
+  seed.md                   stage 0 ideas: chosen premise, options, rejected, parked
   book.yaml                 title, author, chapter titles, narration voice settings
   story-bible.md            world, magic, characters, style, decisions
   glossary.md               every invented name: sounds like + phonemes
@@ -29,6 +30,13 @@ site/                       this website's generator
 The layout is flat on purpose: the author asked for fewer folders, and a flat folder is easier for every skill to find its inputs in.
 
 ## Writing
+
+### 0 · Seed
+**Skill:** story-seed · **Output:** `seed.md`
+
+The premises in `books/collection.md` are one-liners ("the cartographer", "the debt war"). Before the bible interview can ask for a premise and a hero, there has to be something to choose from. Story-seed generates first and cuts later: 6–10 twists on the premise, 3–4 possible heroes, what the magic does to the world (who profits, who is hurt, what it costs), 10–15 possible scenes, and 2–3 candidate endings. The author picks at each step. Everything is then cut to novella size, and the extra ideas go into a *Parked* list for another book.
+
+`seed.md` keeps the author's words apart from Claude's: *Author said* holds the decisions, while *Suggestions not yet chosen* and *Rejected* hold everything else. The bible is then built from the decisions only.
 
 ### 1 · Story bible
 **Skills:** fantasy-novella, fiction-workshop · **Output:** `story-bible.md`, `glossary.md`

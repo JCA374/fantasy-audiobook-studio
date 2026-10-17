@@ -3,6 +3,25 @@
 # input / output: what goes in and comes out. who: claude | script | author, with what each does.
 # steps: 3–6 short steps. example: a concrete before -> after (before/after are plain text; note explains).
 
+story-seed:
+  plain: A brainstorming partner for the very start. It turns a one-line idea into a set of choices (twists, heroes, endings) and helps the author choose.
+  when: Before anything else, when a new book is only an idea.
+  input: A one-line premise
+  output: seed.md, with the author's choices, open ideas, rejected ideas and parked ideas kept apart
+  who:
+    claude: suggests options at each step and cuts the result to novella size
+    author: picks, combines or rejects at every step
+  steps:
+    - Pick a premise from the collection, or bring a new one.
+    - Choose from 6–10 twists on the idea.
+    - Choose a hero from 3–4 candidates.
+    - Work out what the magic does to the world and what it costs.
+    - Choose an ending from 2–3 candidates, then cut everything to novella size.
+  example:
+    before: "The cartographer: whatever she draws becomes real."
+    after: "Logline chosen, hero picked, ending decided, 4 ideas parked for another book"
+    note: The story bible starts from these choices instead of a blank page.
+
 fantasy-novella:
   plain: The project manager and the main writer. It knows the order of the work, keeps each book's files tidy, and writes the chapters.
   when: At the start of every session, and whenever a chapter is being planned or written.

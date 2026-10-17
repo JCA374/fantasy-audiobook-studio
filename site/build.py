@@ -31,6 +31,7 @@ TRAINING = ROOT / "training"
 REPO_URL = "https://github.com/JCA374/fantasy-audiobook-studio"
 
 STAGES = [  # n, name, group, skills, output
+    (0, "Seed", "write", ["story-seed"], "seed.md"),
     (1, "Story bible", "write", ["fantasy-novella", "fiction-workshop"], "story-bible.md · glossary.md"),
     (2, "Structure", "write", ["story-structure"], "outline.md"),
     (3, "Draft", "write", ["fantasy-novella", "avoid-ai-writing"], "chNN.md"),

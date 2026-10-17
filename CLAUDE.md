@@ -14,7 +14,7 @@ the pipeline order, and says which skill handles each stage.
 - Kokoro renders at ~1.7× real time (about 1 h per 15k-word book) on this CPU-only laptop: run full-book renders in the background.
 - The manuscript (`books/<slug>/chNN.md`) is the source of truth; audio scripts are derived and regenerable.
   Chapter WAVs are deleted after assembly: re-running kokoro-narrate rebuilds them from the paragraph cache in seconds.
-- New book: run the fantasy-novella skill; series premises and house style are in `books/collection.md`.
+- New book: start with the story-seed skill (one-line idea → `seed.md`), then the fantasy-novella skill; series premises and house style are in `books/collection.md`.
   Finished books get a second edition by the steps on the website's pipeline page ("Revising a finished book").
 - Website (GitHub Pages) is generated from the repo by `site/build.py` (content in `site/content/`). After any change
   to text, audio, skills or `training/`, publish with `site/publish.sh "what changed"`; Actions rebuilds and deploys.
