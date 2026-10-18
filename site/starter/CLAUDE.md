@@ -19,5 +19,6 @@ it owns the layout and the pipeline order, and says which skill handles each sta
 - Kokoro renders at about 1.7× real time on a CPU-only laptop (about 1 h per 15k-word book): run full-book renders in the background.
 - The manuscript (`books/<slug>/chNN.md`) is the source of truth; audio scripts are derived and regenerable.
 - Series premises and house style go in `books/collection.md`.
+- Licence: MIT (Jonas Carlsson), see `LICENSE`; the vendored skills keep their own MIT licence. Your own books are yours.
 - **No website in this kit.** Skip any step that mentions `site/publish.sh` or the website. Finished audiobooks stay in
   `books/<slug>/audio/`; copy the .m4b wherever you like.

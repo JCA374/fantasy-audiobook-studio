@@ -13,4 +13,4 @@ before/after audio, and the books as .m4b audiobook and .epub).
 | `training/` | "this sounds wrong" cases with before/after scripts and audio |
 | `site/` | the website generator (`build.py`), its content and `publish.sh` |
 
-Book text © the author. Vendored skills keep their own license (`.claude/skills/AUTHOR-TOOLKIT-LICENSE`).
+Skills, scripts and the site generator: MIT licence (`LICENSE`), © 2026 Jonas Carlsson. Book text, audio and covers © the author, all rights reserved. Vendored skills keep their own licence (`.claude/skills/AUTHOR-TOOLKIT-LICENSE`).

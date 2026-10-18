@@ -567,6 +567,7 @@ def build_starter_kit():
              if p.is_file() and "__pycache__" not in p.parts]
     files += [(p, f"training/{p.name}") for p in sorted(TRAINING.glob("*")) if p.suffix in (".md", ".yaml")]
     files += [(p, p.relative_to(STARTER).as_posix()) for p in sorted(STARTER.rglob("*")) if p.is_file()]
+    files.append((ROOT / "LICENSE", "LICENSE"))
     OUT.mkdir(exist_ok=True)
     with zipfile.ZipFile(OUT / KIT, "w", zipfile.ZIP_DEFLATED) as z:
         for src, arc in files:
@@ -622,7 +623,7 @@ def build_home(skills, books, cases):
 <h2>Write your own</h2>
 <p>Everything here runs in <a href="https://claude.com/claude-code">Claude Code</a> on your own computer. The starter kit
 has all {len(skills)} skills, the lessons they learned, and a setup guide Claude can follow (Python, Kokoro, ffmpeg).
-No books are included: you start from your own idea.</p>
+No books are included: you start from your own idea. MIT licence.</p>
 <div class="downloads"><a class="dl" href="{KIT}" download><b>Download the starter kit</b>
 <span>.zip · {n_files} files · {kit_size / 1024:.0f} KB</span></a></div>
 <p class="hint">Or paste these commands into a terminal, then ask Claude <em>"Read SETUP.md and set this up for me"</em>:</p>
