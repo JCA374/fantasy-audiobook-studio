@@ -12,6 +12,9 @@ from pathlib import Path
 
 LONG = 35          # words; writing-for-the-ear says prefer < ~30
 BARE_LINE = 6      # words; a lone quoted line this short gets an emotion beat
+CLIPPED = 3        # words; a spoken line whose every sentence is this short is "clipped" (case 07)
+CLIPPED_SHARE = 0.15  # more clipped lines than this per chapter reads as lazy (about 1 in 7 is fine)
+CLIPPED_MIN = 12   # only judge the share when a chapter has at least this many spoken lines
 COMMAS = 6         # commas in one sentence -> choppy run of pauses
 INTERRUPTERS = r"by all accounts|of course|in fact|after all|apparently|it seemed|at least|for once|for a moment|in the end"
 CUES = r"(:|thought|read|said|says|wrote|written|stamped|whispered|meant|saying)\s*$"
@@ -31,6 +34,18 @@ def words(s):
     return len(re.findall(r"[\w’']+", s))
 
 
+def spoken(par):
+    """The words a character says in a paragraph (all quoted parts joined), or None if nobody speaks."""
+    qs = re.findall(r'"([^"]+)"|“([^”]+)”', par)
+    return " ".join(a or b for a, b in qs) or None
+
+
+def clipped(speech):
+    """True if every sentence of the speech is CLIPPED words or fewer: "No.", "Off where?", "Yes. Fine. Go." """
+    parts = [p for p in re.split(r"[.!?…]+", speech) if words(p)]
+    return bool(parts) and max(words(p) for p in parts) <= CLIPPED
+
+
 def scan(path):
     return scan_text(path.read_text(encoding="utf-8"))
 
@@ -39,8 +54,11 @@ def scan_text(text):
     """Return [(paragraph number, check name, excerpt)] for a chapter or a snippet."""
     hits = []
     pars = [p for p in re.split(r"\n\s*\n", text) if p.strip() and not p.startswith("#")]
+    lines = []  # (¶, speech, clipped) for every paragraph with dialogue
     for n, par in enumerate(pars, 1):
         par = " ".join(par.split())
+        if (sp := spoken(par)) is not None:
+            lines.append((n, sp, clipped(sp)))
 
         def hit(check, excerpt):
             hits.append((n, check, excerpt if len(excerpt) < 160 else excerpt[:157] + "…"))
@@ -83,7 +101,23 @@ def scan_text(text):
             m = re.search(rf"\b(?:had|has|was|were|is|are|would|could)\s+({INTERRUPTERS})\s+\w+", s, re.I)
             if m:
                 hit("interrupter-without-commas", m.group(0))
-    return hits
+    # clipped dialogue (case 07): a few terse lines land hard; many of them read as lazy writing
+    run = []
+    for i, (n, sp, c) in enumerate(lines):
+        prev_n = lines[i - 1][0] if i else None
+        if c and run and prev_n == n - 1:
+            run.append((n, sp))
+        else:
+            if len(run) >= 2:
+                hits.append((run[0][0], f"clipped exchange ({len(run)} terse lines in a row)", " / ".join(x for _, x in run)))
+            run = [(n, sp)] if c else []
+    if len(run) >= 2:
+        hits.append((run[0][0], f"clipped exchange ({len(run)} terse lines in a row)", " / ".join(x for _, x in run)))
+    n_clip = sum(c for _, _, c in lines)
+    if len(lines) >= CLIPPED_MIN and n_clip / len(lines) > CLIPPED_SHARE:
+        hits.append((0, f"clipped-dialogue share {n_clip}/{len(lines)} = {n_clip / len(lines):.0%} (> {CLIPPED_SHARE:.0%})",
+                     "¶" + " ¶".join(str(n) for n, _, c in lines if c)))
+    return sorted(hits, key=lambda h: h[0])
 
 
 def main():

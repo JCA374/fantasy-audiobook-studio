@@ -22,6 +22,7 @@ It prints candidates by paragraph number (¶, heading excluded). They are only c
 | italics-without-cue | Italic thoughts, stamps and voices become plain narration. "hear it as *I know, love*" is heard as "as I know". Fix it with a cue in words: "hear it say: …", "the stamp read: …". |
 | comma-before-and | "She looked up at him, and allowed…": one subject with two verbs shouldn't take a comma, and Kokoro pauses on it in the wrong place. |
 | bare short line | A line of dialogue of six words or fewer, alone in its paragraph with no tag or beat. The listener hears the words but not the feeling, and a short question ends flat (cases 01, 05). Add an **emotion beat**, see below. |
+| clipped exchange / clipped-dialogue share | A *clipped* line is speech whose every sentence is three words or fewer ("Yes.", "Why?", "I know."). One lands hard. Two in a row, or more than ~15% of a chapter's spoken lines, reads as lazy writing (case 07). See **Clipped dialogue** below. |
 | unclosed-dash | A dash opens an aside, then a new clause runs on. The listener loses the main thread. Close it, or split the sentence. |
 | long-sentence (> 35 words) | Hard to follow by ear. Split it where the subject changes. |
 | comma-run (≥ 6 commas) | Too many pauses in a row sounds choppy. Keep the run only if the choppiness is intended. |
@@ -43,8 +44,22 @@ The author's rule: when a line is only one or two short sentences, like `"Can I?
 
 - **Show it through a small physical action**, in under about eight words: *He sat up a little. / She didn't look up. / His hand stopped on the latch.* Avoid adverb tags like "he said hopefully" and named emotions like "he felt hopeful". They tell instead of show, and they sound flat when spoken.
 - **Fit the moment.** The beat should carry what the line can't: hope, dread, defiance, relief. If the emotion is already obvious from the line before, a plain tag ("she said") is enough.
+- **Is it short on purpose?** If the line is filler, rewrite it instead of beating it (see *Clipped dialogue*, case 07). A beat doesn't make "Yes." any less lazy.
 - **Pace it.** In a fast back-and-forth, beat about every second or third line (the same rhythm as the dialogue-attribution rule in `writing-for-the-ear.md`). Don't beat every line, or the exchange loses its speed.
 - **Skip it** for lines that aren't speech: letters, sign-offs, stamps, signs.
+
+### Clipped dialogue (case 07)
+
+The author's rule: two- and three-word lines are fine *sometimes*. Used often, they feel lazy, as if the characters had nothing to say. Before adding an emotion beat to a short line, ask whether it should be short at all.
+
+**Keep it short** when the shortness *is* the point: a decision or a confession ("It was you." / "Yes."), an interruption, someone under pressure or refusing to talk, a punchline, or a character whose voice is terse (then the others around them shouldn't be).
+
+**Rewrite it** when it is filler: a bare "Yes." / "No." / "Why?" / "I know." that only moves the scene along, echo questions ("A wall?"), and ping-pong question and answer that just hands over information. Options, in order of preference:
+- **Say what they'd really say.** Give the reply a reason, a condition, a deflection or a detail only this character would add: "Yes." → "Yes. I signed for her myself." / "Why?" → "Why would they want a chair back?"
+- **Fold the exchange into narration.** "She said yes, and didn't ask why." Three lines become one sentence and the scene moves faster.
+- **Merge the beat into the line**, so it stops being a lone fragment: "No," Mira said, and kept her hand on the file.
+
+**Budget:** about one clipped line in seven, and no two in a row unless the scene is meant to snap. The scanner's `clipped-dialogue share` lists every clipped ¶ in the chapter. Pick the weakest ones until the chapter is under budget; don't rewrite the ones that earn their place.
 
 ## 2. Listening read-through (the script can't do this)
 

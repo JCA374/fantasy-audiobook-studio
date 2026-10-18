@@ -79,7 +79,7 @@ For each chapter, in order. **One chapter per turn** unless the author asks for 
 3. Optional: use fiction-workshop's brainstorm → curate step for the chapter's key moments if the author wants to be involved.
 4. Write `chNN.md`: an `# Chapter N: Title` heading, then prose. Stay within ±15% of the target word count (check with `wc -w`).
 5. Append new facts to `continuity.md` (names, injuries, objects, who knows what, time of day or season) and new terms to `glossary.md`. Mark any missing pronunciations `?` and ask the author.
-6. Run `avoid-ai-writing` in **detect** mode on the chapter and fix the clear hits yourself. Generated fiction drifts into AI-isms (tapestries, "a testament to", tidy triplets, every scene ending on a reflective one-liner).
+6. Run `avoid-ai-writing` in **detect** mode on the chapter and fix the clear hits yourself. Also run `python3 .claude/skills/speech-flow/scripts/scan.py` on it: if it reports `clipped-dialogue share` or `clipped exchange`, rewrite the weakest clipped lines now (see writing-for-the-ear, Dialogue). Generated fiction drifts into AI-isms (tapestries, "a testament to", tidy triplets, every scene ending on a reflective one-liner).
 7. Update `status.md` and stop. Report the word count, one line on what happened, and any questions.
 
 ## Stage 4–5: Editing

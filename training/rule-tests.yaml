@@ -52,3 +52,8 @@
   check: bare short line
   before: '"I know."'
   after: '"I know." She didn''t look up.'
+
+- case: "07"
+  check: clipped exchange
+  before: "\"Was it you?\"\n\n\"Yes.\"\n\n\"Why?\""
+  after: "\"Was it you?\"\n\n\"Yes. I signed for her myself.\"\n\n\"Why would you do that?\""
