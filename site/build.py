@@ -547,7 +547,8 @@ Phone: put the .m4b in Google Drive or Files and open it in an audiobook player 
 
 def build_home(skills, books, cases):
     log = "".join(f"<li><time>{d}</time> {esc(m)}</li>" for d, m in changelog())
-    b = next((x for x in books if not x["meta"].get("superseded_by")), None)
+    # featured book: the first current one the author hasn't kept off the home page (book.yaml `home: false`)
+    b = next((x for x in books if not x["meta"].get("superseded_by") and x["meta"].get("home", True)), None)
     book = ""
     if b:
         total = sum(c["dur"] or 0 for c in b["chapters"])
