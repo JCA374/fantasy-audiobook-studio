@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render the "How it works" explainer video from script.yaml.
 
-    .venv/bin/python site/video/make_video.py      -> site/video/how-it-works.mp4 + .vtt
+    .venv/bin/python site/video/make_video.py      -> site/video/how-it-works.mp4, .webm + .vtt
 
 Slides are drawn with PIL (1280x720, the site's dark palette). Host lines are spoken by Kokoro through
 kokoro-narrate's synth(). Real book audio is cut from the repo's mp3s. Everything is joined with ffmpeg.
@@ -302,6 +302,10 @@ def main():
                     "-c:a", "aac", "-b:a", "128k", "-af", "loudnorm=I=-18:TP=-1.5,aresample=48000",  # loudnorm alone outputs 192 kHz
                     "-shortest",
                     "-movflags", "+faststart", str(OUT)], check=True)
+    # WebM (VP9 + Opus) too: some Linux browsers can't decode AAC and show the MP4 with its sound locked off
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(OUT), "-c:v", "libvpx-vp9", "-b:v", "0", "-crf", "40",
+                    "-row-mt", "1", "-deadline", "good", "-cpu-used", "4", "-c:a", "libopus", "-b:a", "64k",
+                    str(OUT.with_suffix(".webm"))], check=True)
     vtt = ["WEBVTT", ""] + [f"{vtt_time(a)} --> {vtt_time(b)}\n{txt}\n" for a, b, txt in cues]
     OUT.with_suffix(".vtt").write_text("\n".join(vtt), encoding="utf-8")
     print(f"{OUT.relative_to(ROOT)}  {t / 60:.1f} min, {OUT.stat().st_size / 1e6:.1f} MB")

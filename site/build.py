@@ -563,10 +563,15 @@ def build_home(skills, books, cases):
     tests = rule_tests()
     video = ""
     if VIDEO.exists():  # rendered locally by site/video/make_video.py
-        copy(VIDEO, VIDEO.name)
-        copy(VIDEO.with_suffix(".vtt"), VIDEO.with_suffix(".vtt").name)
+        webm = VIDEO.with_suffix(".webm")
+        for f in (VIDEO, webm, VIDEO.with_suffix(".vtt")):
+            if f.exists():
+                copy(f, f.name)
+        # WebM first: some Linux browsers can't decode the MP4's AAC audio
+        sources = (f'<source src="{webm.name}" type="video/webm">' if webm.exists() else "") + \
+            f'<source src="{VIDEO.name}" type="video/mp4">'
         video = f"""<h2 id="video">How it works, in five minutes</h2>
-<video class="explainer" controls preload="metadata" src="{VIDEO.name}">
+<video class="explainer" controls preload="metadata">{sources}
 <track kind="captions" srclang="en" label="English" src="{VIDEO.with_suffix(".vtt").name}" default></video>"""
     page("index.html", "Overview", f"""
 <section class="hero">
