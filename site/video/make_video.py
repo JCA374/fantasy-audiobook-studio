@@ -299,7 +299,8 @@ def main():
     lst.write_text("\n".join(concat) + "\n")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-i", str(wav),
                     "-c:v", "libx264", "-tune", "stillimage", "-r", "25", "-pix_fmt", "yuv420p", "-crf", "23",
-                    "-c:a", "aac", "-b:a", "128k", "-af", "loudnorm=I=-16:TP=-1.5", "-shortest",
+                    "-c:a", "aac", "-b:a", "128k", "-af", "loudnorm=I=-18:TP=-1.5,aresample=48000",  # loudnorm alone outputs 192 kHz
+                    "-shortest",
                     "-movflags", "+faststart", str(OUT)], check=True)
     vtt = ["WEBVTT", ""] + [f"{vtt_time(a)} --> {vtt_time(b)}\n{txt}\n" for a, b, txt in cues]
     OUT.with_suffix(".vtt").write_text("\n".join(vtt), encoding="utf-8")
