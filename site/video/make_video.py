@@ -99,7 +99,7 @@ def draw_lines(d, xy, lines, fnt, fill, spacing=1.35):
 
 def slide_cover(s):
     img, d = canvas()
-    cover = Image.open(ROOT / "books/do-not-resubmit/cover.jpg").convert("RGB").resize((520, 520))
+    cover = Image.open(ROOT / "books/the-one-in-the-chair/cover.jpg").convert("RGB").resize((520, 520))
     img.paste(cover, (W - 520 - 80, (H - 520) // 2 - 10))
     d.text((80, 220), "How the studio", font=font("NotoSerif-Bold.ttf", 60), fill=INK)
     d.text((80, 295), "makes a book", font=font("NotoSerif-Bold.ttf", 60), fill=INK)

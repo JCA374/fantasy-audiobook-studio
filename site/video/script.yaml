@@ -14,7 +14,7 @@ scenes:
   - slide: {layout: cover}
     lines:
       - pause: 0.6
-      - clip: [books/do-not-resubmit/audio/ch01.mp3, 4.9, 7.3]
+      - clip: [books/the-one-in-the-chair/audio/ch01.mp3, 4.9, 7.3]
       - pause: 0.5
       - A: That's the first line of a book nobody typed by hand, and nobody read aloud.
       - B: Well, nearly. A person decides what happens. Claude writes it, and a voice running on a laptop reads it.
@@ -144,7 +144,7 @@ scenes:
     lines:
       - A: From there, narration prep spells [Mira](/mˈiːɹə/)'s name by sound. [Kokoro](/kˈoʊkoʊɹoʊ/) reads it, listen check compares, and assemble builds the book.
       - pause: 0.4
-      - clip: [books/do-not-resubmit/audio/ch01.mp3, 4.9, 7.3]
+      - clip: [books/the-one-in-the-chair/audio/ch01.mp3, 4.9, 7.3]
       - pause: 0.6
 
   - slide: {layout: close}
