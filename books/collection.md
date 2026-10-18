@@ -7,7 +7,7 @@ _Split from the original project brief (kept unchanged, outside git, as `books/t
 - A collection of standalone fantasy novels, written as short chapters, drafted with Claude.
 - The finished text is meant to become an audiobook: Claude writes the manuscript, then a separate text-to-speech (TTS) tool reads it aloud.
 - Language: English, British spelling throughout (colour, grey, recognise, centre, etc.). The user sometimes switches to Swedish in conversation, but the story itself is written and read in English.
-- Current stage: novel 1 is finished (second edition, 2026-10-16). Novel 2 started 2026-10-16: *Do Not Resubmit* (`books/do-not-resubmit/`), a separate story grown from chapter 1 of novel 1 only (same opening chapter, new plot). The premises below remain for later books.
+- Current stage: novel 1 is finished (second edition, 2026-10-16). Novel 2 started 2026-10-16: *Do Not Resubmit* (`books/do-not-resubmit/`), a separate story grown from chapter 1 of novel 1 only (same opening chapter, new plot). Novel 3 started 2026-10-18: *Second-Hand Dragons* (`books/second-hand-dragons/`), a new idea (a pawnshop for retired familiars), at Stage 0 (seed). The premises below remain for later books.
 
 ## 2. The collection
 

@@ -1,0 +1,25 @@
+title: Second-Hand Dragons
+author: Jonas
+narrator: Kokoro TTS (bm_george)
+year: 2026
+edition: 1
+cover: cover.jpg
+chapters:
+  ch01: "Chapter One: Pledged"
+  ch02: "Chapter Two: Cold Coal"
+  ch03: "Chapter Three: A Light Next Door"
+  ch04: "Chapter Four: Thursdays"
+  ch05: "Chapter Five: The Thermometer"
+  ch06: "Chapter Six: Eleven Years"
+  ch07: "Chapter Seven: Lot Nineteen"
+  ch08: "Chapter Eight: The First Flame"
+  ch09: "Chapter Nine: The Widow's Grate"
+  ch10: "Chapter Ten: Pencil"
+  ch11: "Chapter Eleven: The Reckoning"
+  ch12: "Chapter Twelve: House to House"
+  ch13: "Chapter Thirteen: Given"
+narration:
+  narrator: bm_george   # chosen by the author 2026-10-18 (British male; the dragon narrates in first person)
+  speed: 0.95
+  paragraph_pause: 0.6
+  characters: {}        # single narrator
