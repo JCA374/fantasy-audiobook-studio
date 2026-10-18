@@ -212,3 +212,5 @@ sup { font: 10px var(--mono); color: var(--muted); }
 .flags { margin: 6px 0 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
 h2 .status { vertical-align: 5px; margin-left: 8px; }
 h2[id], h3[id] { scroll-margin-top: 84px; }
+
+.explainer { display: block; width: 100%; max-width: 960px; aspect-ratio: 16 / 9; border-radius: 12px; background: #000; margin: 0 0 2rem; }

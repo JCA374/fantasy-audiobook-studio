@@ -28,6 +28,7 @@ CONTENT = ROOT / "site" / "content"
 SKILLS_DIR = ROOT / ".claude" / "skills"
 BOOKS = ROOT / "books"
 TRAINING = ROOT / "training"
+VIDEO = ROOT / "site/video/how-it-works.mp4"
 REPO_URL = "https://github.com/JCA374/fantasy-audiobook-studio"
 
 STAGES = [  # n, name, group, skills, output
@@ -557,6 +558,13 @@ def build_home(skills, books, cases):
 <p class="more">Listen, read, or download the .m4b and .epub →</p></div></a>"""
     fixed = sum(c["state"] == "fixed" for c in cases)
     tests = rule_tests()
+    video = ""
+    if VIDEO.exists():  # rendered locally by site/video/make_video.py
+        copy(VIDEO, VIDEO.name)
+        copy(VIDEO.with_suffix(".vtt"), VIDEO.with_suffix(".vtt").name)
+        video = f"""<h2 id="video">How it works, in five minutes</h2>
+<video class="explainer" controls preload="metadata" src="{VIDEO.name}">
+<track kind="captions" srclang="en" label="English" src="{VIDEO.with_suffix(".vtt").name}" default></video>"""
     page("index.html", "Overview", f"""
 <section class="hero">
 <p class="kicker">A process, documented</p>
@@ -567,6 +575,7 @@ a small open TTS model running locally on the CPU, and packaged as a chaptered a
 calls; everything else is a repeatable pipeline. Every passage that sounded wrong becomes a
 <a href="improvements.html">training case</a> that improves the next book.</p>
 </section>
+{video}
 <h2>The pipeline</h2>
 {pipeline_strip("")}
 <p><a class="more" href="pipeline.html">How each stage works, in detail →</a></p>

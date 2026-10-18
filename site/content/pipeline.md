@@ -2,6 +2,8 @@
 
 The goal is a repeatable way to go from an idea to a finished, chaptered audiobook of a short fantasy novel (10–20k words, about 1–2 hours of audio). The whole thing runs in [Claude Code](https://claude.com/claude-code) on a CPU-only laptop. Each stage is handled by a **skill**: a folder in `.claude/skills/` with a `SKILL.md` that tells Claude how to do that job, plus any scripts it needs. The author makes the creative decisions; Claude drafts, checks and runs the tools; the scripts do the mechanical work.
 
+Prefer to watch? There's a [five-minute video](index.html#video) with two narrated hosts walking through every skill, the training loop and one example from chapter 1.
+
 Three rules hold it together:
 
 - **The manuscript is the source of truth.** `books/<slug>/chNN.md` is what gets edited. Narration scripts, audio, the EPUB and this website are all derived from it and can be regenerated.

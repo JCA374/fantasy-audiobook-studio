@@ -8,3 +8,4 @@ _shots/
 export/
 # the author's original drop-in files, kept locally only
 books/*/original-*
+site/video/.cache/

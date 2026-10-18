@@ -1,0 +1,154 @@
+# "How it works" explainer video, rendered by make_video.py.
+# Each scene is one slide plus the lines spoken over it, in order.
+#   A / B: host lines (voices below). Inline Kokoro markup like [Mira](/mˈiɹə/) is allowed; captions strip it.
+#   book: a line read in the books' narrator voice (shown as an audio example, no caption prefix).
+#   clip: [file, start_sec, duration_sec], real audio from the repo.
+#   pause: seconds of silence.
+# text slides: `raw: true` shows the quote with its markup (otherwise markup is stripped).
+# Slide layouts: cover, text, pipeline (highlight: write|voice|ship), skill (name), loop, close.
+
+voices: {A: bm_george, B: af_heart, book: af_heart}
+speed: {A: 1.1, B: 1.1, book: 0.95}   # book = the books' narration speed (book.yaml)
+
+scenes:
+  - slide: {layout: cover}
+    lines:
+      - pause: 0.6
+      - clip: [books/do-not-resubmit/audio/ch01.mp3, 4.9, 7.3]
+      - pause: 0.5
+      - A: That's the first line of a book nobody typed by hand, and nobody read aloud.
+      - B: Well, nearly. A person decides what happens. Claude writes it, and a voice running on a laptop reads it.
+
+  - slide:
+      layout: text
+      kicker: Fantasy Audiobook Studio
+      heading: Short fantasy books, made to be heard
+      bullets:
+        - About 15,000 words each
+        - Written with Claude
+        - Narrated on a laptop with Kokoro
+        - One folder per book
+    lines:
+      - A: This is the Fantasy Audiobook Studio. It writes short fantasy novels, and turns them into audiobooks.
+      - B: Each book lives in one folder. Chapters, notes, names, and the finished audio.
+      - A: The work is split into skills. A skill is a set of written instructions that Claude follows for one job.
+
+  - slide: {layout: pipeline}
+    lines:
+      - B: The skills run in a fixed order, called the pipeline. Eleven stages, from zero to ten.
+  - slide: {layout: pipeline, highlight: write}
+    lines:
+      - A: Stages zero to five are writing. An idea becomes a story bible, an outline, chapters, and then edits.
+  - slide: {layout: pipeline, highlight: voice}
+    lines:
+      - B: Stages six to nine are the voice. The text is fixed for the ear, turned into a script, narrated, and checked by a listener.
+  - slide: {layout: pipeline, highlight: ship}
+    lines:
+      - A: Stage ten packages it into an audiobook, and publishes the website.
+
+  - slide: {layout: skill, name: story-seed}
+    lines:
+      - B: Story seed comes first. It turns a one-line idea into choices. Twists, heroes and endings. The author picks.
+  - slide: {layout: skill, name: fantasy-novella}
+    lines:
+      - A: Fantasy novella is the hub. It knows the order of the work, keeps the files tidy, and writes one chapter at a time.
+  - slide: {layout: skill, name: fiction-workshop}
+    lines:
+      - B: Fiction workshop is a team of editors. It builds the story bible, edits, and tests the book on a reader who has never seen it.
+  - slide: {layout: skill, name: story-structure}
+    lines:
+      - A: Story structure places the big turning points, so the middle doesn't sag and the ending lands.
+  - slide: {layout: skill, name: character-archetypes}
+    lines:
+      - B: Character archetypes checks that every important character has a clear job, and isn't a cliché.
+  - slide: {layout: skill, name: prose-mechanics}
+    lines:
+      - A: Prose mechanics is a proofreader for style. Repeated words, weak verbs, and sentences that all sound the same.
+  - slide: {layout: skill, name: avoid-ai-writing}
+    lines:
+      - B: Avoid [AI](/ˌeɪˈaɪ/) writing removes the habits that give machine text away. No tapestries. No testaments.
+  - slide: {layout: skill, name: speech-flow}
+    lines:
+      - A: Speech flow fixes the text for the ear. A listener can't see commas or italics, so the words have to do that work.
+  - slide: {layout: skill, name: narration-prep}
+    lines:
+      - B: Narration prep turns each chapter into a script for the voice. Names are spelled out by sound, and pauses are written in.
+  - slide: {layout: skill, name: kokoro-narrate}
+    lines:
+      - A: "[Kokoro](/kˈoʊkoʊɹoʊ/) narrate is the narrator. A free voice model that runs on this laptop, with no cloud service."
+  - slide: {layout: skill, name: listen-check}
+    lines:
+      - B: Listen check is a robot proof-listener. It transcribes the audio, compares it with the script, and reports a short list of timestamps.
+  - slide: {layout: skill, name: audiobook-assemble}
+    lines:
+      - A: And audiobook assemble evens out the volume, adds chapters and a cover, and builds the final file.
+
+  - slide: {layout: loop}
+    lines:
+      - A: The studio also learns. When the author hears something wrong, Claude finds the cause, and renders a before and an after. The author picks by ear.
+      - B: The winning fix becomes a rule in a skill, with a test. The tests run before every publish, so an old fix can't quietly break.
+      - A: And the automatic listener finds problems nobody reported. A garbled two-word line in book one was found that way.
+      - B: When the same kind of fix turns up twice, Claude drafts the rule. Whether it sounds right is still the author's call.
+
+  - slide:
+      layout: text
+      kicker: "Example · Chapter 1, Intake"
+      heading: One moment, through the pipeline
+      label: Outline
+      quote: "Ch1 Intake. Hook: a dentist, confused about being a teapot. A routine day at the desk."
+    lines:
+      - A: One moment from the intake scene. [Mira](/mˈiːɹə/) works in the afterlife's paperwork office. She is telling a dead dentist he will become a teapot.
+      - B: The outline gave chapter one its job. A hook in the first line, then a routine day at the desk.
+  - slide:
+      layout: text
+      kicker: "Example · Draft"
+      heading: Fine on the page
+      label: Manuscript
+      quote: "“You want to appeal it?”\n\n“Can I?”"
+    lines:
+      - A: She asks if he wants to appeal. He answers with two words.
+      - B: On the page, that works. Listen to what the voice did with it.
+      - pause: 0.4
+      - book: "\"You want to appeal it?\""
+      - pause: 0.6
+      - book: "\"Can I?\""
+      - pause: 0.8
+  - slide:
+      layout: text
+      kicker: "Example · Heard"
+      heading: It doesn't sound like a question
+      label: Cause
+      quote: "Both words got weak stress. With no stressed word, the pitch has nowhere to rise."
+    lines:
+      - A: It sounds cut off. The question never rises.
+      - B: The voice model gave both words weak stress. With nothing stressed, the pitch has nowhere to go.
+  - slide:
+      layout: text
+      kicker: "Example · Fix"
+      heading: Fix the writing, not the voice
+      label: Manuscript, after
+      quote: "“Can I?” He sat up a little."
+    lines:
+      - A: The fix went into the writing. Give the question a beat after it.
+      - pause: 0.4
+      - book: "\"Can I?\" He sat up a little."
+      - pause: 0.8
+      - B: That became a rule in speech flow. No bare short line of dialogue on its own. And a test makes sure the rule keeps working.
+  - slide:
+      layout: text
+      kicker: "Example · Voice"
+      heading: Then the usual path
+      label: Narration script
+      raw: true
+      quote: "The soul on the other side of [Mira](/mˈiɹə/)'s desk was, as far as she could tell, extremely confused about being a teapot."
+    lines:
+      - A: From there, narration prep spells [Mira](/mˈiːɹə/)'s name by sound. [Kokoro](/kˈoʊkoʊɹoʊ/) reads it, listen check compares, and assemble builds the book.
+      - pause: 0.4
+      - clip: [books/do-not-resubmit/audio/ch01.mp3, 4.9, 7.3]
+      - pause: 0.6
+
+  - slide: {layout: close}
+    lines:
+      - B: Every book, every skill, and every fix, with the audio, is on the website.
+      - A: Thanks for listening.
+      - pause: 1.2
