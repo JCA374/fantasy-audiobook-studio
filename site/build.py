@@ -322,9 +322,17 @@ def rule_tests():
     return run()
 
 
+def on_site(d):
+    """A book folder is published unless its book.yaml says `site: false`."""
+    y = d / "book.yaml"
+    return y.exists() and (yaml.safe_load(y.read_text(encoding="utf-8")) or {}).get("site", True)
+
+
 def listen_reports():
     out = []
     for f in sorted(BOOKS.glob("*/audio/ch*.listen.json")):
+        if not on_site(f.parent.parent):
+            continue
         out.append((f.parent.parent.name, json.loads(f.read_text(encoding="utf-8"))))
     return out
 
@@ -546,7 +554,8 @@ Phone: put the .m4b in Google Drive or Files and open it in an audiobook player 
 # ---------------------------------------------------------------- top pages
 
 def build_home(skills, books, cases):
-    hidden = [x["meta"]["title"].lower() for x in books if not x["meta"].get("home", True)]
+    metas = [yaml.safe_load(y.read_text(encoding="utf-8")) or {} for y in sorted(BOOKS.glob("*/book.yaml"))]
+    hidden = [m["title"].lower() for m in metas if not m.get("site", True) or not m.get("home", True)]
     entries = [(d, m) for d, m in changelog(16) if not any(t in m.lower() for t in hidden)][:8]  # hidden books stay out of the log too
     log = "".join(f"<li><time>{d}</time> {esc(m)}</li>" for d, m in entries)
     # featured book: the first current one the author hasn't kept off the home page (book.yaml `home: false`)
@@ -619,7 +628,7 @@ def main():
     (OUT / ".nojekyll").write_text("")
     skills = load_skills()
     cases = load_cases()
-    books = [load_book(d) for d in sorted(BOOKS.iterdir()) if (d / "book.yaml").exists()]
+    books = [load_book(d) for d in sorted(BOOKS.iterdir()) if on_site(d)]
     build_home(skills, books, cases)
     build_pipeline()
     build_skills(skills, cases)

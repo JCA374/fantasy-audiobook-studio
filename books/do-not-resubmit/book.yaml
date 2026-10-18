@@ -4,7 +4,7 @@ narrator: Kokoro TTS (af_heart)
 year: 2026
 edition: 1
 cover: cover.jpg
-home: false          # not featured on the site's home page (author, 2026-10-18: "not good enough")
+site: false          # not published on the website at all (author, 2026-10-18: "not good enough", "REMOVE it from the page")
 chapters:
   ch01: "Chapter One: Intake"
   ch02: "Chapter Two: The Queue"
