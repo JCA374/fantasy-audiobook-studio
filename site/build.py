@@ -546,7 +546,9 @@ Phone: put the .m4b in Google Drive or Files and open it in an audiobook player 
 # ---------------------------------------------------------------- top pages
 
 def build_home(skills, books, cases):
-    log = "".join(f"<li><time>{d}</time> {esc(m)}</li>" for d, m in changelog())
+    hidden = [x["meta"]["title"].lower() for x in books if not x["meta"].get("home", True)]
+    entries = [(d, m) for d, m in changelog(16) if not any(t in m.lower() for t in hidden)][:8]  # hidden books stay out of the log too
+    log = "".join(f"<li><time>{d}</time> {esc(m)}</li>" for d, m in entries)
     # featured book: the first current one the author hasn't kept off the home page (book.yaml `home: false`)
     b = next((x for x in books if not x["meta"].get("superseded_by") and x["meta"].get("home", True)), None)
     book = ""
