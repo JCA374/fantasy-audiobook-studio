@@ -214,3 +214,8 @@ h2 .status { vertical-align: 5px; margin-left: 8px; }
 h2[id], h3[id] { scroll-margin-top: 84px; }
 
 .explainer { display: block; width: 100%; max-width: 960px; aspect-ratio: 16 / 9; border-radius: 12px; background: #000; margin: 0 0 2rem; }
+.kit { margin: 0 0 2rem; }
+.copybox { margin: 8px 0 14px; max-width: 760px; }
+.copyhead { display: flex; justify-content: space-between; align-items: center; font: 600 13px/1.4 var(--sans); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.copybtn { font: 600 13px var(--sans); color: var(--accent-ink); background: var(--accent); border: 0; border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+.copybox pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }

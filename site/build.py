@@ -553,6 +553,35 @@ Phone: put the .m4b in Google Drive or Files and open it in an audiobook player 
 
 # ---------------------------------------------------------------- top pages
 
+STARTER = ROOT / "site/starter"
+KIT = "starter-kit.zip"
+SITE_URL = "https://jca374.github.io/fantasy-audiobook-studio/"
+
+
+def build_starter_kit():
+    """Zip the skills, the training notes they refer to and the kit-only files (site/starter/) for download.
+
+    Unzips into the current folder (no top-level directory). Timestamps are fixed, so an unchanged kit
+    builds the same bytes."""
+    files = [(p, p.relative_to(ROOT).as_posix()) for p in sorted(SKILLS_DIR.rglob("*"))
+             if p.is_file() and "__pycache__" not in p.parts]
+    files += [(p, f"training/{p.name}") for p in sorted(TRAINING.glob("*")) if p.suffix in (".md", ".yaml")]
+    files += [(p, p.relative_to(STARTER).as_posix()) for p in sorted(STARTER.rglob("*")) if p.is_file()]
+    OUT.mkdir(exist_ok=True)
+    with zipfile.ZipFile(OUT / KIT, "w", zipfile.ZIP_DEFLATED) as z:
+        for src, arc in files:
+            info = zipfile.ZipInfo(arc, date_time=(2026, 1, 1, 0, 0, 0))
+            info.external_attr = (0o755 if src.suffix in (".py", ".sh") else 0o644) << 16
+            info.compress_type = zipfile.ZIP_DEFLATED
+            z.writestr(info, src.read_bytes())
+    return len(files), (OUT / KIT).stat().st_size
+
+
+def copy_box(label, text):
+    return (f'<div class="copybox"><div class="copyhead"><span>{esc(label)}</span>'
+            f'<button type="button" class="copybtn">Copy</button></div><pre><code>{esc(text)}</code></pre></div>')
+
+
 def build_home(skills, books, cases):
     metas = [yaml.safe_load(y.read_text(encoding="utf-8")) or {} for y in sorted(BOOKS.glob("*/book.yaml"))]
     hidden = [m["title"].lower() for m in metas if not m.get("site", True) or not m.get("home", True)]
@@ -582,6 +611,34 @@ def build_home(skills, books, cases):
         video = f"""<h2 id="video">How it works, in five minutes</h2>
 <video class="explainer" controls preload="metadata">{sources}
 <track kind="captions" srclang="en" label="English" src="{VIDEO.with_suffix(".vtt").name}" default></video>"""
+    n_files, kit_size = build_starter_kit()
+    commands = (f"mkdir my-audiobooks && cd my-audiobooks\n"
+                f"curl -LO {SITE_URL}{KIT}\n"
+                f"unzip {KIT} && rm {KIT}\n"
+                f"claude")
+    prompt = (f"Download {SITE_URL}{KIT} into this folder, unzip it here and delete the zip. "
+              f"Then read SETUP.md and set everything up for me.")
+    kit = f"""<section class="kit" id="get-started">
+<h2>Write your own</h2>
+<p>Everything here runs in <a href="https://claude.com/claude-code">Claude Code</a> on your own computer. The starter kit
+has all {len(skills)} skills, the lessons they learned, and a setup guide Claude can follow (Python, Kokoro, ffmpeg).
+No books are included: you start from your own idea.</p>
+<div class="downloads"><a class="dl" href="{KIT}" download><b>Download the starter kit</b>
+<span>.zip · {n_files} files · {kit_size / 1024:.0f} KB</span></a></div>
+<p class="hint">Or paste these commands into a terminal, then ask Claude <em>"Read SETUP.md and set this up for me"</em>:</p>
+{copy_box("Terminal", commands)}
+<p class="hint">…or open Claude Code in an empty folder and paste this:</p>
+{copy_box("Prompt for Claude Code", prompt)}
+<p class="hint">When setup is done, ask: <em>"Start a new book with story-seed."</em></p>
+</section>
+<script>
+document.querySelectorAll(".copybtn").forEach(b => b.addEventListener("click", async () => {{
+  const text = b.closest(".copybox").querySelector("code").innerText;
+  try {{ await navigator.clipboard.writeText(text); b.textContent = "Copied"; }}
+  catch (e) {{ b.textContent = "Select and copy"; }}
+  setTimeout(() => b.textContent = "Copy", 1800);
+}}));
+</script>"""
     page("index.html", "Overview", f"""
 <section class="hero">
 <p class="kicker">A process, documented</p>
@@ -593,6 +650,7 @@ calls; everything else is a repeatable pipeline. Every passage that sounded wron
 <a href="improvements.html">training case</a> that improves the next book.</p>
 </section>
 {video}
+{kit}
 <h2>The pipeline</h2>
 {pipeline_strip("")}
 <p><a class="more" href="pipeline.html">How each stage works, in detail →</a></p>

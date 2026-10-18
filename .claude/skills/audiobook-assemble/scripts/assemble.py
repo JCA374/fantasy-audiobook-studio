@@ -3,7 +3,7 @@
 
 Reads  BOOK_DIR/audio/chNN.wav  (from kokoro-narrate; audition files like ch01.bf_emma.wav are ignored) and  BOOK_DIR/book.yaml:
     title: The Thief of Greyfell
-    author: Jonas
+    author: Your Name
     narrator: Kokoro (bm_george)
     year: 2026
     cover: cover.jpg            # optional, relative to BOOK_DIR
