@@ -12,6 +12,8 @@ the pipeline order, and says which skill handles each stage.
   `training/` holds the author's "sounds wrong" examples with before/after audio; lessons go into speech-flow or narration-prep.
 - Python: `.venv/bin/python` (kokoro, soundfile, pyyaml; reuses system CPU torch). ffmpeg is system-wide.
 - Kokoro renders at ~1.7× real time (about 1 h per 15k-word book) on this CPU-only laptop: run full-book renders in the background.
+- Proof that stages ran: the stage scripts append to `books/<slug>/pipeline.log.jsonl`; `.claude/skills/fantasy-novella/scripts/verify.py books/<slug>`
+  checks every stage against it and the files (exit 0 = done). Report its table, not a summary from memory.
 - The manuscript (`books/<slug>/chNN.md`) is the source of truth; audio scripts are derived and regenerable.
   Chapter WAVs are deleted after assembly: re-running kokoro-narrate rebuilds them from the paragraph cache in seconds.
 - New book: start with the story-seed skill (one-line idea → `seed.md`), then the fantasy-novella skill; series premises and house style are in `books/collection.md`.

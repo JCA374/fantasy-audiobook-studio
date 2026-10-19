@@ -30,6 +30,14 @@ This is the hub skill for the whole pipeline. It owns the project layout, sizing
 
 **At session end**: update `status.md` with the stage, what was done and any open questions. That file replaces fiction-workshop's `sessions/` notes for this project.
 
+**Proof, not summaries.** The scripts of stages 6–10 (scan, prep, narrate, listen, assemble) each append a record to `books/<slug>/pipeline.log.jsonl` as they run: time, args, the sha1 of every input and output, ok or failed. Never write that a stage ran because you remember running it. Run the checker and paste its table into `status.md`:
+
+```bash
+.venv/bin/python .claude/skills/fantasy-novella/scripts/verify.py books/<slug>
+```
+
+It proves stages 6–10 from content hashes and by re-deriving outputs (prep's script, the render cache), and shows PASS, STALE (made from an older input: re-run from here), MISSING, FAIL (the last run failed), UNLOGGED (exists, but made before the log) or MANUAL (stages 0–5 are judgement: their files exist, nothing more can be proven). A book is COMPLETE only when it exits 0. The log is committed with the book.
+
 Respect the vendored skills' stopping points. Hand back to the author between stages; don't run straight from bible to finished draft unless asked.
 
 ## Project layout

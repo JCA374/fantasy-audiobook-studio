@@ -39,6 +39,8 @@ Filtered out as Whisper noise:
 
 **Second opinion, built in.** Every word flag is re-checked automatically. The slower `small.en` model transcribes that paragraph's own clean audio from the render cache, and the flag is kept only if both models agree. Dismissed flags stay in the JSON under `dismissed`, for transparency.
 
+**Why there's no pitch check** (proposal evaluated 2026-10-19). The idea was to flag questions whose pitch doesn't rise at the end. Measured in af_heart: 26 lines rendered with `?` and with `.` end the same way, falling 3–5 semitones; in 25 of 26 the two differ by under 1 semitone, and whole contours match ("Can I?" `253 261 255 247 231…` Hz, "Can I." `255 261 258 255 235…`). The case 01 markup `[X](+2)??` doesn't change the pitch either. 66 bare lines in the books' render cache show the same: questions fall like statements. So a rise detector would flag every question and tell good renders from bad ones no better than chance. What the author hears as better in cases 01 and 09 comes from stress and pauses, which the **stress** check and the case 09 script layout already cover. Re-measure if the narrator voice changes.
+
 **Limits.** Whisper prefers familiar words and spellings. If it writes "Mira" correctly, Kokoro said something close to "Mira", but not necessarily with the right stress. So a clean report means no gross errors, not perfect pronunciation. Names are still best checked by ear once, when the glossary is made (narration-prep).
 
 ## Workflow

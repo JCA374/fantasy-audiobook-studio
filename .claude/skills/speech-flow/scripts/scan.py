@@ -10,6 +10,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fantasy-novella" / "scripts"))
+import evidence  # noqa: E402  (pipeline.log.jsonl: proof this stage ran)
+
 LONG = 35          # words; writing-for-the-ear says prefer < ~30
 BARE_LINE = 6      # words; a lone quoted line this short gets an emotion beat
 CLIPPED = 3        # words; a spoken line whose every sentence is this short is "clipped" (case 07)
@@ -123,12 +126,17 @@ def scan_text(text):
 def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
+    found = {}
     for arg in sys.argv[1:]:
         p = Path(arg)
         hits = scan(p)
+        found[p] = len(hits)
         print(f"== {p}  ({len(hits)} candidates; ¶ = paragraph number, heading excluded)")
         for n, check, ex in hits:
             print(f"¶{n:<3} {check:<44} {ex}")
+    for book in {p.parent for p in found if (p.parent / "book.yaml").exists()}:   # a book's chapters: log the run
+        chapters = [p for p in found if p.parent == book]
+        evidence.log(book, "speech-flow", chapters, candidates={p.stem: found[p] for p in chapters})
 
 
 if __name__ == "__main__":

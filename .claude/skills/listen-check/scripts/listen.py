@@ -29,6 +29,9 @@ import numpy as np
 import soundfile as sf
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fantasy-novella" / "scripts"))
+import evidence  # noqa: E402  (pipeline.log.jsonl: proof this stage ran)
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "kokoro-narrate" / "scripts"))
 from narrate import DEFAULT_CFG, parse  # noqa: E402
 
@@ -295,6 +298,7 @@ def check_chapter(book, stem, model_name, cfg, names, reuse=False):
     else:
         heard, dur = transcribe(src, model_name)
     report = {"chapter": stem, "model": model_name, "audio": src.name, "duration": round(dur, 1),
+              "script_sha1": evidence.sha1(script), "audio_sha1": evidence.sha1(src),
               "checked": time.strftime("%Y-%m-%d"),
               "words": [],
               "pace": check_pace(items, cfg, audio / ".cache"),
@@ -339,8 +343,14 @@ def main():
         return
     cfg, names = load_cfg(a.book_dir), glossary_names(a.book_dir)
     stems = sorted(p.stem for p in audio.glob("ch*.txt") if re.fullmatch(r"ch\d+", p.stem))
-    for stem in stems if not a.chapters else [s for s in stems if s in a.chapters]:
-        print_report(check_chapter(a.book_dir, stem, a.model, cfg, names, a.reuse))
+    stems = stems if not a.chapters else [s for s in stems if s in a.chapters]
+    with evidence.logged(a.book_dir, "listen-check", [audio / f"{s}.txt" for s in stems]) as run:
+        for stem in stems:
+            r = check_chapter(a.book_dir, stem, a.model, cfg, names, a.reuse)
+            print_report(r)
+            run.outputs.append(audio / f"{stem}.listen.json")
+            run.facts.setdefault("audio", {})[r["audio"]] = r["audio_sha1"]
+            run.facts.setdefault("flags", {})[stem] = len(r["words"]) + len(r["pace"]) + len(r["stress"])
 
 
 if __name__ == "__main__":

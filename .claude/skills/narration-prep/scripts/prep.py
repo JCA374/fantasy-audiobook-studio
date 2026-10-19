@@ -9,6 +9,9 @@ emotion beats) belong in the manuscript, via speech-flow; review the diff of eac
 import re, sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fantasy-novella" / "scripts"))
+import evidence  # noqa: E402  (pipeline.log.jsonl: proof this stage ran)
+
 SPLIT = 120
 SENT = re.compile(r"(?:(?<=[.!?…])|(?<=[.!?…][\"”]))\s+(?=[\"“]?[A-Z])")
 
@@ -98,6 +101,15 @@ def convert(md, names):
 if __name__ == "__main__":
     book = Path(sys.argv[1]); dest = Path(sys.argv[2]) if len(sys.argv) > 2 else book / "audio"
     names = glossary(book if (book / "glossary.md").exists() else Path(sys.argv[3]))
-    for md in sorted(book.glob("ch[0-9][0-9].md")):
-        (dest / f"{md.stem}.txt").write_text(convert(md, names))
-        print(md.stem)
+    chapters = sorted(book.glob("ch[0-9][0-9].md"))
+    def run_all():
+        for md in chapters:
+            (dest / f"{md.stem}.txt").write_text(convert(md, names))
+            print(md.stem)
+        return [dest / f"{md.stem}.txt" for md in chapters]
+    if dest.resolve() == (book / "audio").resolve():      # a scratch run elsewhere is not the pipeline
+        with evidence.logged(book, "narration-prep", chapters + [book / "glossary.md"]) as run:
+            run.outputs += run_all()
+            run.facts["chapters"] = len(chapters)
+    else:
+        run_all()

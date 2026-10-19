@@ -30,6 +30,9 @@ fantasy-novella:
     characters who matter) and drafts **one chapter per turn**: read outline, bible, continuity and glossary → write
     `chNN.md` within ±15 % of target → log new facts to `continuity.md` and names to `glossary.md` → run
     avoid-ai-writing in detect mode → update `status.md` → stop.
+    - **Proof that each stage ran:** the scripts of stages 6–10 log every run (input and output hashes) to
+      `pipeline.log.jsonl`, and `verify.py` checks each stage against that log and the files themselves:
+      PASS, STALE, MISSING, FAIL, UNLOGGED, or MANUAL for the judgement stages. A book is done when it passes.
 
     Its reference `writing-for-the-ear.md` is the checklist that makes these books work as audio: attribute dialogue
     often, keep sentences under ~30 words, never let italics carry meaning, re-orient the listener at every chapter start.
@@ -189,6 +192,8 @@ listen-check:
       training case 06, the first problem the listener found that nobody had reported.
     - **Limit:** Whisper prefers familiar spellings, so it confirms that names aren't badly wrong, not that the
       stress is perfect. Names are still checked by ear once, in narration-prep.
+    - **No pitch check:** tested and dropped. af_heart ends a question and a statement with the same falling
+      pitch (within 1 semitone in 25 of 26 test pairs), so a "does it rise?" check would flag every question.
 
 audiobook-assemble:
   stage: "10"

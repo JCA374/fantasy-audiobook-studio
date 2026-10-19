@@ -28,6 +28,9 @@ import numpy as np
 import soundfile as sf
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "fantasy-novella" / "scripts"))
+import evidence  # noqa: E402  (pipeline.log.jsonl: proof this stage ran)
+
 SR = 24000
 VOICES = {
     "American female": "af_heart af_bella af_nicole af_aoede af_kore af_sarah af_nova af_sky af_alloy af_jessica af_river",
@@ -147,8 +150,15 @@ def main():
         sys.exit(f"no chNN.txt scripts found in {audio_dir}")
     (cache := audio_dir / ".cache").mkdir(exist_ok=True)
     print(f"narrator={cfg['narrator']} speed={cfg['speed']} characters={cfg['characters'] or '-'}")
-    for s in scripts:
-        render_chapter(s, audio_dir / f"{s.stem}{suffix}.wav", cfg, cache)
+    if suffix:                                             # a voice audition is not the pipeline
+        for s in scripts:
+            render_chapter(s, audio_dir / f"{s.stem}{suffix}.wav", cfg, cache)
+        return
+    with evidence.logged(a.book_dir, "kokoro-narrate", scripts + [book_path]) as run:
+        for s in scripts:
+            render_chapter(s, audio_dir / f"{s.stem}.wav", cfg, cache)
+            run.outputs.append(audio_dir / f"{s.stem}.wav")
+        run.facts.update(narrator=cfg["narrator"], speed=cfg["speed"], chapters=len(scripts))
 
 
 if __name__ == "__main__":

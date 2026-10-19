@@ -117,6 +117,21 @@ site/publish.sh "what changed"
 
 It converts new training audio to MP3, builds the site locally as a check, commits and pushes. GitHub Actions then rebuilds and deploys the site, so the published book, its audio and the process pages always match the repository.
 
+### Proof that each stage ran
+**Script:** `fantasy-novella/scripts/verify.py` · **Log:** `pipeline.log.jsonl`
+
+A summary saying "all stages done" proves nothing. Each script from stage 6 on (scan, prep, narrate, listen, assemble) appends a line to the book's log as it runs: the time, its arguments, the sha1 of every file it read and wrote, and whether it finished. The checker then goes through the stages and proves each one from the files:
+
+| Stage | Proof |
+|---|---|
+| 6 · Speech flow | the last logged scan of each chapter has the chapter's current hash |
+| 7 · Narration prep | prep.py is run again in memory; its output must equal `audio/chNN.txt` |
+| 8 · Narrate | every paragraph of every script has audio in the render cache |
+| 9 · Listen check | each report records the hash of the script and audio it checked |
+| 10 · Assemble | the packaged WAVs are ones a logged render made from the current scripts, and the MP3s and `.m4b` haven't changed since |
+
+Each stage comes out PASS, STALE (made from an older input, so re-run from there), MISSING, FAIL (the last run failed) or UNLOGGED (made before the log existed). Stages 0–5 are judgement, so the checker only confirms their files exist and marks them MANUAL. The log is generic: `evidence.py` knows nothing about books, so another pipeline can reuse it with its own stage list.
+
 ## Making a change after the book is done
 
 1. Edit `chNN.md` (or run speech-flow on it).
