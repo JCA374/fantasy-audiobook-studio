@@ -144,7 +144,8 @@ narration-prep:
     - **Names.** Kokoro's American voice said Mira as "MY-uh-ruh" (`mˈIəɹə`) and Elin as "ih-LIN". The glossary
       fixes them to MEER-uh (`mˈiɹə`) and EL-in (`ˈɛlɪn`), written in the script as `[Mira](/mˈiɹə/)`.
     - **Short questions** (case 01): "Can I?" ended flat. Fix: stress the key word and double the question mark,
-      `"[Can](+2) I??"`.
+      `"[Can](+2) I??"`. A tag or beat after the line doesn't fix it (`"Why?" It came out sharper…` is still
+      unstressed), so `prep.py` marks every short question that has no main stress, tag or not.
   cases: ["01"]
 
 kokoro-narrate:
@@ -171,7 +172,8 @@ listen-check:
     Runs after narration, before assembling. Whisper (`base.en`, local, about 6× real time, so ~16 minutes per book)
     transcribes the audio, and the transcript is aligned word by word with the script. Skipped, swapped or garbled
     words come back as timestamps. Two cheap checks run alongside it: words per second per paragraph (rushed or
-    garbled audio), and Kokoro's own phonemes for bare short lines (no main stress means a flat ending).
+    garbled audio), and Kokoro's own phonemes for bare short lines and for short questions, even with a tag (no main stress means
+    a flat ending).
     Known Whisper noise is filtered out: digits for number words, words echoed at its 30-second window joins,
     dropped "the", and spelling variants. Each finding is double-checked with the slower `small.en` model before the
     author is asked to listen, and confirmed problems become training cases with the clip already cut.

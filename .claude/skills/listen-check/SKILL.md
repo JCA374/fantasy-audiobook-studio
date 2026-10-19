@@ -19,7 +19,7 @@ Each chapter gets `audio/chNN.listen.json`, which the website shows, plus a prin
 |---|---|---|
 | **words** | Whisper (`base.en`) transcribes the chapter; the transcript is aligned word by word with `chNN.txt` | Kokoro skipping, swapping or garbling words; names written wrongly in the transcript |
 | **pace** | words per second for every paragraph, from the render cache | a paragraph > 30 % faster or slower than the chapter's median: rushed, dragged or garbled audio |
-| **stress** | Kokoro's own phonemes for bare short lines (no tag or beat) | lines with no main stress, which end flat (training cases 01 and 05) |
+| **stress** | Kokoro's own phonemes for bare short lines (no tag or beat), and for short quoted questions (≤ 3 words) even with a tag or beat | lines with no main stress, which end flat (training cases 01 and 05) |
 
 Filtered out as Whisper noise:
 - **Numbers** written as digits ("31" for "thirty-one", "50s" for "fifties").

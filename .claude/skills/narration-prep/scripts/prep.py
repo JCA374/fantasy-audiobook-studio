@@ -52,13 +52,21 @@ def stress(text):
     return " ".join(r.phonemes for r in _G2P[0](text))
 
 
-def short_question(p):
-    """Case 01: a bare question of <= 3 words gets (+2) on its first word and a doubled '?'."""
-    m = re.fullmatch(r'"([^"]+)\?"', p)
-    if not m or words(m.group(1)) > 3 or "ˈ" in stress(p):
-        return p
-    first, _, rest = m.group(1).partition(" ")
-    return f'"[{first}](+2){" " + rest if rest else ""}??"'
+def short_question(p, names=()):
+    """Case 01: a quoted question of <= 3 words with no main stress gets (+2) on its first word and a doubled '?'.
+    Applies whether the line stands alone or has a tag or beat: a beat after it doesn't give it a main stress."""
+    def fix(m):
+        q = m.group(1)
+        last = re.split(r"(?<=[.!?…])\s+", q)[-1]
+        if (not last.endswith("?") or last.endswith(("??", "...?", "…?")) or words(last) > 3
+                or any(re.search(rf"\b{n}\b", last) for n in names) or "ˈ" in stress(f'"{last}"')):
+            return m.group(0)
+        w = re.match(r"([\w’']+)(.*)", last)
+        if not w:
+            return m.group(0)
+        first, rest = w.groups()
+        return f'"{q[:len(q) - len(last)]}[{first}](+2){rest}?"'
+    return re.sub(r'"([^"]+)"', fix, p)
 
 
 def convert(md, names):
@@ -76,7 +84,7 @@ def convert(md, names):
         par = re.sub(r"\*\*?([^*]+)\*\*?", r"\1", par)
         par = par.replace("…", "...")
         par = re.sub(r"\bMr\.", "Mister", par)
-        par = short_question(par)
+        par = short_question(par, names)
         for name, ph in names.items():
             par = re.sub(rf"\b{name}\b", f"[{name}](/{ph}/)", par)
         out += split_long(par)

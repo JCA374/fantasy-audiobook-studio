@@ -7,7 +7,8 @@ Three checks per chapter, written to books/<slug>/audio/chNN.listen.json and pri
           writes correctly may still sound slightly off; a name it writes WRONG is worth a listen.)
   pace    words per second for every paragraph, from the render cache; outliers often mean garbled or
           rushed audio.
-  stress  bare short lines whose phonemes have no main stress (they end flat; training case 01/05).
+  stress  bare short lines, and short quoted questions even with a tag or beat, whose phonemes have no
+          main stress (they end flat; training case 01/05).
 
 usage:
   listen.py books/<slug> [--chapters ch01 ch02] [--model base.en] [--reuse]
@@ -40,6 +41,7 @@ NUMWORDS = re.compile(r"^(zero|one|two|three|four|five|six|seven|eight|nine|ten|
 PACE_DEV = 0.30      # flag a paragraph whose words/second is >30 % off the chapter median
 PACE_MIN_WORDS = 6
 BARE_LINE = 6
+SHORT_Q = 3        # words; a quoted question this short is checked even with a tag or beat
 
 
 def plain(text):
@@ -165,10 +167,18 @@ def check_stress(items, voice):
     g2p = KPipeline(lang_code=voice[0], model=False, repo_id="hexgrad/Kokoro-82M")
     out = []
     for i, it in enumerate(items):
-        if it[0] == "say" and re.fullmatch(r'["“][^"”]+["”]', it[2]) and len(tokens(it[2])) <= BARE_LINE:
-            ph = " ".join(r.phonemes for r in g2p(it[2]))
+        if it[0] != "say":
+            continue
+        if re.fullmatch(r'["“][^"”]+["”]', it[2]) and len(tokens(it[2])) <= BARE_LINE:
+            lines = [it[2]]
+        else:   # a short question with a tag or beat still ends flat: the beat doesn't stress it (case 01)
+            lines = [f'"{q}"' for q in (re.split(r"(?<=[.!?…])\s+", a or b)[-1] for a, b in
+                                        re.findall(r'"([^"]+)"|“([^”]+)”', it[2]))
+                     if q.endswith("?") and not q.endswith(("...?", "…?")) and len(tokens(q)) <= SHORT_Q]
+        for line in lines:
+            ph = " ".join(r.phonemes for r in g2p(line))
             if "ˈ" not in ph:
-                out.append({"para": i, "text": plain(it[2]), "phonemes": ph})
+                out.append({"para": i, "text": plain(line), "phonemes": ph})
     return out
 
 

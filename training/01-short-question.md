@@ -22,3 +22,11 @@ the chosen fix (`after`) are kept; the other renders are in git history (tag `v1
 **Decision:** author picked the doubled question mark (`"[Can](+2) I??"`, now `after`) as the best markup fix, but feels the real fix is in the
 writing: a bare two-word question gives the voice too little to work with. Writing alternative to consider
 in the manuscript: add an action beat or tag after it (`"Can I?" He sounded surprised.`).
+
+**Follow-up (2026-10-19):** the writing fix alone does not fix the ending. ch01 now reads `"Can I?" He sat up a
+little.`, and Kokoro still phonemises it `kˌæn ˌI?`, with no main stress; the context around a question doesn't change
+its stress. Across the two published books, 9 short questions with a tag or beat had no main stress (`"Why?" It
+came out sharper…` → `wˌI?`, `"How?" said Quill.` → `hˌW?`). With the markup they all get one (`wˈI??`, `hˈW??`).
+So `prep.py` now marks the last short question of *any* quote, not only a bare line, and listen-check's stress
+check looks at the same questions. The beat stays: it gives the listener the feeling (case 05), and the markup
+gives the question its rise.

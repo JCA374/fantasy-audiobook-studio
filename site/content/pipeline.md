@@ -87,7 +87,7 @@ Each chapter is converted to a script Kokoro can read:
 | `Mira` | `[Mira](/mˈiɹə/)`: phonemes from the glossary |
 | a 200-word paragraph | split at a sentence boundary (keeps the cache granular) |
 
-Pronunciations are tested with `g2p.py`, which shows the phonemes Kokoro would use and can render a test clip. The skill's *Learned rules* section holds rules taught by training cases, such as how to keep a two-word question from ending flat.
+Pronunciations are tested with `g2p.py`, which shows the phonemes Kokoro would use and can render a test clip. The skill's *Learned rules* section holds rules taught by training cases, such as how to keep a two-word question from ending flat, whether it stands alone or comes with a tag (`"[Why](+2)??" It came out sharper than she meant.`).
 
 ### 8 · Narrate
 **Skill:** kokoro-narrate · **Output:** `audio/chNN.wav`
@@ -97,7 +97,7 @@ Pronunciations are tested with `g2p.py`, which shows the phonemes Kokoro would u
 ### 9 · Listen check
 **Skill:** listen-check · **Output:** `audio/chNN.listen.json`, a list of timestamps to listen to
 
-An automatic first listen. [Whisper](https://github.com/SYSTRAN/faster-whisper), a speech-recognition model, runs locally (about 6× real time, so ~16 minutes per book). It transcribes every chapter, and the transcript is aligned word by word with the script. Words Kokoro skipped, swapped or garbled come back with a timestamp. Two more checks run alongside it: the speaking pace of every paragraph (a paragraph much faster or slower than the rest usually means garbled audio), and the stress of bare short lines (no stressed word means a flat ending). Each flag is re-checked with a slower, more careful model before the author is asked to listen. Confirmed problems become training cases with the audio clip already cut.
+An automatic first listen. [Whisper](https://github.com/SYSTRAN/faster-whisper), a speech-recognition model, runs locally (about 6× real time, so ~16 minutes per book). It transcribes every chapter, and the transcript is aligned word by word with the script. Words Kokoro skipped, swapped or garbled come back with a timestamp. Two more checks run alongside it: the speaking pace of every paragraph (a paragraph much faster or slower than the rest usually means garbled audio), and the stress of bare short lines and short questions (no stressed word means a flat ending). Each flag is re-checked with a slower, more careful model before the author is asked to listen. Confirmed problems become training cases with the audio clip already cut.
 
 ## Package and publish
 
