@@ -1,5 +1,5 @@
 """Narration-prep conversion: books/<slug>/chNN.md -> audio/chNN.txt, following the rules in ../SKILL.md
-(headings, markdown, scene breaks, glossary phonemes, paragraph splitting, learned rule case 01).
+(headings, markdown, scene breaks, glossary phonemes, paragraph splitting, learned rules cases 01 and 09).
 
     .venv/bin/python .claude/skills/narration-prep/scripts/prep.py books/<slug> [out_dir]
 
@@ -87,6 +87,10 @@ def convert(md, names):
         par = short_question(par, names)
         for name, ph in names.items():
             par = re.sub(rf"\b{name}\b", f"[{name}](/{ph}/)", par)
+        # case 09: a fixed short question that opens a paragraph is voiced on its own, the beat after it
+        # as the next paragraph (a tag like "said Quill." stays: alone it would sound odd)
+        if m := re.fullmatch(r'("[^"]*\?\?") ((?:[A-Z]|\[).*)', par):
+            out.append(m.group(1)); par = m.group(2)
         out += split_long(par)
     return "\n\n".join(out) + "\n"
 

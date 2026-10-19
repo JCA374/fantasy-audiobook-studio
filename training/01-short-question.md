@@ -30,3 +30,4 @@ came out sharper…` → `wˌI?`, `"How?" said Quill.` → `hˌW?`). With the ma
 So `prep.py` now marks the last short question of *any* quote, not only a bare line, and listen-check's stress
 check looks at the same questions. The beat stays: it gives the listener the feeling (case 05), and the markup
 gives the question its rise.
+See case 09: the author preferred the question voiced as its own paragraph, with the beat after it.

@@ -87,7 +87,7 @@ Each chapter is converted to a script Kokoro can read:
 | `Mira` | `[Mira](/mˈiɹə/)`: phonemes from the glossary |
 | a 200-word paragraph | split at a sentence boundary (keeps the cache granular) |
 
-Pronunciations are tested with `g2p.py`, which shows the phonemes Kokoro would use and can render a test clip. The skill's *Learned rules* section holds rules taught by training cases, such as how to keep a two-word question from ending flat, whether it stands alone or comes with a tag (`"[Why](+2)??" It came out sharper than she meant.`).
+Pronunciations are tested with `g2p.py`, which shows the phonemes Kokoro would use and can render a test clip. The skill's *Learned rules* section holds rules taught by training cases, such as how to keep a two-word question from ending flat, whether it stands alone or comes with a tag. A short question followed by a beat is voiced as its own paragraph (`"[Why](+2)??"`, then `It came out sharper than she meant.`).
 
 ### 8 · Narrate
 **Skill:** kokoro-narrate · **Output:** `audio/chNN.wav`

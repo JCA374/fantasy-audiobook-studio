@@ -146,7 +146,9 @@ narration-prep:
     - **Short questions** (case 01): "Can I?" ended flat. Fix: stress the key word and double the question mark,
       `"[Can](+2) I??"`. A tag or beat after the line doesn't fix it (`"Why?" It came out sharper…` is still
       unstressed), so `prep.py` marks every short question that has no main stress, tag or not.
-  cases: ["01"]
+    - **Question before a beat** (case 09): with the markup it was better but not great. Voiced as its own
+      paragraph, with the beat as the next one, it sounds most like a question.
+  cases: ["01", "09"]
 
 kokoro-narrate:
   stage: "8"
