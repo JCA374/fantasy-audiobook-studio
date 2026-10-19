@@ -1,6 +1,6 @@
 title: Second-Hand Dragons
 author: Jonas
-narrator: Kokoro TTS (bm_george)
+narrator: Kokoro TTS (af_heart)
 year: 2026
 edition: 1
 cover: cover.jpg
@@ -19,7 +19,7 @@ chapters:
   ch12: "Chapter Twelve: House to House"
   ch13: "Chapter Thirteen: Given"
 narration:
-  narrator: bm_george   # chosen by the author 2026-10-18 (British male; the dragon narrates in first person)
+  narrator: af_heart    # same voice as The One in the Chair (author, 2026-10-19; first render used bm_george)
   speed: 0.95
   paragraph_pause: 0.6
   characters: {}        # single narrator

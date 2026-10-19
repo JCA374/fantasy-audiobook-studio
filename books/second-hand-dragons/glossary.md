@@ -7,7 +7,7 @@ Check with: `.venv/bin/python .claude/skills/narration-prep/scripts/g2p.py <word
 | Term | Sounds like | Phonemes | Notes |
 |------|-------------|----------|-------|
 | Tansy | TAN-zee | ok | the shop girl, 16; Kokoro default /tˈanzi/ |
-| Aldevar | AL-dih-var | ˈaldɪvˌɑː | the dragon, narrator; Kokoro default /ˈɔːldɪvˌɑː/ = AWL-dih-vah; override chosen by Claude, author to confirm by ear |
+| Aldevar | AL-dih-var | ˈældɪvˌɑɹ | the dragon, narrator; American (af_heart) phonemes; Kokoro default /ˈɔldɪvˌɑɹ/ = AWL-dih-var; override chosen by Claude, author to confirm by ear |
 | Al | ok | ok | what Tansy calls the dragon |
 | Hobb | ok | ok | Mrs Hobb, the pawnbroker; /hˈɒb/ |
 | Fennick | FEN-ick | ok | the widow, and her late husband the wizard; /fˈɛnɪk/ |
