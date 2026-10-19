@@ -2,6 +2,10 @@
 
 **Stage:** COMPLETE 2026-10-19 (re-narrated in af_heart). Audiobook: audio/Second-Hand Dragons.m4b (101.7 min, 13 chapters, cover, -19.4 LUFS) + audio/chNN.mp3; copied to export/Audiobooks/.
 
+**Re-narrated 2026-10-19** (af_heart): short questions stressed (case 01) and, where a beat follows, voiced on their own paragraph (case 09). 101.7 min; export/Audiobooks/ updated. Listen check: the same flags as before, nothing new; no stress flags.
+
+Pipeline evidence (`verify.py`, 2026-10-19): stages 0–5 MANUAL (files present); 6 speech flow, 7 audio prep, 8 narrate, 9 listen check, 10 package all **PASS** (content hashes match the current manuscript, scripts, renders and packaged files).
+
 | # | Stage | State |
 |---|---|---|
 | 0 | Seed | done, `seed.md` |

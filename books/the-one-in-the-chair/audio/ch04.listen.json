@@ -3,7 +3,9 @@
  "model": "base.en",
  "audio": "ch04.wav",
  "duration": 512.6,
- "checked": "2026-10-16",
+ "script_sha1": "258b0f72e20759cebc108facb31e0bbd015012ce",
+ "audio_sha1": "d51d103d12fd67e0edada502a82836688b744f0c",
+ "checked": "2026-10-19",
  "words": [],
  "pace": [
   {
@@ -15,7 +17,7 @@
   }
  ],
  "stress": [],
- "seconds": 53,
+ "seconds": 48,
  "transcript": [
   [
    " 4.",

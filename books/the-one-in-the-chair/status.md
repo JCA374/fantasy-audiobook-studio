@@ -3,6 +3,20 @@
 **Stage:** COMPLETE 2026-10-14. Audiobook: audio/The One in the Chair.m4b (92 min, 13 chapters, cover, -19.4 LUFS) + audio/chNN.mp3.
 Edits later: change chNN.md, regenerate audio/chNN.txt (narration-prep), re-run kokoro-narrate (only changed paragraphs render) and audiobook-assemble.
 
+**Re-narrated 2026-10-19** (second edition, af_heart): short questions stressed and voiced on their own paragraph (training cases 01 and 09), plus the author's ch01 edit ("…where she might find it."). 112.5 min, 14 chapters; copied to export/Audiobooks/ as "The One in the Chair - Second Edition.m4b". Listen check: no stress flags left; 4 old pace/word flags, plus one new borderline pace flag in ch12 ¶60 ("All right," said Mira. "Loud, then.", 2.09 words/s vs 3.0) for the author to hear.
+
+Pipeline evidence (`verify.py`, 2026-10-19; seed predates the seed stage):
+
+| Stage | State | Proof |
+|---|---|---|
+| 0 seed | MISSING | seed.md |
+| 1–5 | MANUAL | bible, glossary, outline, 14 chapters, reader-test summary present |
+| 6 speech flow | PASS | last scan of every chapter matches the manuscript |
+| 7 audio prep | PASS | every audio/chNN.txt equals prep.py's output for the current manuscript |
+| 8 narrate | PASS | rendered from the current scripts, every paragraph cached |
+| 9 listen check | PASS | every report made from the current script and audio |
+| 10 package | PASS | assembled from the current scripts' renders; MP3s and .m4b unchanged since |
+
 | Ch | Title | Words |
 |----|-------|-------|
 | 01 | Intake | 1013 |

@@ -600,6 +600,15 @@ def build_home(skills, books, cases):
 <p class="more">Listen, read, or download the .m4b and .epub →</p></div></a>"""
     fixed = sum(c["state"] == "fixed" for c in cases)
     tests = rule_tests()
+    # the featured book's pipeline evidence: verify.py --json, committed (the CI build has no Kokoro to re-run it)
+    proof = ""
+    vj = BOOKS / b["slug"] / "pipeline.verify.json" if b else None
+    if vj and vj.exists():
+        rows = json.loads(vj.read_text(encoding="utf-8"))
+        auto = [r for r in rows if int(r["stage"].split()[0]) >= 6]   # stages 6–10: proven by scripts
+        ok = sum(r["state"] == "PASS" for r in auto)
+        proof = (f'<li><b>{ok}/{len(auto)}</b> audio stages of <i>{esc(b["meta"]["title"])}</i> proven from the '
+                 f'<a href="pipeline.html#proof">evidence log</a>, the rest checked by the author</li>')
     video = ""
     if VIDEO.exists():  # rendered locally by site/video/make_video.py
         webm = VIDEO.with_suffix(".webm")
@@ -648,7 +657,8 @@ document.querySelectorAll(".copybtn").forEach(b => b.addEventListener("click", a
 <a href="skills/index.html">skills</a>, then narrated by <a href="https://huggingface.co/hexgrad/Kokoro-82M">Kokoro</a>,
 a small open TTS model running locally on the CPU, and packaged as a chaptered audiobook. The author makes the creative
 calls; everything else is a repeatable pipeline. Every passage that sounded wrong becomes a
-<a href="improvements.html">training case</a> that improves the next book.</p>
+<a href="improvements.html">training case</a> that improves the next book. And every stage leaves proof: each script
+logs what it read and wrote, and a checker confirms the finished audiobook was made from the current text.</p>
 </section>
 {video}
 {kit}
@@ -663,6 +673,7 @@ calls; everything else is a repeatable pipeline. Every passage that sounded wron
 <li><b>{len(skills)}</b> skills, {sum(s["origin"] == "ours" for s in skills)} written for this project</li>
 <li><b>{len(cases)}</b> training cases, {fixed} turned into rules</li>
 <li><b>{sum(t["ok"] for t in tests)}/{len(tests)}</b> rule tests passing</li>
+{proof}
 <li><b>~1 h</b> to narrate a 15k-word book on a laptop CPU</li>
 <li><b>−19 LUFS</b> audiobook loudness standard</li></ul>
 {f'<h2>Recent changes</h2><ul class="log">{log}</ul>' if log else ""}
@@ -674,6 +685,7 @@ def build_pipeline():
     body = md(text)
     # give stage headings ids matching the pipeline strip links ("### 1 · Story bible" -> id="stage-1")
     body = re.sub(r"<h3>(\d+) · ([^<]+)</h3>", lambda m: f'<h3 id="stage-{m.group(1)}">{m.group(1)} · {m.group(2)}</h3>', body)
+    body = body.replace("<h3>Proof that each stage ran</h3>", '<h3 id="proof">Proof that each stage ran</h3>')
     page("pipeline.html", "Pipeline", f'{pipeline_strip("")}<div class="prose">{body}</div>', "Pipeline")
 
 

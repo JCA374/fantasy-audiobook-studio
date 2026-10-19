@@ -1,0 +1,57 @@
+[
+ {
+  "stage": "0 seed",
+  "state": "MISSING",
+  "detail": "seed.md"
+ },
+ {
+  "stage": "1 story bible",
+  "state": "MANUAL",
+  "detail": "story-bible.md, glossary.md present"
+ },
+ {
+  "stage": "2 structure",
+  "state": "MANUAL",
+  "detail": "outline.md present"
+ },
+ {
+  "stage": "3 draft",
+  "state": "MANUAL",
+  "detail": "14 chapters"
+ },
+ {
+  "stage": "4 edit",
+  "state": "MANUAL",
+  "detail": "judgement stage: no file proves an edit pass"
+ },
+ {
+  "stage": "5 reader test",
+  "state": "MANUAL",
+  "detail": "summary in status.md"
+ },
+ {
+  "stage": "6 speech flow",
+  "state": "PASS",
+  "detail": "last scan of every chapter matches the manuscript (14 chapters)"
+ },
+ {
+  "stage": "7 audio prep",
+  "state": "PASS",
+  "detail": "every audio/chNN.txt equals prep.py's output for the current manuscript (14)"
+ },
+ {
+  "stage": "8 narrate",
+  "state": "PASS",
+  "detail": "rendered 2026-10-19T20:29:50 from the current scripts, every paragraph cached"
+ },
+ {
+  "stage": "9 listen check",
+  "state": "PASS",
+  "detail": "every report was made from the current script and audio (14)"
+ },
+ {
+  "stage": "10 package",
+  "state": "PASS",
+  "detail": "assembled 2026-10-19T20:50:17 from the current scripts' renders; MP3s and .m4b unchanged since"
+ }
+]

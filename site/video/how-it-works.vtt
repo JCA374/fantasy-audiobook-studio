@@ -75,44 +75,65 @@ And the automatic listener finds problems nobody reported. A garbled two-word li
 00:03:13.325 --> 00:03:19.900
 When the same kind of fix turns up twice, Claude drafts the rule. Whether it sounds right is still the author's call.
 
-00:03:20.750 --> 00:03:29.475
+00:03:20.750 --> 00:03:25.100
+And when Claude says a book is finished, that isn't taken on trust.
+
+00:03:25.450 --> 00:03:31.875
+Every stage's script writes a line to a log as it runs. What it read, what it wrote, and whether it finished.
+
+00:03:32.225 --> 00:03:41.850
+Then a checker goes through the stages. It proves that the audiobook was made from today's script, and that the script was made from today's manuscript.
+
+00:03:42.200 --> 00:03:46.950
+Edit one word, and the checker shows exactly which stages have to run again.
+
+00:03:47.800 --> 00:03:56.525
 One moment from the intake scene. Mira works in the afterlife's paperwork office. She is telling a dead dentist he will become a teapot.
 
-00:03:29.825 --> 00:03:35.700
+00:03:56.875 --> 00:04:02.750
 The outline gave chapter one its job. A hook in the first line, then a routine day at the desk.
 
-00:03:36.550 --> 00:03:40.750
+00:04:03.600 --> 00:04:07.800
 She asks if he wants to appeal. He answers with two words.
 
-00:03:41.100 --> 00:03:44.700
+00:04:08.150 --> 00:04:11.750
 On the page, that works. Listen to what the voice did with it.
 
-00:03:45.450 --> 00:03:47.250
+00:04:12.500 --> 00:04:14.300
 ♪ "You want to appeal it?"
 
-00:03:48.200 --> 00:03:49.725
+00:04:15.250 --> 00:04:16.775
 ♪ "Can I?"
 
-00:03:51.375 --> 00:03:54.975
-It sounds cut off. The question never rises.
+00:04:18.425 --> 00:04:22.525
+It sounds cut off, more like half a sentence than a question.
 
-00:03:55.325 --> 00:04:01.100
-The voice model gave both words weak stress. With nothing stressed, the pitch has nowhere to go.
+00:04:22.875 --> 00:04:29.275
+The voice model gave both words weak stress. With nothing stressed, there's nothing for the question to lean on.
 
-00:04:01.950 --> 00:04:06.250
-The fix went into the writing. Give the question a beat after it.
+00:04:30.125 --> 00:04:36.800
+The first fix went into the writing. Give the question a beat after it, so the listener hears the feeling.
 
-00:04:07.000 --> 00:04:09.325
-♪ "Can I?" He sat up a little.
+00:04:37.150 --> 00:04:41.950
+That helped, but the question was still weak. The beat doesn't give the words any stress.
 
-00:04:10.475 --> 00:04:17.825
-That became a rule in speech flow. No bare short line of dialogue on its own. And a test makes sure the rule keeps working.
+00:04:42.800 --> 00:04:51.950
+So the script does the rest. It stresses the first word, doubles the question mark, and lets the question stand alone, with the beat after it.
 
-00:04:18.675 --> 00:04:27.225
+00:04:52.700 --> 00:04:54.200
+♪ "Can I??"
+
+00:04:55.150 --> 00:04:56.925
+♪ He sat up a little.
+
+00:04:58.075 --> 00:05:06.950
+The author tried five versions and picked this one by ear. Now narration prep does it for every short question, and listen check confirms the stress.
+
+00:05:07.800 --> 00:05:16.350
 From there, narration prep spells Mira's name by sound. Kokoro reads it, listen check compares, and assemble builds the book.
 
-00:04:36.375 --> 00:04:41.125
+00:05:25.500 --> 00:05:30.250
 Every book, every skill, and every fix, with the audio, is on the website.
 
-00:04:41.475 --> 00:04:43.250
+00:05:30.600 --> 00:05:32.375
 Thanks for listening.

@@ -92,6 +92,21 @@ scenes:
 
   - slide:
       layout: text
+      kicker: Proof, not summaries
+      heading: Every stage leaves evidence
+      bullets:
+        - Each script logs what it read and wrote
+        - Files are compared by content, not by date
+        - A checker proves every audio stage
+        - Stale or missing stages show up at once
+    lines:
+      - A: And when Claude says a book is finished, that isn't taken on trust.
+      - B: Every stage's script writes a line to a log as it runs. What it read, what it wrote, and whether it finished.
+      - A: Then a checker goes through the stages. It proves that the audiobook was made from today's script, and that the script was made from today's manuscript.
+      - B: Edit one word, and the checker shows exactly which stages have to run again.
+
+  - slide:
+      layout: text
       kicker: "Example · Chapter 1, Intake"
       heading: One moment, through the pipeline
       label: Outline
@@ -118,22 +133,34 @@ scenes:
       kicker: "Example · Heard"
       heading: It doesn't sound like a question
       label: Cause
-      quote: "Both words got weak stress. With no stressed word, the pitch has nowhere to rise."
+      quote: "Both words got weak stress. With no stressed word, the question sounds unfinished."
     lines:
-      - A: It sounds cut off. The question never rises.
-      - B: The voice model gave both words weak stress. With nothing stressed, the pitch has nowhere to go.
+      - A: It sounds cut off, more like half a sentence than a question.
+      - B: The voice model gave both words weak stress. With nothing stressed, there's nothing for the question to lean on.
   - slide:
       layout: text
       kicker: "Example · Fix"
-      heading: Fix the writing, not the voice
+      heading: A beat helps, but it isn't enough
       label: Manuscript, after
       quote: "“Can I?” He sat up a little."
     lines:
-      - A: The fix went into the writing. Give the question a beat after it.
+      - A: The first fix went into the writing. Give the question a beat after it, so the listener hears the feeling.
+      - B: That helped, but the question was still weak. The beat doesn't give the words any stress.
+  - slide:
+      layout: text
+      kicker: "Example · Script"
+      heading: Stress it, and give it its own breath
+      label: Narration script
+      raw: true
+      quote: "\"[Can](+2) I??\"\n\nHe sat up a little."
+    lines:
+      - A: So the script does the rest. It stresses the first word, doubles the question mark, and lets the question stand alone, with the beat after it.
       - pause: 0.4
-      - book: "\"Can I?\" He sat up a little."
+      - book: "\"[Can](+2) I??\""
+      - pause: 0.6
+      - book: "He sat up a little."
       - pause: 0.8
-      - B: That became a rule in speech flow. No bare short line of dialogue on its own. And a test makes sure the rule keeps working.
+      - B: The author tried five versions and picked this one by ear. Now narration prep does it for every short question, and listen check confirms the stress.
   - slide:
       layout: text
       kicker: "Example · Voice"

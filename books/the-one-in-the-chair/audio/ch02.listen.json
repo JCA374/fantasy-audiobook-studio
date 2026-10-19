@@ -3,11 +3,13 @@
  "model": "base.en",
  "audio": "ch02.wav",
  "duration": 473.6,
- "checked": "2026-10-16",
+ "script_sha1": "ddac2fa09a106514b7ec7d79a5c76545fd2e62d2",
+ "audio_sha1": "ba493b886c8c77c57ed2520b9fa5b83b048f6ae2",
+ "checked": "2026-10-19",
  "words": [],
  "pace": [],
  "stress": [],
- "seconds": 52,
+ "seconds": 51,
  "transcript": [
   [
    " Chapter",

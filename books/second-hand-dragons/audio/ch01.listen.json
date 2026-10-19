@@ -3,6 +3,8 @@
  "model": "base.en",
  "audio": "ch01.wav",
  "duration": 495.6,
+ "script_sha1": "dc36adb9555d7ca927eab94f942aa535746ebfef",
+ "audio_sha1": "a71dabec58322854d237041d28e7ee9fe7edb11e",
  "checked": "2026-10-19",
  "words": [
   {
@@ -24,7 +26,7 @@
   }
  ],
  "stress": [],
- "seconds": 77,
+ "seconds": 120,
  "transcript": [
   [
    " Chapter",

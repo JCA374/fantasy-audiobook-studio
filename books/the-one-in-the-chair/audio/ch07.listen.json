@@ -3,7 +3,9 @@
  "model": "base.en",
  "audio": "ch07.wav",
  "duration": 487.8,
- "checked": "2026-10-16",
+ "script_sha1": "dded49fe86067684a85af0fe13d97b0effebfbe4",
+ "audio_sha1": "c9fff7aa6bb5a76c53e4c9ee514db54f0a1b0042",
+ "checked": "2026-10-19",
  "words": [
   {
    "time": 80.0,
@@ -5535,10 +5537,6 @@
    486.26
   ],
   [
-   " Go",
-   486.56
-  ],
-  [
    " on.",
    486.56
   ]
@@ -5581,7 +5579,7 @@
    "para": 52,
    "kind": "extra",
    "expected": "",
-   "heard": "go on",
+   "heard": "on",
    "second": "small.en"
   }
  ]

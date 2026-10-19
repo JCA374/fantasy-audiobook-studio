@@ -3,7 +3,9 @@
  "model": "base.en",
  "audio": "ch14.wav",
  "duration": 300.4,
- "checked": "2026-10-16",
+ "script_sha1": "8c282ef05662e8efe2bf4f4ccd6cb5b62aa27203",
+ "audio_sha1": "0b4d2bbf189f0f3eece5dc155c4a92b4c6d6a22c",
+ "checked": "2026-10-19",
  "words": [],
  "pace": [
   {
