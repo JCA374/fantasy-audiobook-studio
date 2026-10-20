@@ -2,7 +2,8 @@
 """Regression tests: every training case's lesson must still hold in the scanner.
 
 For each test in training/rule-tests.yaml the scanner must flag `before` with the named check
-and must not flag `after` with it. Exit code 1 if any test fails.
+and must not flag `after` with it. Exit code 1 if any test fails. Optional `before_kind` / `after_kind`
+(fiction, prose, voiceover; default fiction) scan that side as that kind of text.
 
 usage: test_rules.py [--json FILE]     --json: also write results (the website shows them)
 """
@@ -22,8 +23,9 @@ TESTS = ROOT / "training" / "rule-tests.yaml"
 def run():
     results = []
     for t in yaml.safe_load(TESTS.read_text(encoding="utf-8")):
-        flags = lambda text: [c for _, c, _ in scan_text(text) if t["check"] in c]
-        caught, clean = bool(flags(t["before"])), not flags(t["after"])
+        flags = lambda text, kind: [c for _, c, _ in scan_text(text, kind) if t["check"] in c]
+        caught = bool(flags(t["before"], t.get("before_kind", "fiction")))
+        clean = not flags(t["after"], t.get("after_kind", "fiction"))
         results.append({**t, "caught": caught, "clean": clean, "ok": caught and clean})
     return results
 

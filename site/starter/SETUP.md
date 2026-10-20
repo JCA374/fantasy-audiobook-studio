@@ -21,4 +21,7 @@ that need their password (suggest they type them with a `!` prefix).
    ```
    The sample should be a few seconds of speech, and all rule tests should pass.
 4. **Initialise git** (recommended, so every draft and revision is kept): `git init && git add -A && git commit -m "Starter kit"`.
-5. Tell the user they're ready, and suggest the first step: *"Start a new book with story-seed."*
+5. **Optional: voice text in other projects.** If the user wants the audio skills everywhere, link them into their
+   global skills folder: `for s in voice-text speech-flow narration-prep kokoro-narrate listen-check audiobook-assemble; do ln -sfn "$PWD/.claude/skills/$s" ~/.claude/skills/$s; done`.
+   Ask first: this changes every Claude Code project on the machine. The links point to this folder, so don't move it afterwards.
+6. Tell the user they're ready, and suggest the first step: *"Start a new book with story-seed."*

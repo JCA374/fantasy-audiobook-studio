@@ -2,7 +2,10 @@
 """Check, stage by stage, that a book went through the pipeline: proof from the files and from the run log
 (pipeline.log.jsonl, written by each stage's own script), not from anyone's summary.
 
-    .venv/bin/python .claude/skills/fantasy-novella/scripts/verify.py books/<slug> [--json FILE]
+    .venv/bin/python .claude/skills/fantasy-novella/scripts/verify.py books/<slug> [--json FILE] [--audio-only]
+
+--audio-only checks only the audio stages 6-10: for a voice-text work dir (voice/<slug>/), which has no seed,
+bible or outline because the text wasn't written here.
 
 States, best to worst:
   PASS      proven: the stage's output matches the current input (by content hash, or re-derived)
@@ -144,12 +147,12 @@ def assemble(book, scripts):
     return "PASS", f"assembled {r['time']} from the current scripts' renders; MP3s and .m4b unchanged since"
 
 
-def verify(book):
+def verify(book, audio_only=False):
     book = Path(book)
     chapters = sorted(book.glob("ch[0-9][0-9].md"))
     scripts = [book / "audio" / f"{md.stem}.txt" for md in chapters]
     status = (book / "status.md").read_text(encoding="utf-8") if (book / "status.md").exists() else ""
-    rows = [
+    rows = [] if audio_only else [
         files_stage(book, "0 seed", ["seed.md"]),
         files_stage(book, "1 story bible", ["story-bible.md", "glossary.md"]),
         files_stage(book, "2 structure", ["outline.md"]),
@@ -177,7 +180,7 @@ def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     book = Path(sys.argv[1])
-    rows = verify(book)
+    rows = verify(book, audio_only="--audio-only" in sys.argv)
     worst = evidence.report(rows, f"== {book.name}: pipeline evidence")
     if "--json" in sys.argv:
         Path(sys.argv[sys.argv.index("--json") + 1]).write_text(

@@ -5,6 +5,8 @@ description: "Check a manuscript chapter for punctuation and sentence shapes tha
 
 # Speech Flow
 
+> From another project: run these commands through the **voice-text** skill's launcher (`voice.sh <command> voice/<slug>`); there `books/<slug>` = `voice/<slug>`.
+
 A listener can't see punctuation, re-read a sentence or notice italics. Kokoro pauses on every comma and dash and reads a sentence's pitch from its punctuation. This skill finds the spots where the written text and the heard text come apart, and fixes them **in the manuscript** (`books/<slug>/chNN.md`), so every later render benefits.
 
 Pipeline position: after editing, **before** `narration-prep`. Narration-prep then only does mechanical conversion.
@@ -35,6 +37,8 @@ It prints candidates by paragraph number (¶, heading excluded). They are only c
 
 ### Emotion beats for short lines (case 05)
 
+*Fiction only (`kind: fiction`, the default). The scanner skips this check for `kind: prose` and `voiceover`.*
+
 The author's rule: when a line is only one or two short sentences, like `"Can I?"`, follow it with a beat that shows the emotion behind it.
 
 ```
@@ -49,6 +53,8 @@ The author's rule: when a line is only one or two short sentences, like `"Can I?
 - **Skip it** for lines that aren't speech: letters, sign-offs, stamps, signs.
 
 ### Clipped dialogue (case 07)
+
+*Fiction only, like emotion beats.*
 
 The author's rule: two- and three-word lines are fine *sometimes*. Used often, they feel lazy, as if the characters had nothing to say. Before adding an emotion beat to a short line, ask whether it should be short at all.
 

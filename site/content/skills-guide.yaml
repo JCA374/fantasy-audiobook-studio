@@ -220,3 +220,23 @@ audiobook-assemble:
     before: "13 separate chapter recordings, each a slightly different volume"
     after: "The One in the Chair.m4b: 92 minutes, 13 chapters, cover, even volume"
     note: This is the file that goes into BookPlayer on the phone.
+
+voice-text:
+  plain: The same voice pipeline for any text in any project, such as notes, an article, a story or the narration for a video.
+  when: Whenever a text outside this studio's books should become checked audio.
+  input: One or more text or markdown files, and what kind of text they are
+  output: An MP3 (and .m4b) of the text, checked by Whisper. For a video, one MP3 per scene and their lengths
+  who:
+    script: sets up the work folder and runs each stage's own script
+    claude: rewrites what doesn't work by ear and fills in the pronunciations
+    author: approves the rewrites and the name sounds, and says when something sounds wrong
+  steps:
+    - Copy the text into a work folder shaped like a book.
+    - List what can't be heard (tables, code, links) and rewrite it in words.
+    - Check how the names should sound.
+    - Narrate, then let Whisper listen back.
+    - Export the audio and check every stage's proof.
+  example:
+    before: "A markdown note with a table of flood markers"
+    after: "\"At marker A the flood line stood at just over two metres, and at marker B just under.\""
+    note: A listener can't read a table, so the table becomes one sentence that gives its meaning.

@@ -5,6 +5,8 @@ description: "Automatic listener for rendered audiobook chapters: transcribes th
 
 # Listen Check
 
+> From another project: run these commands through the **voice-text** skill's launcher (`voice.sh <command> voice/<slug>`); there `books/<slug>` = `voice/<slug>`.
+
 A human can't re-listen to 90 minutes after every change. This skill does a first listen automatically, so the author only has to hear a short list of moments with timestamps.
 
 ```bash
@@ -19,7 +21,7 @@ Each chapter gets `audio/chNN.listen.json`, which the website shows, plus a prin
 |---|---|---|
 | **words** | Whisper (`base.en`) transcribes the chapter; the transcript is aligned word by word with `chNN.txt` | Kokoro skipping, swapping or garbling words; names written wrongly in the transcript |
 | **pace** | words per second for every paragraph, from the render cache | a paragraph > 30 % faster or slower than the chapter's median: rushed, dragged or garbled audio |
-| **stress** | Kokoro's own phonemes for bare short lines (no tag or beat), and for short quoted questions (≤ 3 words) even with a tag or beat | lines with no main stress, which end flat (training cases 01 and 05) |
+| **stress** | Kokoro's own phonemes for bare short lines (no tag or beat), and for short quoted questions (≤ 3 words) even with a tag or beat | lines with no main stress, which end flat (training cases 01 and 05). Only dialogue lines are checked, so prose rarely gets any |
 
 Filtered out as Whisper noise:
 - **Numbers** written as digits ("31" for "thirty-one", "50s" for "fifties").

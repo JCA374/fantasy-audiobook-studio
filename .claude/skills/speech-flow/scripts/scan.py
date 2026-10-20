@@ -5,6 +5,9 @@ Mechanical first pass for the speech-flow skill. Every hit is a *candidate*: jud
 by ear (read it aloud in your head, as the listener) before proposing a change.
 
 usage: scan.py books/<slug>/ch01.md [more chapters...]
+
+The dialogue checks (bare short line, clipped dialogue) are for fiction. A work dir whose book.yaml says
+`kind: prose` or `kind: voiceover` (voice-text skill) skips them; every other check runs for all kinds.
 """
 import re
 import sys
@@ -49,12 +52,22 @@ def clipped(speech):
     return bool(parts) and max(words(p) for p in parts) <= CLIPPED
 
 
+def kind_of(book):
+    """fiction (the default), prose or voiceover, from BOOK/book.yaml."""
+    p = Path(book) / "book.yaml"
+    if not p.exists():
+        return "fiction"
+    import yaml
+    return (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).get("kind", "fiction")
+
+
 def scan(path):
-    return scan_text(path.read_text(encoding="utf-8"))
+    return scan_text(path.read_text(encoding="utf-8"), kind_of(path.parent))
 
 
-def scan_text(text):
+def scan_text(text, kind="fiction"):
     """Return [(paragraph number, check name, excerpt)] for a chapter or a snippet."""
+    fiction = kind == "fiction"
     hits = []
     pars = [p for p in re.split(r"\n\s*\n", text) if p.strip() and not p.startswith("#")]
     lines = []  # (¶, speech, clipped) for every paragraph with dialogue
@@ -75,7 +88,7 @@ def scan_text(text):
             if not re.search(CUES, before, re.I):
                 hit("italics-without-cue", f"…{before[-40:]}*{m.group(1)}*")
         # a bare short line of dialogue on its own: no tag, no beat, so the listener gets no emotion (cases 01, 05)
-        if re.fullmatch(r'["“][^"”]+["”]', par) and words(par) <= BARE_LINE:
+        if fiction and re.fullmatch(r'["“][^"”]+["”]', par) and words(par) <= BARE_LINE:
             hit("bare short line (add an emotion beat)" + (" + short question" if par.rstrip('"”').endswith("?") else ""), par)
         for s in sentences(par):
             w = words(s)
@@ -105,6 +118,8 @@ def scan_text(text):
             if m:
                 hit("interrupter-without-commas", m.group(0))
     # clipped dialogue (case 07): a few terse lines land hard; many of them read as lazy writing
+    if not fiction:
+        lines = []
     run = []
     for i, (n, sp, c) in enumerate(lines):
         prev_n = lines[i - 1][0] if i else None

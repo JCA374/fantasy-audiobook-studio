@@ -17,8 +17,8 @@ SENT = re.compile(r"(?:(?<=[.!?…])|(?<=[.!?…][\"”]))\s+(?=[\"“]?[A-Z])")
 
 
 def glossary(book):
-    names = {}
-    for line in (book / "glossary.md").read_text().splitlines():
+    names, g = {}, book / "glossary.md"
+    for line in (g.read_text().splitlines() if g.exists() else []):   # no glossary: no names to mark up
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
         if len(cells) >= 3 and cells[2] not in ("ok", "?", "Phonemes", "") and not set(cells[2]) <= set("-"):
             names[cells[0]] = cells[2]
@@ -100,7 +100,7 @@ def convert(md, names):
 
 if __name__ == "__main__":
     book = Path(sys.argv[1]); dest = Path(sys.argv[2]) if len(sys.argv) > 2 else book / "audio"
-    names = glossary(book if (book / "glossary.md").exists() else Path(sys.argv[3]))
+    names = glossary(Path(sys.argv[3]) if len(sys.argv) > 3 and not (book / "glossary.md").exists() else book)
     chapters = sorted(book.glob("ch[0-9][0-9].md"))
     def run_all():
         for md in chapters:

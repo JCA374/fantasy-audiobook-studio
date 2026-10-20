@@ -5,6 +5,8 @@ description: "Convert finished manuscript chapters into TTS-ready narration scri
 
 # Narration Prep
 
+> From another project: run these commands through the **voice-text** skill's launcher (`voice.sh <command> voice/<slug>`); there `books/<slug>` = `voice/<slug>`.
+
 Turns `books/<slug>/chNN.md` into `books/<slug>/audio/chNN.txt` (format: see the `kokoro-narrate` skill). You do this conversion yourself, reading and writing the files. The manuscript is never modified; it stays the source of truth. If a chapter is edited later, regenerate its script; unchanged paragraphs stay cached and won't re-render.
 
 ## 1. Pronunciation glossary first

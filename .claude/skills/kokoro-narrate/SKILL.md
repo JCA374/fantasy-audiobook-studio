@@ -5,6 +5,8 @@ description: "Render a book's narration scripts to speech with Kokoro TTS runnin
 
 # Kokoro Narrate
 
+> From another project: run these commands through the **voice-text** skill's launcher (`voice.sh <command> voice/<slug>`); there `books/<slug>` = `voice/<slug>`.
+
 Local, free TTS with Kokoro-82M (Apache-2.0). Runs on CPU at **~1.7× real time** on this laptop (i5-8250U): a 1,000-word chapter (~6 min of audio) takes ~3.5 min, a 15k-word book (~100 min of audio) about 1 h. So:
 
 - Always audition with `--sample` before a full render.

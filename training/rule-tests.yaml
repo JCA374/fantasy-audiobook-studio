@@ -57,3 +57,17 @@
   check: clipped exchange
   before: "\"Was it you?\"\n\n\"Yes.\"\n\n\"Why?\""
   after: "\"Was it you?\"\n\n\"Yes. I signed for her myself.\"\n\n\"Why would you do that?\""
+
+# The dialogue rules (cases 05 and 07) are for fiction. In a prose doc or a video voiceover (voice-text skill,
+# book.yaml `kind: prose|voiceover`) a short quoted line is a quotation, not a character's line, so it isn't flagged.
+- case: "05"
+  check: bare short line
+  before: '"I know."'
+  after: '"I know."'
+  after_kind: prose
+
+- case: "07"
+  check: clipped exchange
+  before: "\"Was it you?\"\n\n\"Yes.\"\n\n\"Why?\""
+  after: "\"Was it you?\"\n\n\"Yes.\"\n\n\"Why?\""
+  after_kind: voiceover

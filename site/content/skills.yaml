@@ -207,3 +207,24 @@ audiobook-assemble:
   examples: |
     *The One in the Chair*: 13 chapters, 92 minutes, −19.4 LUFS integrated. The file carries both chapter formats
     players read (a QuickTime chapter track and Nero `chpl`), so chapters show in BookPlayer and Apple Books.
+
+voice-text:
+  stage: "6–10"
+  origin: ours
+  role: "Stages 6–10 for text that isn't a book in this repo: a doc, notes, story chapters or a video voiceover, voiced from any project with the same rules."
+  use: |
+    Linked into `~/.claude/skills/` (with the five audio skills), so it works in every Claude Code project.
+    `voice.sh new <file> --kind prose|fiction|voiceover` makes a book-shaped work dir `voice/<slug>/` in that project.
+    Then the usual stages run on it through the same launcher: `scan` → ear rewrites → `prep` → `narrate` → `listen` →
+    `export` → `status`. Nothing is re-implemented. Each command calls the stage's own script, which logs its run as it does for a book.
+    - **prose** turns markdown into paragraphs and lists what a listener can't use (tables, code, lists, URLs) for
+      Claude to say in words. The dialogue checks are off.
+    - **voiceover** gives each `##` scene its own unpadded MP3, plus `timings.json` for the video edit.
+    - **Rewrites** go into the work-dir copy, and Claude offers to copy them back to the original.
+    - **Lessons** from any project become training cases here, in `training/`, so every project shares one set of rules.
+  examples: |
+    - **A 200-word survey note** with a table, a code block and a list: three `rewrite:` lines, the table said in one
+      sentence, the invented name *Teodric* respelled in the glossary. 1.4 min of audio, −19.4 LUFS, Whisper heard
+      both names, every audio stage PASS in `status`.
+    - **Same rules, proven.** A chapter of *Second-Hand Dragons* voiced from another folder gives a byte-identical
+      script to the book's own `audio/ch03.txt`.

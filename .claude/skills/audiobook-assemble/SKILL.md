@@ -5,6 +5,8 @@ description: "Master rendered chapter WAVs into a finished audiobook: loudness-n
 
 # Audiobook Assemble
 
+> From another project: run these commands through the **voice-text** skill's launcher (`voice.sh <command> voice/<slug>`); there `books/<slug>` = `voice/<slug>`.
+
 ```bash
 .venv/bin/python .claude/skills/audiobook-assemble/scripts/assemble.py books/<slug> [--bitrate 64k]
 ```

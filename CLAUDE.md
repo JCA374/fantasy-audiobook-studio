@@ -10,6 +10,9 @@ the pipeline order, and says which skill handles each stage.
 - Audio: speech-flow (fixes the manuscript for the ear) → narration-prep → kokoro-narrate → listen-check (automatic
   listener, Whisper base.en ~6x real time) → audiobook-assemble. Rule tests: `python3 .claude/skills/speech-flow/scripts/test_rules.py` must pass before publishing.
   `training/` holds the author's "sounds wrong" examples with before/after audio; lessons go into speech-flow or narration-prep.
+- Other projects: the audio skills plus **voice-text** are symlinked into `~/.claude/skills/`, so any project can voice a doc,
+  story or video script (`voice/<slug>/` work dir, `kind: prose|fiction|voiceover`). Lessons from there come back to `training/` here.
+  Don't move this checkout: the links and the launcher's `.venv` point at it.
 - Python: `.venv/bin/python` (kokoro, soundfile, pyyaml; reuses system CPU torch). ffmpeg is system-wide.
 - Kokoro renders at ~1.7× real time (about 1 h per 15k-word book) on this CPU-only laptop: run full-book renders in the background.
 - Proof that stages ran: the stage scripts append to `books/<slug>/pipeline.log.jsonl`; `.claude/skills/fantasy-novella/scripts/verify.py books/<slug>`
