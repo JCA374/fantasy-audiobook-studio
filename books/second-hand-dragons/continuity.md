@@ -25,8 +25,8 @@ Append-only facts established in the draft. `chNN | fact`.
 | 02 | Aldevar claims to be older than the city; "I was there when it started." Tansy doesn't quite believe it yet. |
 | 03 | second Thursday: bell rang nine times, no Mrs Fennick. Mrs Hobb: "Thursdays are always slow." |
 | 03 | At night Aldevar sleeps in the back room; Tansy carries it every night and always asks first. |
-| 03 | Tansy's room is over the shop; the stair creaks on the fourth and ninth steps. Her ink froze (last time: when she was nine, says Quill). |
-| 03 | Next door on the left: a cobbler (old man, unnamed); his back room shares a wall with the back room. |
+| 03 | Two floors: downstairs is business (counter, front shelf, back room behind the curtain where Quill and Aldevar spend the night); upstairs is where people live: Mrs Hobb's big front room, Tansy's small back room (over the back room, so Aldevar hears her through the ceiling). The stair creaks on the fourth and ninth steps. Every evening Tansy carries Aldevar through, gives Quill water, says good night and goes up. Her crate lives in the shop; she brings it through. Her ink froze (last time: when she was nine, says Quill). (rev 2026-10-20: author found ch3 read as if Tansy lived in the back room; speakers now tagged.) |
+| 03 | Next door on the left: a cobbler (old man, unnamed) who lives in the room behind his shop; that room shares a wall with our back room. |
 | 03 | The ritual: "Can you spare a light?" / "Gladly." / "Thank you kindly." / "Pass it on, love." (First of three "Can you spare a light?") |
 | 03 | Tansy put the given candle between Quill's shelf and the scuttle: "Now it's nobody's, so it's everybody's." |
 | 03 | The Founders' Fire: a ford, a few huts, a dragon on the hill; it lit their first hearth for nothing because they asked, in a hard winter; nine hundred years ago. Every child knows it as a story. Aldevar: "I was in it." |

@@ -1,6 +1,8 @@
 # Status: Second-Hand Dragons (book 3)
 
-**Stage:** COMPLETE 2026-10-19 (re-narrated in af_heart). Audiobook: audio/Second-Hand Dragons.m4b (101.7 min, 13 chapters, cover, -19.4 LUFS) + audio/chNN.mp3; copied to export/Audiobooks/.
+**Stage:** COMPLETE 2026-10-19 (re-narrated in af_heart). Audiobook: audio/Second-Hand Dragons.m4b (102.5 min, 13 chapters, cover, -19.4 LUFS) + audio/chNN.mp3; copied to export/Audiobooks/.
+
+**Ch03 revised 2026-10-20** (author: hard to follow who says what; Tansy seemed to live in the back room with the familiars). Now: the house is laid out once (business downstairs, people upstairs; Tansy's small room over the back room), her nightly visit is a routine before bed, every line in the three-way scene is tagged, "smaller than on Thursday" (said on a Thursday) is now "a week ago". Re-narrated and re-packaged.
 
 **Re-narrated 2026-10-19** (af_heart): short questions stressed (case 01) and, where a beat follows, voiced on their own paragraph (case 09). 101.7 min; export/Audiobooks/ updated. Listen check: the same flags as before, nothing new; no stress flags.
 
@@ -24,7 +26,7 @@ Pipeline evidence (`verify.py`, 2026-10-19): stages 0–5 MANUAL (files present)
 |----|-------|-------|
 | 01 | Pledged | 1524 |
 | 02 | Cold Coal | 1323 |
-| 03 | A Light Next Door | 1321 |
+| 03 | A Light Next Door | 1446 |
 | 04 | Thursdays | 1246 |
 | 05 | The Thermometer | 1417 |
 | 06 | Eleven Years | 1296 |
@@ -35,7 +37,7 @@ Pipeline evidence (`verify.py`, 2026-10-19): stages 0–5 MANUAL (files present)
 | 11 | The Reckoning | 1694 |
 | 12 | House to House | 1498 |
 | 13 | Given | 1322 |
-| | **Total** | **18,571** |
+| | **Total** | **18,696** |
 
 ## Reader test (2026-10-18), summary
 

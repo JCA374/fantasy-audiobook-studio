@@ -40,7 +40,7 @@ narrates what it hears, smells and feels; scenes away from it come through walls
 
 **3. A Light Next Door** (1,300 words, 15–23%). Second Thursday.
 - Bell: nobody. Mrs Fennick doesn't come.
-- Tansy's room is so cold her ink freezes. She knocks next door: "Can you spare a light?" (first time; set piece 3). Aldevar hears the ritual through the wall, the neighbour's "Gladly", and the warmth she carries back down the stairs.
+- Tansy's room is so cold her ink freezes. She knocks next door: "Can you spare a light?" (first time; set piece 3). Aldevar hears the ritual through the wall, the neighbour's "Gladly", and the warmth she carries back into the shop.
 - She puts the given candle in the back room, with Quill and the dragon, not in her own room. Aldevar notices.
 - By its warmth, Aldevar boasts: it lit the founders' first hearth when Greyhithe was a ford and some huts. Every warm fire in the city is a cousin of its own.
 - Key Event: Tansy realises what is in her coal scuttle, and goes very quiet.
