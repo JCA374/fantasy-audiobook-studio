@@ -12,7 +12,7 @@ narrates what it hears, smells and feels; scenes away from it come through walls
 - **The clock:** the Midwinter Reckoning, six Thursdays away in ch1.
 - **The bell:** every chapter opens with the shop bell (who comes in, or that nobody does). Ch13 ends on it ringing for someone coming home.
 - **"Can you spare a light?"** ch3 (Tansy to a neighbour, given); ch5 (Tansy to Aldevar, for the street, refused); ch11 (Aldevar to Tansy, for itself).
-- **The rule** is shown before the climax uses it: sold fire goes cold (ch2), given fire stays warm (ch3), giving costs Aldevar (ch8), bought creature means bought fire (ch11, set up in ch5 by Strand's contract).
+- **The rules** (fire, dragons, pledges and the Reckoning) are listed in full as rules 1–17 in `story-bible.md`, with a reveal ladder. Each is shown before the climax uses it: a pledge is not a sale (ch1); sold fire goes cold and cold is catching (ch2); given fire stays warm, and only a dragon makes fire (ch3); redeeming is not buying (ch4); the reserve, and the price is the shop's (ch5); Quill is nobody's debt (ch6); service till twenty-one, and a debt can be forgiven (ch7); giving costs Aldevar (ch8); a dragon is fed by a given hearth (ch9); asking is what stops the spread, and noon is when the sale is entered (ch10). (Revised 2026-10-20.)
 
 ---
 

@@ -201,19 +201,56 @@ There's no Guild hall scene: the Guild comes to the shop and to the auction.
 
 ### Social/Political Context
 - The Lamplighters' Guild got the charter to sell fire forty years ago (proposal). Bought light was cheap and convenient, so people let their given hearths go out, and every winter there are fewer warm houses. The Guild blames hard winters.
-- Pawn law treats familiars as property, so they can be pledged and sold. Persons can be pledged into service for a debt, an old law nobody likes to talk about.
+- Pawn law treats familiars as property, so they can be pledged and sold. Persons can be pledged into service for a debt, an old law nobody likes to talk about (rules 15–16).
 - "Borrowing a light" from a neighbour is a social bond. Refusing one is the worst insult in Greyhithe.
 
-### Rules of the World: the given fire
+### Rules of the World (the author's logic; revised 2026-10-20)
 
-- **Source / how it works:** Aldevar lit the first hearth in Greyhithe, freely, for the founders, and the city's fire was passed hand to hand from there. Fire that is given freely stays warm, however many times it is passed on. **Fire passed for payment burns cold**: it still gives light, but no heat.
-- **Who can use it:** anyone can give a light from a warm fire. Only Aldevar can make new fire.
-- **Cost to user:** each flame Aldevar gives takes a little of its remaining life. It is dying anyway, and giving brings the end closer. Ordinary people who pass a light on lose nothing.
-- **Hard limits:** fire can't be forced. Stolen fire goes cold, and so does bought fire. Any payment at all, even a single coin, cools it. Fire from a creature you bought counts as bought (proposal; this is why the Guild's dragon burns cold for them).
-- **Counter / weakness:** money, and also water and time, like any fire. A given hearth that goes out can only be relit by someone else's gift.
-- **How society treats it:** everybody's grandmother says sold fire burns cold. The Guild calls that superstition and says lamps are for light, not heat. A pawnshop can't take fire as a pledge, because it would go cold on the shelf.
-- **First on-page demonstration:** ch2 (a coal sold over the counter goes grey in a woman's palm) and ch3 (a light borrowed next door stays warm). The cost first appears in ch8.
-- **How the climax uses it:** the Guild wins the auction and owns a fire it can't use. Aldevar gives its fire to Tansy, who paid nothing, and it spreads house to house, all of it warm. Its rules are shown in ch2–3 and ch8, well before the climax.
+_The reader learns these one at a time (see the reveal ladder below). Nobody in the book ever states them all; this list is for the author, so that every scene obeys the same rules._
+
+**Fire**
+1. **Only a dragon makes fire from nothing.** Everyone else can only pass a flame on. Every flame in Greyhithe comes from the Founders' Fire, which Aldevar lit.
+2. **A flame is warm when it is given:** passed on freely by the person it belongs to, with nothing taken for it. Asking ("Can you spare a light?") is the custom, but it isn't required (ch8 is unasked).
+3. **Payment cools it.** Paying for the flame, even a penny, makes it cold: it gives light but no heat. A flame taken without leave (stolen) is cold too. Coal, wax and oil can be bought; only the flame counts.
+4. **A paid-for flame is cold for good, and so is every flame lit from it** ("cold catches"). Giving a cold flame on doesn't warm it: Mr Abel could not have warmed his coal by handing it to his wife. The only cure is to put the cold flame out and light the wick again from a given one (ch12: Tansy pinches out the woman's Guild flame first). What counts is where the flame now burning came from.
+5. **A dragon is not a flame.** Every flame a dragon makes is new, and it belongs to whoever owns the dragon. If the owner paid for the dragon, its new flames are bought, and cold for that owner and anyone they sell to. If a bought dragon is given away for nothing, the new owner has paid nothing, and its new flames are warm again (Strand's gift, ch12). This never applies to a single flame; see rule 4. Mrs Fennick (ch11) could in principle buy him and then give him away, but she says she couldn't give him away twice.
+6. **You can only give what is yours.** A dragon's fire is its own until somebody pays for it. Pledging, holding and forfeit are not paying, and nobody has ever bought Aldevar (ch11), so until noon on Midwinter Day his fire is his to give. At noon the Guild's payment is entered, "all fire arising from it" becomes the Guild's, and after that Aldevar has nothing he can give.
+7. **The given network is thinning.** A given hearth that goes out can only be lit again from someone else's gift. People who can't or won't ask put their coal on a Guild flame: it smokes, it doesn't warm, and the Guild says it's the weather. So warm hearths are islands, and every one that goes out is gone unless a neighbour relights it. What stops the spread is not coal but asking: pride, habit, and not wanting to admit you have paid for cold for years.
+
+**Dragons**
+8. **A dragon is the size of its fire.** The fire burns down over the centuries, as any fire does.
+9. **A dragon can't live on its own fire.** It is fed by a given hearth that somebody else keeps beside it. The hearth doesn't refill the dragon; it only stops the leak. For forty years (since their wedding) that was the Fennicks' grate, which Aldevar lit as a wedding present and which they kept for him. It went out the week the wizard died, and that is when Aldevar began to go out. A given candle helps a little (ch3). A cold shop is starvation.
+10. **Giving costs the dragon.** Every flame he gives takes a piece of his fire outright (author's cost "a"). Ordinary people who pass a light on lose nothing. The payoff (ch13): his own flame comes back to him as a gift, through Tansy's candle into the stove, which is the only way a dragon can be warmed. This answers his lie, "the fire is mine, and it ends with me".
+
+**How society treats it:** everybody's grandmother says sold fire burns cold. The Guild calls that superstition, says lamps are for light, and blames the cold on hard winters. Strand sincerely believes the Guild's flame is "a copy of a copy" worn thin.
+
+### Pledges and the Reckoning
+
+11. **A pledge is a loan with a thing held against it.** The pledger still owns the thing and can redeem it at any time before Midwinter by repaying the loan and the interest. **Redeeming is not buying**: the thing comes home never sold, and a redeemed dragon's fire stays warm.
+12. **At Midwinter every unredeemed pledge is forfeit to the lender.** The lender must sell it at the public Reckoning, so that owners get one last chance to buy their things back. **The lender keeps the price.** After Midwinter the old owner can only *buy*, and bought fire is cold for her (ch11).
+13. **A reserve is the seller's floor.** The Guild asks Mrs Hobb to set Aldevar's reserve at two hundred crowns, and promises to bid it. The point is that nobody can buy him back cheaply, and that means Mrs Fennick, while the shop is guaranteed two hundred crowns (ch5). Signing it is Mrs Hobb's choice, and her temptation.
+14. **A Reckoning sale is entered in the magistrates' book at noon on Midwinter Day,** and ownership passes then. Until noon a lot still belongs to its old owner.
+15. **Person-pledges** (an old law nobody likes): a person pledged as a child is listed when she comes of age at sixteen. The buyer gets her service until she is one-and-twenty.
+16. **A lender can forgive a debt.** No debt means no pledge, and no pledge means nothing to list. This is the only way to withdraw a lot. Mrs Hobb could have done it any time in eleven years and didn't, for fear that Tansy, freed, would leave.
+17. **Quill was never a pledge.** The Great Ambrose paid for his keep and never borrowed a penny against him, so there is no debt to fall due. Quill is a lodger who believes he is stock.
+
+### Reveal ladder (what the reader learns where)
+
+| Ch | Rules | How |
+|----|-------|-----|
+| 01 | 8, 11, 12 | Dragon size; Mrs Hobb's terms (forfeit, the Reckoning, highest bid); "nobody's purchase"; a cold hearth after nine hundred years |
+| 02 | 3, 4, 7, 12 | The coal Mrs Hobb won't lend on (it would be sold cold at the Reckoning); Mr Abel's penny; Tansy's price list (cold is catching; coal on a Guild flame) |
+| 03 | 1, 7, hint of 9 | The Founders' Fire; the cobbler is the last given hearth this side of the lane; the candle makes Aldevar feel better |
+| 04 | 11 | Tansy: redeemed, he comes home never sold; after Midwinter he'd have to be bought |
+| 05 | 6, 12, 13 | The reserve shuts out Mrs Fennick; the price is the shop's; "once they own you, it's not yours to give" |
+| 06 | 17 | Quill: "I am nobody's debt" |
+| 07 | 15, 16 | Service till twenty-one; a lender can always forgive a debt; "She hasn't" |
+| 08 | 10 | The cost of the first flame |
+| 09 | 9 in full | At the dead grate Aldevar tells us (not her) why he is dying |
+| 10 | 7, 14, 6 | Why the spread stalls (asking); a candle is not a hearth; noon and the magistrates' book |
+| 11 | 12, 6 at work | Mrs Fennick: "Now I can only buy you"; nine minutes in which the fire is still his to give |
+| 12 | 3, 4, 5, 16 at work | Bought candles relit warm; the lamplighter's stolen flame; Strand's gift starts it over; the debt forgiven |
+| 13 | 9, 10 paid off | The ticket torn; his own fire given back to him in the stove |
 
 ---
 
@@ -248,9 +285,9 @@ There's no Guild hall scene: the Guild comes to the shop and to the auction.
 | Character | Knows | Doesn't Know | Suspects |
 |-----------|-------|--------------|----------|
 | Tansy | She was pledged at five | She is on the auction list (until ch7); what "not for sale" meant (until ch13) | That she's kept for her use |
-| Aldevar | It lit the first hearth; giving costs it life | Why the widow really pawned it (until ch9) | That Tansy is a pledge (by smell, early) |
+| Aldevar | It lit the first hearth; giving costs it life; it has been starving since the Fennick grate went out | Why the widow really pawned it (until ch9) | That Tansy is a pledge (by smell, early) |
 | Mrs Hobb | Tansy must be listed at sixteen | That Tansy has seen the pencil marks | — |
-| Mrs Fennick | Why she pawned it | That buying it back would make its fire cold for her (until ch11) | — |
+| Mrs Fennick | Why she pawned it; redeeming him before Midwinter would have kept him warm | That buying him after Midwinter would make his fire cold for her (until ch11); that her grate was what kept him alive (never told) | — |
 | Mr Strand | The Guild needs warm fire | That sold fire burns cold is true | — |
 
 ---
@@ -273,7 +310,8 @@ There's no Guild hall scene: the Guild comes to the shop and to the auction.
   - Quill arrived the same year as Tansy;
   - six weeks, six Thursdays.
 - 2026-10-18 (author): "approve, 13 chapters is fine". All Stage 1 proposals above are accepted.
+- 2026-10-20 (author): "i dont feel like the logic for how fire works or how the reconing works [is clear]. make sure there is a clear logic for the author that is then gradually explained to the reader." Rules of the World rewritten as rules 1–17 with a reveal ladder. Author's choices: **a dragon is fed by a given hearth** (rule 9; Aldevar has been dying since the Fennick grate went out, and the stove at the end is why he lives on) and **the lender keeps the Reckoning price** (rule 12; the ch13 line giving the money to Mrs Fennick is cut). Claude's fixes under the plan: pledging is not selling (the ch2 coal refusal was reworded), the reserve is Mrs Hobb's to sign, withdrawal is by forgiving the debt, Quill was never a pledge, and noon is when the magistrates enter the sale.
 
 ---
 
-*Last Updated: 2026-10-18*
+*Last Updated: 2026-10-20*
