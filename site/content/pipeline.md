@@ -41,31 +41,33 @@ The premises in `books/collection.md` are one-liners ("the cartographer", "the d
 `seed.md` keeps the author's words apart from Claude's: *Author said* holds the decisions, while *Suggestions not yet chosen* and *Rejected* hold everything else. The bible is then built from the decisions only.
 
 ### 1 · Story bible
-**Skills:** fantasy-novella, fiction-workshop · **Output:** `story-bible.md`, `glossary.md`
+**Skills:** fantasy-novella, fiction-workshop, world-rules · **Output:** `story-bible.md`, `glossary.md`
 
 A question-driven interview fills the bible: premise, world, the one magic system, characters (want, need, wound, lie), places, point of view, tense and tone. Fantasy-novella adds two constraints. The world stays **small**: one magic system, 2–4 named places, 3–5 characters who matter. And the **glossary starts with the first invented name**, with the author's "sounds like" written down while the decision is fresh, because the audio stage will need it.
+
+Then **world-rules** turns the magic into numbered rules and stress-tests them where the magic meets the book's law, money and ownership: what happens when it is given, sold, stolen or pledged, when exactly ownership changes, who keeps the money, and "why doesn't X just …?" for every main character. Second-Hand Dragons was narrated before its fire and pawn-law logic held together, and all 13 chapters had to be revised. Every contradiction was in one of those places.
 
 Decisions the author makes later (who sent the letter, whether the mother moves on) are recorded in a *Decisions* section of the bible, so later sessions don't reopen them.
 
 ### 2 · Structure
-**Skill:** story-structure (Map mode) · **Output:** `outline.md`
+**Skills:** story-structure (Map mode), world-rules · **Output:** `outline.md`, reveal ladder
 
-The bible becomes an outline with beats placed by percentage: Inciting Event around 12 %, First Plot Point at 25 %, Midpoint at 50 %, and so on. Each chapter section gets a target word count, its goal / conflict / turn, the beat it carries and its closing hook. The outline also names the **engine**, the reason the plot can't be solved easily, and any open decisions (⚑) for the author.
+The bible becomes an outline with beats placed by percentage: Inciting Event around 12 %, First Plot Point at 25 %, Midpoint at 50 %, and so on. Each chapter section gets a target word count, its goal / conflict / turn, the beat it carries and its closing hook. The outline also names the **engine**, the reason the plot can't be solved easily, and any open decisions (⚑) for the author. A **reveal ladder** in the bible says which chapter shows which rule, so every rule the climax uses is shown earlier, in action.
 
 ### 3 · Draft
 **Skills:** fantasy-novella, avoid-ai-writing · **Output:** `chNN.md`
 
-One chapter at a time. Before writing, Claude reads the chapter's outline section and the next one, the bible, `continuity.md` and `glossary.md`, plus the *writing for the ear* checklist. After writing, it checks the word count, appends new facts to `continuity.md`, runs avoid-ai-writing in detect mode and fixes clear hits, then updates `status.md`.
+One chapter at a time. Before writing, Claude reads the chapter's outline section and the next one, the bible, `continuity.md` and `glossary.md`, plus the *writing for the ear* checklist. After writing, it checks the word count, appends new facts to `continuity.md`, runs avoid-ai-writing in detect mode and fixes clear hits, then runs a world-rules audit (contradictions, rules used too early, loopholes) and updates `status.md`.
 
 ### 4 · Edit
 **Skills:** fiction-workshop, character-archetypes, prose-mechanics, avoid-ai-writing · **Output:** revised chapters
 
-The order matters: developmental pass on the whole book (does the plot work?) → character and continuity audit → line edit → prose-mechanics audits → a final avoid-ai-writing pass → a read-aloud pass against the *writing for the ear* checklist. Big problems first, so no time goes into polishing sentences that later get cut.
+The order matters: developmental pass on the whole book (does the plot work?) → character and continuity audit → world-rules audit of the whole book → line edit → prose-mechanics audits → a final avoid-ai-writing pass → a read-aloud pass against the *writing for the ear* checklist. Big problems first, so no time goes into polishing sentences that later get cut.
 
 ### 5 · Reader test
-**Skill:** fiction-workshop (Stage 3) · **Output:** summary in `status.md`
+**Skills:** fiction-workshop (Stage 3), world-rules · **Output:** summary in `status.md`
 
-A **fresh subagent** with none of the session's context reads the finished manuscript cold, like a first-time reader, and reports what confused it, what contradicted itself and where it lost interest. On book 1 this found two different characters both called "the archivist", a testimony count that was 36, 35 and 32 in different chapters, and a climax whose legal logic didn't hold. All were fixed before any audio was made.
+A **fresh subagent** with none of the session's context reads the finished manuscript cold, like a first-time reader, and reports what confused it, what contradicted itself and where it lost interest. On book 1 this found two different characters both called "the archivist", a testimony count that was 36, 35 and 32 in different chapters, and a climax whose legal logic didn't hold. All were fixed before any audio was made. A second fresh subagent runs the **rule reader test**: from the chapters alone it explains each rule of the world back, says whether the climax obeys them, and lists every "why didn't they just …?". Any rule it gets wrong is a finding.
 
 ## Voice
 
@@ -147,7 +149,7 @@ Small fixes go through the change workflow above. A **rewrite** changes the stor
 
 1. **Keep the old edition.** Tag it in git (`v1-first-edition`) and copy it to `books/<slug>-v1/` with `edition` and `superseded_by` in its `book.yaml`. The website lists it under *Earlier editions*.
 2. **Rewrite notes.** The author writes down what to keep exactly, what is decided and what is still open. The notes become a making-of page (`rewrite-notes.md`).
-3. **Bible and outline first** (stages 1–2). The new rules and the decisions on the open problems go into the story bible. The outline is redone with structure Map mode, and the author approves it before any prose changes.
+3. **Bible and outline first** (stages 1–2). The new rules and the decisions on the open problems go into the story bible, through the world-rules skill's Revise mode (numbered rules, a reveal ladder, then an audit of every chapter that uses a changed rule). The outline is redone with structure Map mode, and the author approves it before any prose changes.
 4. **Rewrite chapter by chapter** (stage 3). Scenes the author froze stay word for word. `continuity.md` gets a *Second edition* section of facts that replace the old ones.
 5. **Reader test again** (stage 5). A fresh subagent reads the new edition cold, with questions aimed at the changes: is there more than one suspect, does the new rule feel cheap, do the condition and the ruling agree.
 6. **Voice stages as usual** (6–10). The render cache is keyed on each paragraph's text, so only new or edited paragraphs are rendered. A rewrite that keeps two thirds of its sentences costs about a third of a full render.

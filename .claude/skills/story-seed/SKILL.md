@@ -45,6 +45,8 @@ Take the premise's single power and push it out rather than adding more:
 - Who profits from it, who gets hurt, who polices it, what is illegal?
 - What breaks in daily life (trade, law, family, death) because it exists?
 - What is the worst misuse, and the kindest?
+- What happens to it when it is bought, sold, given, stolen or inherited, and what does the law say? (An early
+  warning only: the full stress test is `world-rules` Build at Stage 1.)
 Then draft answers to the Sanderson checklist in `../fantasy-novella/references/fantasy-worldbuilding.md`
 (cost, hard limit, counter). Offer them as options. Cost is the author's call, and "no personal cost" is a valid answer.
 

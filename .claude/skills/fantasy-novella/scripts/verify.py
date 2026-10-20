@@ -47,6 +47,25 @@ def files_stage(book, name, files):
     return name, "MANUAL", ", ".join(files) + " present"
 
 
+def bible_stage(book):
+    """Stage 1 is judgement, but the world-rules skill leaves a shape to check: numbered rules and a reveal ladder."""
+    name, state, detail = files_stage(book, "1 story bible", ["story-bible.md", "glossary.md"])
+    if state != "MANUAL":
+        return name, state, detail
+    lines = (book / "story-bible.md").read_text(encoding="utf-8").splitlines()
+    start = next((i for i, l in enumerate(lines) if re.match(r"#+ .*(rules of the world|world rules)", l, re.I)), None)
+    if start is None:
+        return name, state, detail + "; no Rules of the World section (world-rules Build)"
+    rules = 0
+    for l in lines[start + 1:]:
+        if re.match(r"#+ .*reveal ladder", l, re.I) or re.match(r"## ", l):
+            break
+        rules += bool(re.match(r"\d+\. ", l))
+    ladder = any(re.match(r"#+ .*reveal ladder", l, re.I) for l in lines)
+    return name, state, detail + (f"; {rules} numbered rules" if rules else "; rules not numbered") + \
+        ("; reveal ladder" if ladder else "; no reveal ladder (world-rules Ladder)")
+
+
 def speech_flow(book, chapters):
     recs = evidence.records(book, "speech-flow")
     if not recs:
@@ -154,7 +173,7 @@ def verify(book, audio_only=False):
     status = (book / "status.md").read_text(encoding="utf-8") if (book / "status.md").exists() else ""
     rows = [] if audio_only else [
         files_stage(book, "0 seed", ["seed.md"]),
-        files_stage(book, "1 story bible", ["story-bible.md", "glossary.md"]),
+        bible_stage(book),
         files_stage(book, "2 structure", ["outline.md"]),
         ("3 draft", "MANUAL", f"{len(chapters)} chapters") if chapters else ("3 draft", "MISSING", "no chNN.md"),
         ("4 edit", "MANUAL", "judgement stage: no file proves an edit pass"),

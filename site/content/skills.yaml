@@ -45,6 +45,28 @@ fantasy-novella:
     - **Continuity log.** Each chapter appended facts such as `ch08 | That night the cushion is COLD for the first time
       in three years`, so later chapters (and the reader test) could check them.
 
+world-rules:
+  stage: "1–5"
+  origin: ours
+  role: "Makes the magic and the world's logic hold: numbered rules stress-tested against the book's law, money and ownership, a reveal ladder, and a rule audit and reader test that check every chapter obeys them."
+  use: |
+    The hub calls it at five points. **Build** (stage 1) writes the bible's *Rules of the World* as numbered rules and
+    puts eight stress-test questions to them: what happens when the magic is given, sold, stolen, pledged or
+    inherited; does the effect pass along a chain; when exactly ownership changes; who gets the money; how each
+    institution treats it; "why doesn't X just …?"; what feeds it; exceptions. **Ladder** (stage 2) maps which chapter
+    shows which rule, so everything the climax uses is shown earlier, in action. **Audit** (each chapter, then the whole
+    book) flags contradictions, rules used too early, knowledge slips and loopholes. **Rule reader test** (stage 5): a
+    fresh subagent with only the chapters explains each rule back, and anything it gets wrong is a finding. **Revise**
+    handles rules that change after drafting.
+
+    `verify.py` shows on the stage 1 line whether a book has numbered rules and a reveal ladder.
+  examples: |
+    - **Why it exists.** Second-Hand Dragons was finished and narrated before the author said "the logic for how fire
+      works or how the Reckoning works isn't clear". Every contradiction was where the magic met the pawn law or the
+      money (pledging vs selling, who keeps the price, when ownership passes, a bought flame vs a bought dragon). The
+      fix (rules 1–17, a reveal ladder, light edits to all 13 chapters, a cold reader test) became this skill.
+    - **Not the first time.** The One in the Chair also needed new afterlife rules for its second edition.
+
 story-structure:
   stage: "2"
   origin: vendored

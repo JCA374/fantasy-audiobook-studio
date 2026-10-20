@@ -1,6 +1,6 @@
 ---
 name: fantasy-novella
-description: "Plan and draft a short fantasy novel / novella (10–20k words) destined for audiobook, from idea to finished manuscript. Use when the user wants to start a new book, write a fantasy story, build a fantasy world or magic system, outline or draft chapters, check progress, or asks 'what's next' on a book in books/. Orchestrates the vendored author-toolkit skills (fiction-workshop, story-structure, character-archetypes, prose-mechanics, avoid-ai-writing) and hands off to the audio pipeline."
+description: "Plan and draft a short fantasy novel / novella (10–20k words) destined for audiobook, from idea to finished manuscript. Use when the user wants to start a new book, write a fantasy story, build a fantasy world or magic system, outline or draft chapters, check progress, or asks 'what's next' on a book in books/. Orchestrates world-rules and the vendored author-toolkit skills (fiction-workshop, story-structure, character-archetypes, prose-mechanics, avoid-ai-writing) and hands off to the audio pipeline."
 ---
 
 # Fantasy Novella
@@ -12,11 +12,11 @@ This is the hub skill for the whole pipeline. It owns the project layout, sizing
 | # | Stage | Skill | Output (`books/<slug>/…`) |
 |---|---|---|---|
 | 0 | Seed (idea → material) | `story-seed` | `seed.md` |
-| 1 | Story bible | **this skill** + `fiction-workshop` Stage 1 | `story-bible.md`, `glossary.md` |
-| 2 | Structure | `story-structure` (Map mode) | `outline.md` |
+| 1 | Story bible | **this skill** + `fiction-workshop` Stage 1 + `world-rules` Build | `story-bible.md`, `glossary.md` |
+| 2 | Structure | `story-structure` (Map mode) + `world-rules` Ladder | `outline.md`, reveal ladder in the bible |
 | 3 | Draft | **this skill** | `chNN.md` |
-| 4 | Edit | `fiction-workshop` personas → `prose-mechanics` → `avoid-ai-writing` | revised `chNN.md` |
-| 5 | Reader test | `fiction-workshop` Stage 3 (fresh subagent) | summary in `status.md` |
+| 4 | Edit | `fiction-workshop` personas → `world-rules` Audit → `prose-mechanics` → `avoid-ai-writing` | revised `chNN.md` |
+| 5 | Reader test | `fiction-workshop` Stage 3 + `world-rules` rule reader test (fresh subagents) | summary in `status.md` |
 | 6 | Speech flow | `speech-flow` (punctuation & phrasing for the ear) | revised `chNN.md` |
 | 7 | Audio prep | `narration-prep` | `audio/chNN.txt` |
 | 8 | Narrate | `kokoro-narrate` | `audio/chNN.wav` |
@@ -69,6 +69,7 @@ answers. Never copy *Suggestions not yet chosen* or *Parked* into the bible.
 
 Follow fiction-workshop's Stage 1 questions and template. In addition:
 - Load `references/fantasy-worldbuilding.md` and fill the bible's Magic section.
+- Then run `world-rules` Build: numbered rules, stress-tested against the book's law, money and ownership. Most plot holes start there (both Second-Hand Dragons and The One in the Chair had their rules fixed after drafting).
 - Start `glossary.md` **as soon as the first name is invented**. Ask the author how each name is pronounced ("sounds like" column) while the decision is fresh; narration-prep needs it later.
 - Keep the world small. A novella has room for **one** magic system, **2–4 named locations** and **3–5 characters who matter**. Push back on epic-scale worldbuilding the story won't use.
 
@@ -76,8 +77,9 @@ Follow fiction-workshop's Stage 1 questions and template. In addition:
 
 Target length: ask the author, default **15k words**. Chapters of about 2,000–2,500 words (13–17 min of audio each) → **6–8 chapters**. Then:
 - Run `story-structure` Map mode. Its beat percentages apply directly: in a 15k book the Inciting Event lands around 1,800 words (≈ ch1) and the Midpoint around 7,500 (≈ ch4).
+- Then run `world-rules` Ladder: which chapter shows which rule, and every rule the climax uses appears earlier.
 - Novella compression: **one** POV (two at most), one main subplot, and the Inciting Event in the first chapter.
-- `outline.md` gets one section per chapter with: target words, POV, goal / conflict / turn, the beat it carries, and the closing hook.
+- `outline.md` gets one section per chapter with: target words, POV, goal / conflict / turn, the beat it carries, the rules it shows (`Rules: 3, 4`), and the closing hook.
 
 ## Stage 3: Drafting a chapter
 
@@ -88,17 +90,20 @@ For each chapter, in order. **One chapter per turn** unless the author asks for 
 4. Write `chNN.md`: an `# Chapter N: Title` heading, then prose. Stay within ±15% of the target word count (check with `wc -w`).
 5. Append new facts to `continuity.md` (names, injuries, objects, who knows what, time of day or season) and new terms to `glossary.md`. Mark any missing pronunciations `?` and ask the author.
 6. Run `avoid-ai-writing` in **detect** mode on the chapter and fix the clear hits yourself. Also run `python3 .claude/skills/speech-flow/scripts/scan.py` on it: if it reports `clipped-dialogue share` or `clipped exchange`, rewrite the weakest clipped lines now (see writing-for-the-ear, Dialogue). Generated fiction drifts into AI-isms (tapestries, "a testament to", tidy triplets, every scene ending on a reflective one-liner).
+   Then run a `world-rules` Audit on the chapter (contradictions, rules used too early, loopholes).
 7. Update `status.md` and stop. Report the word count, one line on what happened, and any questions.
 
 ## Stage 4–5: Editing
 
 Order matters (it comes from fiction-workshop):
 1. developmental pass on the whole book
-2. character consult and continuity audit
+2. character consult and continuity audit, then a `world-rules` Audit of the whole book
 3. line edit
 4. `prose-mechanics` audits
 5. final `avoid-ai-writing` pass
 6. a **read-aloud pass** using `references/writing-for-the-ear.md` as the checklist
-7. reader test
+7. reader test, plus the `world-rules` rule reader test
+
+If the rules change after drafting (the author finds a hole, or a second edition), use `world-rules` Revise.
 
 Only then move to audio.

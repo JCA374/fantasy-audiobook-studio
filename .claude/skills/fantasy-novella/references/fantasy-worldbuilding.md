@@ -23,9 +23,13 @@ Magic section template:
 - Hard limits:
 - Counter / weakness:
 - How society treats it (law, religion, fear, trade):
+- How it interacts with buying, selling, giving, stealing, ownership and the law:
 - First on-page demonstration: ch__
 - How the climax uses or subverts it:
 ```
+
+This section says what the magic is. Then the `world-rules` skill turns it into numbered rules, stress-tests them
+(transactions, chains, ownership and timing, money, institutions, loopholes) and builds the reveal ladder.
 
 ## Setting in a novella
 

@@ -33,11 +33,11 @@ REPO_URL = "https://github.com/JCA374/fantasy-audiobook-studio"
 
 STAGES = [  # n, name, group, skills, output
     (0, "Seed", "write", ["story-seed"], "seed.md"),
-    (1, "Story bible", "write", ["fantasy-novella", "fiction-workshop"], "story-bible.md · glossary.md"),
-    (2, "Structure", "write", ["story-structure"], "outline.md"),
-    (3, "Draft", "write", ["fantasy-novella", "avoid-ai-writing"], "chNN.md"),
-    (4, "Edit", "write", ["fiction-workshop", "character-archetypes", "prose-mechanics", "avoid-ai-writing"], "revised chapters"),
-    (5, "Reader test", "write", ["fiction-workshop"], "fresh-reader report"),
+    (1, "Story bible", "write", ["fantasy-novella", "fiction-workshop", "world-rules"], "story-bible.md · glossary.md"),
+    (2, "Structure", "write", ["story-structure", "world-rules"], "outline.md"),
+    (3, "Draft", "write", ["fantasy-novella", "avoid-ai-writing", "world-rules"], "chNN.md"),
+    (4, "Edit", "write", ["fiction-workshop", "world-rules", "character-archetypes", "prose-mechanics", "avoid-ai-writing"], "revised chapters"),
+    (5, "Reader test", "write", ["fiction-workshop", "world-rules"], "fresh-reader report"),
     (6, "Speech flow", "voice", ["speech-flow"], "chapters fixed for the ear"),
     (7, "Narration prep", "voice", ["narration-prep"], "audio/chNN.txt"),
     (8, "Narrate", "voice", ["kokoro-narrate"], "audio/chNN.wav"),
