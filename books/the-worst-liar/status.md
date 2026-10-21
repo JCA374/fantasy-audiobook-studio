@@ -1,8 +1,24 @@
 # Status: The Worst Liar in Pennyford (book 4)
 
-**Stage:** 8 Narrate, in progress (2026-10-21). Manuscript complete and edited. **First publish:** the full text plus ch01 audio (10.9 min, mastered MP3; the one-chapter .m4b was deleted so the site doesn't offer a partial audiobook). Ch02–08 rendering.
+**Stage:** COMPLETE 2026-10-22. Audiobook: audio/The Worst Liar in Pennyford.m4b (84.6 min, 8 chapters, cover, −19.4 LUFS) + audio/chNN.mp3; copied to export/Audiobooks/. Published to the website in two steps: full text + ch01 audio (2026-10-21), then the full audiobook (2026-10-22). Chapter WAVs deleted (kokoro-narrate rebuilds them from the cache in seconds).
 
-Ch01 listen check: 4 flags, none needing a fix. 7:23 "Lucan" heard as "Luke and" (that is LOO-kun, as intended); 10:38 "Nell" heard as "now" (one instance, likely Whisper); two short dialogue paragraphs flagged as slow pace (pauses around short lines).
+Pipeline evidence (`verify.py`, 2026-10-22, exit 0):
+
+| # | Stage | State | Detail |
+|---|---|---|---|
+| 0 | seed | MANUAL | seed.md present |
+| 1 | story bible | MANUAL | story-bible.md, glossary.md present; 16 numbered rules; reveal ladder |
+| 2 | structure | MANUAL | outline.md present |
+| 3 | draft | MANUAL | 8 chapters |
+| 4 | edit | MANUAL | judgement stage: no file proves an edit pass |
+| 5 | reader test | MANUAL | summary in status.md |
+| 6 | speech flow | PASS | last scan of every chapter matches the manuscript (8 chapters) |
+| 7 | audio prep | PASS | every audio/chNN.txt equals prep.py's output for the current manuscript (8) |
+| 8 | narrate | PASS | rendered 2026-10-22T01:09:03 from the current scripts, every paragraph cached |
+| 9 | listen check | PASS | every report was made from the current script and audio (8) |
+| 10 | package | PASS | assembled 2026-10-22T01:08:16 from the current scripts' renders; MP3s and .m4b unchanged since |
+
+**Listen check (all chapters):** 21 flags left after the second model, none needing a re-render. "Lucan" heard as "Luke and" (4×; that is LOO-kun, as intended). "Hollin" heard as "Holland"/"hauling" (3×; Kokoro's phonemes are right, /hˈɑlᵻn/; Whisper prefers a familiar word; added to the glossary). "Nell" heard as "now" (4× out of about 150; isolated, worth one listen at ch01 10:38, ch02 9:10, ch04 0:37). "Weigher" heard as "wear" at ch07 8:57 (phonemes right, /wˈAəɹ/). ch02 7:25 "seventeen hundred and twelve" written by Whisper as "one thousand seven…" (number noise). Slow-pace flags are all short dialogue lines or one-line paragraphs.
 
 **Origin:** the author asked (2026-10-21) for a new novel with every decision made automatically, following the pipeline: "when i come back i want a completed novell publisheb. onec the first chapter is convertet to aduio publish it wit the book then publisk the rest when everyting is done." So every choice in seed.md, the bible and the outline is Claude's, made under that instruction (premise 4 from collection.md, "The liar"). All of it is open to change in a second edition.
 
@@ -14,23 +30,23 @@ Ch01 listen check: 4 flags, none needing a fix. 7:23 "Lucan" heard as "Luke and"
 | 3 | Draft | done, 8 chapters; each checked with speech-flow scan.py and a word-list AI-ism pass while drafting |
 | 4 | Edit | developmental and continuity pass (geography of the bridge and toll house; Fairweather's age vs "since I was a girl"; the timeline from the fair to the Moot, rent due before the Moot so the bailiff is held off); world-rules audit (rule 7 made local: a thing goes thin in front of a doubting crowd, slips only when parish-wide belief drops under a hundred); tics trimmed ("the way" ~45 → ~20, "for a moment" 13 → 6, "very"); `continuity.md` filled |
 | 5 | Reader test | done twice, fresh subagents with the chapters only (summary below) |
-| 6 | Speech flow | scan clean except deliberate lines (scene-break-free comma-before-and false positives; a few punchline short lines) |
+| 6 | Speech flow | scan clean except deliberate lines (comma-before-and false positives on dialogue tags; a few punchline short lines); rule tests pass |
 | 7 | Audio prep | done, `audio/chNN.txt` |
-| 8 | Narrate | af_heart, speed 0.95 (house voice) |
-| 9 | Listen check | |
-| 10 | Package | cover.jpg drawn by `cover.py` (bridge at dusk, a ghostly toll gate, the Crier's bell) |
+| 8 | Narrate | done, af_heart, speed 0.95 (house voice), 84.6 min |
+| 9 | Listen check | done, see above; nothing to fix |
+| 10 | Package | done; cover.jpg drawn by `cover.py` (bridge at dusk, a ghostly toll gate, the Crier's bell) |
 
-| Ch | Title | Words |
-|----|-------|-------|
-| 01 | Short Weight | 1,950 |
-| 02 | The Toll | 2,000 |
-| 03 | The Crier | 1,880 |
-| 04 | Thin as Glass | 1,730 |
-| 05 | The Biggest Liar | 1,660 |
-| 06 | The Offer | 1,970 |
-| 07 | The Moot | 1,930 |
-| 08 | True Weight | 1,960 |
-| | **Total** | **about 15,100** |
+| Ch | Title | Words | Audio |
+|----|-------|-------|-------|
+| 01 | Short Weight | 1,950 | 10.9 min |
+| 02 | The Toll | 2,023 | 11.2 min |
+| 03 | The Crier | 1,904 | 10.6 min |
+| 04 | Thin as Glass | 1,721 | 9.5 min |
+| 05 | The Biggest Liar | 1,658 | 9.4 min |
+| 06 | The Offer | 1,944 | 10.7 min |
+| 07 | The Moot | 1,971 | 11.1 min |
+| 08 | True Weight | 1,976 | 10.8 min |
+| | **Total** | **15,147** | **84.6 min** |
 
 ## Reader test 1 (2026-10-21), summary
 

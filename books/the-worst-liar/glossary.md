@@ -24,3 +24,4 @@ All names were chosen by Claude (2026-10-21, author's "you make all the choices"
 | Half Moon | ok | ok | the alehouse |
 | Michaelmas | MICK-ul-mus | ok | the fair, end of September |
 | Oyez | oh-YESS | ok | the Crier's call; Kokoro /Qjˈɛs/ |
+| Hollin | HOL-in | ok | the next parish over the hills (Gran's aunt; the road Luke leaves by); af_heart /hˈɑlᵻn/; Whisper hears "Holland" (familiar-word bias, not a render fault) |

@@ -7,7 +7,7 @@ _Split from the original project brief (kept unchanged, outside git, as `books/t
 - A collection of standalone fantasy novels, written as short chapters, drafted with Claude.
 - The finished text is meant to become an audiobook: Claude writes the manuscript, then a separate text-to-speech (TTS) tool reads it aloud.
 - Language: English, British spelling throughout (colour, grey, recognise, centre, etc.). The user sometimes switches to Swedish in conversation, but the story itself is written and read in English.
-- Current stage: novel 1 is finished (second edition, 2026-10-16). Novel 2 started 2026-10-16: *Do Not Resubmit* (`books/do-not-resubmit/`), a separate story grown from chapter 1 of novel 1 only (same opening chapter, new plot). Novel 3 started 2026-10-18: *Second-Hand Dragons* (`books/second-hand-dragons/`), a new idea (a pawnshop for retired familiars), at Stage 0 (seed). The premises below remain for later books.
+- Current stage: novel 1 is finished (second edition, 2026-10-16). Novel 2 started 2026-10-16: *Do Not Resubmit* (`books/do-not-resubmit/`), a separate story grown from chapter 1 of novel 1 only (same opening chapter, new plot). Novel 3 started 2026-10-18: *Second-Hand Dragons* (`books/second-hand-dragons/`), a new idea (a pawnshop for retired familiars), since finished. Novel 4 written and narrated 2026-10-21/22: *The Worst Liar in Pennyford* (`books/the-worst-liar/`), premise 4 below, every choice made by Claude at the author's request. Premises 2 and 3 remain for later books.
 
 ## 2. The collection
 
@@ -16,7 +16,7 @@ Four premises are being kept, one per novel. A fifth (a world of soul-bound anim
 1. **The reaper and the furniture**, published title ***The One in the Chair*** (first novel; drafted, revised and narrated 2026-10-14). When people die they are demoted into objects. The protagonist is a reaper trying to free her mother's soul from a chair.
 2. **The cartographer.** She inherits a magical atlas. Whatever she draws becomes real, and she has been carelessly erasing a kingdom by neglecting its borders. The theme is whether power like that can ever be used responsibly.
 3. **The debt war.** Two kingdoms fight with borrowed years of life, memories and luck, lent out by mages called actuaries. A collections agent is sent after a vanished war hero who borrowed impossible sums. It turns out he gave it all to war orphans.
-4. **The liar.** Magic runs on stories, and a convincing lie can reshape reality. The heroine is the world's worst liar, which makes her immune to a plague of magical propaganda.
+4. **The liar**, published title ***The Worst Liar in Pennyford*** (fourth novel, 2026-10-22). Magic runs on stories, and a convincing lie can reshape reality. The heroine is the world's worst liar, which makes her immune to a plague of magical propaganda.
 
 ## 8. Audiobook production notes
 
