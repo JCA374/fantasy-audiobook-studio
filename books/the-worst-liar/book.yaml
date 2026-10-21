@@ -1,0 +1,20 @@
+title: The Worst Liar in Pennyford
+author: Jonas
+narrator: Kokoro TTS (af_heart)
+year: 2026
+edition: 1
+cover: cover.jpg
+chapters:
+  ch01: "Chapter One: Short Weight"
+  ch02: "Chapter Two: The Toll"
+  ch03: "Chapter Three: The Crier"
+  ch04: "Chapter Four: Thin as Glass"
+  ch05: "Chapter Five: The Biggest Liar"
+  ch06: "Chapter Six: The Offer"
+  ch07: "Chapter Seven: The Moot"
+  ch08: "Chapter Eight: True Weight"
+narration:
+  narrator: af_heart    # house voice since book 2 (Claude's choice, 2026-10-21)
+  speed: 0.95
+  paragraph_pause: 0.6
+  characters: {}        # single narrator
