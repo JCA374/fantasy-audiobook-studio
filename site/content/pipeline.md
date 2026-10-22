@@ -55,14 +55,16 @@ Decisions the author makes later (who sent the letter, whether the mother moves 
 The bible becomes an outline with beats placed by percentage: Inciting Event around 12 %, First Plot Point at 25 %, Midpoint at 50 %, and so on. Each chapter section gets a target word count, its goal / conflict / turn, the beat it carries and its closing hook. The outline also names the **engine**, the reason the plot can't be solved easily, and any open decisions (⚑) for the author. A **reveal ladder** in the bible says which chapter shows which rule, so every rule the climax uses is shown earlier, in action.
 
 ### 3 · Draft
-**Skills:** fantasy-novella, avoid-ai-writing · **Output:** `chNN.md`
+**Skills:** fantasy-novella, manuscript-review, avoid-ai-writing · **Output:** `chNN.md`, `review.md`
 
-One chapter at a time. Before writing, Claude reads the chapter's outline section and the next one, the bible, `continuity.md` and `glossary.md`, plus the *writing for the ear* checklist. After writing, it checks the word count, appends new facts to `continuity.md`, runs avoid-ai-writing in detect mode and fixes clear hits, then runs a world-rules audit (contradictions, rules used too early, loopholes) and updates `status.md`.
+One chapter at a time. Before writing, Claude reads the chapter's outline section and the next one, the bible, `continuity.md` and `glossary.md`, plus the *writing for the ear* checklist. After writing, it appends new facts to `continuity.md` and runs the **chapter review loop**. A fresh reviewer subagent, which never edits, lists at most 12 issues. Claude fixes them, and `gate.py` checks the word count, the dialogue limits (one- and two-word lines at most 1 in 20, clipped lines at most 1 in 10) and how much changed. The reviewer then verifies the fixes. The loop stops when the gate passes and nothing must-fix is open, or after 3 rounds.
+
+It is built not to change the story forever. The outline, rules and continuity are locked (plot issues wait for the book loop). Every issue goes in a ledger and can't be raised again once closed. Each round may change at most 25% of the words, then 10%. From round 2, the reviewer may only add must-fix issues. A world-rules audit and a `status.md` update finish the chapter.
 
 ### 4 · Edit
-**Skills:** fiction-workshop, character-archetypes, prose-mechanics, avoid-ai-writing · **Output:** revised chapters
+**Skills:** manuscript-review, fiction-workshop, character-archetypes, prose-mechanics, avoid-ai-writing · **Output:** revised chapters
 
-The order matters: developmental pass on the whole book (does the plot work?) → character and continuity audit → world-rules audit of the whole book → line edit → prose-mechanics audits → a final avoid-ai-writing pass → a read-aloud pass against the *writing for the ear* checklist. Big problems first, so no time goes into polishing sentences that later get cut.
+This is the **book loop** of manuscript-review: fresh readers, structural fixes only here (outline, bible and continuity updated first, then the chapters, each through the gate again), at most 2 rounds. The order matters: developmental pass on the whole book (does the plot work?) → character and continuity audit → world-rules audit of the whole book → line edit → prose-mechanics audits → a final avoid-ai-writing pass → a read-aloud pass against the *writing for the ear* checklist. Big problems first, so no time goes into polishing sentences that later get cut.
 
 ### 5 · Reader test
 **Skills:** fiction-workshop (Stage 3), world-rules · **Output:** summary in `status.md`

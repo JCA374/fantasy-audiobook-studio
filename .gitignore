@@ -2,6 +2,7 @@
 __pycache__/
 *.wav
 books/*/audio/.cache/
+books/*/.review/
 training/.cache/
 _site/
 _shots/

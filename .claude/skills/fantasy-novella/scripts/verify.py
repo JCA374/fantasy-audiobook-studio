@@ -24,7 +24,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 SKILLS = HERE.parents[1]
-for s in ("narration-prep", "listen-check", "kokoro-narrate"):
+for s in ("narration-prep", "listen-check", "kokoro-narrate", "manuscript-review"):
     sys.path.insert(0, str(SKILLS / s / "scripts"))
 sys.path.insert(0, str(HERE))
 import evidence  # noqa: E402
@@ -64,6 +64,41 @@ def bible_stage(book):
     ladder = any(re.match(r"#+ .*reveal ladder", l, re.I) for l in lines)
     return name, state, detail + (f"; {rules} numbered rules" if rules else "; rules not numbered") + \
         ("; reveal ladder" if ladder else "; no reveal ladder (world-rules Ladder)")
+
+
+def review(book, chapters):
+    """Stage 4: the manuscript-review loop's `gate.py --close` records. A chapter counts as reviewed when its last close
+    passed and the chapter is unchanged since, or changed by at most 5% of its words (speech-flow edits come later)."""
+    finals = [r for r in evidence.records(book, "manuscript-review") if r.get("final")]
+    if not finals:
+        return "4 edit", "MANUAL", "judgement stage: no manuscript-review loop logged"
+    from gate import changed  # noqa: E402
+    done, edited, stale, capped, todo = [], [], [], [], []
+    for md in chapters:
+        mine = [r for r in finals if r.get("chapter") == md.stem]
+        if not mine:
+            todo.append(md.stem)
+            continue
+        r = mine[-1]
+        if not r["ok"]:
+            (capped if r.get("capped") else todo).append(md.stem)
+        elif r["inputs"].get(rel(book, md)) == sha1(md):
+            done.append(md.stem)
+        else:
+            snap = book / ".review" / f"{md.stem}.r{r['round']}.md"
+            if not snap.exists():
+                edited.append(f"{md.stem} (Δ ?, snapshot not on this machine)")
+                continue
+            d = changed(snap.read_text(encoding="utf-8"), md.read_text(encoding="utf-8"))
+            (edited if d <= 0.05 else stale).append(f"{md.stem} (Δ {d:.0%})")
+    detail = "; ".join(x for x in [
+        f"reviewed {len(done) + len(edited)}/{len(chapters)}",
+        "edited since review: " + " ".join(edited) if edited else "",
+        "changed >5% since review, re-run the loop: " + " ".join(stale) if stale else "",
+        "capped with open issues (see status.md): " + " ".join(capped) if capped else "",
+        "not reviewed: " + " ".join(todo) if todo else ""] if x)
+    state = "STALE" if stale else "MANUAL" if (capped or todo or any("Δ ?" in e for e in edited)) else "PASS"
+    return "4 edit", state, detail
 
 
 def speech_flow(book, chapters):
@@ -176,7 +211,7 @@ def verify(book, audio_only=False):
         bible_stage(book),
         files_stage(book, "2 structure", ["outline.md"]),
         ("3 draft", "MANUAL", f"{len(chapters)} chapters") if chapters else ("3 draft", "MISSING", "no chNN.md"),
-        ("4 edit", "MANUAL", "judgement stage: no file proves an edit pass"),
+        review(book, chapters),
         ("5 reader test", "MANUAL", "summary in status.md") if re.search(r"reader test", status, re.I)
         else ("5 reader test", "MISSING", "no reader-test summary in status.md"),
     ]

@@ -140,6 +140,30 @@ avoid-ai-writing:
     removing stock phrases. The author's own chapter 1 keeps its em dashes: they're part of the voice, and Kokoro
     pauses on them naturally.
 
+manuscript-review:
+  stage: "3–5"
+  origin: ours
+  role: "A review-and-rewrite loop with brakes: an independent reviewer that never edits, an objective gate, an issue ledger and hard caps, so revision converges without rewriting the story."
+  use: |
+    Runs after each chapter is drafted (**chapter loop**) and once the whole book exists (**book loop**). A fresh
+    subagent reviews the chapter against its outline section, the rules, `continuity.md` and the *writing for the ear*
+    checklist, and returns at most 12 issues (must / should / nit). Claude, as the writer, fixes them. `gate.py` then checks
+    what doesn't need judgement: the word count, the dialogue limits (one- and two-word lines ≤ 1 in 20, clipped lines ≤ 1 in 10)
+    and how many words changed. From round 2 on, the reviewer only verifies the fixes and may raise new issues only at must severity.
+
+    The brakes: the outline, rules and continuity are **locked** in the chapter loop (plot and rule issues are queued for the
+    book loop). Every issue is recorded in `review.md`, and a closed issue can't be raised again. Each round has a **change
+    budget** (25%, then 10% of the words). The chapter loop stops after **3 rounds** and the book loop after 2, and anything
+    still open goes to the author. Each chapter's loop ends with `gate.py --close`, and `verify.py` shows stage 4 as PASS
+    once every chapter has a passing close.
+  examples: |
+    - **Why it exists.** Drafting and checking used to be one pass by the same agent, so the edit stage could only ever
+      show as MANUAL. The author asked for an independent reviewer and a loop, "mindful about all the review and rewrites
+      so we don't end up changing the story forever".
+    - **Short dialogue.** On *The Worst Liar in Pennyford* (which already followed the 1-in-7 rule) the new gate flags 4 of 8
+      chapters, e.g. ch08 with "Oh," / "Thank you," / "Thirty-one years." The reviewer decides which of them earn their place.
+  cases: ["10"]
+
 speech-flow:
   stage: "6"
   origin: ours

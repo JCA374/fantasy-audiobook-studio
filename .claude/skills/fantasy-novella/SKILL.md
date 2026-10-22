@@ -14,8 +14,8 @@ This is the hub skill for the whole pipeline. It owns the project layout, sizing
 | 0 | Seed (idea → material) | `story-seed` | `seed.md` |
 | 1 | Story bible | **this skill** + `fiction-workshop` Stage 1 + `world-rules` Build | `story-bible.md`, `glossary.md` |
 | 2 | Structure | `story-structure` (Map mode) + `world-rules` Ladder | `outline.md`, reveal ladder in the bible |
-| 3 | Draft | **this skill** | `chNN.md` |
-| 4 | Edit | `fiction-workshop` personas → `world-rules` Audit → `prose-mechanics` → `avoid-ai-writing` | revised `chNN.md` |
+| 3 | Draft + chapter review loop | **this skill**, then `manuscript-review` (independent reviewer, ≤3 rounds) | `chNN.md`, `review.md` |
+| 4 | Edit (book review loop) | `manuscript-review` book loop: `fiction-workshop` personas → `world-rules` Audit → `prose-mechanics` → `avoid-ai-writing` | revised `chNN.md` |
 | 5 | Reader test | `fiction-workshop` Stage 3 + `world-rules` rule reader test (fresh subagents) | summary in `status.md` |
 | 6 | Speech flow | `speech-flow` (punctuation & phrasing for the ear) | revised `chNN.md` |
 | 7 | Audio prep | `narration-prep` | `audio/chNN.txt` |
@@ -89,13 +89,19 @@ For each chapter, in order. **One chapter per turn** unless the author asks for 
 3. Optional: use fiction-workshop's brainstorm → curate step for the chapter's key moments if the author wants to be involved.
 4. Write `chNN.md`: an `# Chapter N: Title` heading, then prose. Stay within ±15% of the target word count (check with `wc -w`).
 5. Append new facts to `continuity.md` (names, injuries, objects, who knows what, time of day or season) and new terms to `glossary.md`. Mark any missing pronunciations `?` and ask the author.
-6. Run `avoid-ai-writing` in **detect** mode on the chapter and fix the clear hits yourself. Also run `python3 .claude/skills/speech-flow/scripts/scan.py` on it: if it reports `clipped-dialogue share` or `clipped exchange`, rewrite the weakest clipped lines now (see writing-for-the-ear, Dialogue). Generated fiction drifts into AI-isms (tapestries, "a testament to", tidy triplets, every scene ending on a reflective one-liner).
+6. Run the **`manuscript-review` chapter loop**: gate on the draft, then a fresh reviewer subagent (it never edits), fixes, gate
+   again, verify, at most 3 rounds, `gate.py --close`. The gate enforces the word count and the dialogue limits (one- and
+   two-word lines ≤ 1 in 20, clipped lines ≤ 1 in 10, see writing-for-the-ear, Dialogue), plus a change budget so that fixes don't
+   become rewrites. The reviewer covers AI-isms (generated fiction drifts into tapestries, "a testament to", tidy triplets,
+   every scene ending on a reflective one-liner), the ear, character voice and continuity. Plot and rule issues are *queued*
+   for the book loop, not fixed here.
    Then run a `world-rules` Audit on the chapter (contradictions, rules used too early, loopholes).
-7. Update `status.md` and stop. Report the word count, one line on what happened, and any questions.
+7. Update `status.md` (rounds, drift, anything queued or capped) and stop. Report the word count, one line on what happened, and any questions.
 
 ## Stage 4–5: Editing
 
-Order matters (it comes from fiction-workshop):
+Run these as the `manuscript-review` **book loop**: fresh readers, structural fixes only here (the outline, bible and continuity
+are updated first), every changed chapter goes through the gate again, at most 2 book rounds. Order matters (it comes from fiction-workshop):
 1. developmental pass on the whole book
 2. character consult and continuity audit, then a `world-rules` Audit of the whole book
 3. line edit

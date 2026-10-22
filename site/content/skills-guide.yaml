@@ -127,6 +127,25 @@ avoid-ai-writing:
     after: "not softness exactly, but attention"
     note: An illustration of the pattern, not a quote. The fix keeps the meaning and drops the formula.
 
+manuscript-review:
+  plain: A second editor who reads each chapter fresh and sends it back with a short list of fixes. It repeats a few times, but never long enough to change the story.
+  when: Right after each chapter is written, and once more when the whole book is done.
+  input: One chapter, its outline section, the rules and the list of issues already handled
+  output: A fixed chapter, review.md (every issue and what happened to it) and a pass/fail record
+  who:
+    claude: writes and fixes; a separate fresh copy of Claude reviews and never edits
+    script: gate.py checks word count, short dialogue and how much changed, and logs the result
+    author: gets anything still open after three rounds
+  steps:
+    - Check the draft with the gate.
+    - A fresh reviewer lists at most 12 issues; plot changes are only noted, not made.
+    - Fix the must-fix issues, keeping each round's changes small.
+    - The reviewer checks the fixes; stop when nothing must-fix is left, or after 3 rounds.
+  example:
+    before: 'Mr Hobday, in the doorway behind Nell, said "Oh," softly, and set the box of weights down on the step.'
+    after: 'Mr Hobday, in the doorway behind Nell, stopped counting under his breath and set the box of weights down on the step, very carefully, as if it might break.'
+    note: "From the dry run on The Worst Liar ch08. The reviewer kept \"Thirty-one years.\" and \"Thank you\" (a confession and a payoff) and turned the filler \"Oh,\" into narration."
+
 speech-flow:
   plain: Fixes the text so it sounds right when read aloud. A listener can't see commas, italics or where a sentence is heading.
   when: After editing, right before the text is turned into audio, and whenever something sounds wrong.

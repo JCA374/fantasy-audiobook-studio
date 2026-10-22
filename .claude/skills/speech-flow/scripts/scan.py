@@ -19,7 +19,11 @@ import evidence  # noqa: E402  (pipeline.log.jsonl: proof this stage ran)
 LONG = 35          # words; writing-for-the-ear says prefer < ~30
 BARE_LINE = 6      # words; a lone quoted line this short gets an emotion beat
 CLIPPED = 3        # words; a spoken line whose every sentence is this short is "clipped" (case 07)
-CLIPPED_SHARE = 0.15  # more clipped lines than this per chapter reads as lazy (about 1 in 7 is fine)
+CLIPPED_SHARE = 0.10  # more clipped lines than this per chapter reads as lazy (about 1 in 10 is fine) …
+CLIPPED_FREE = 2   # … but a chapter may always have this many
+TWO_WORD = 2       # words in total; "No." "Why?" "I know." (case 10)
+TWO_WORD_SHARE = 0.05  # at most 1 spoken line in 20 may be this short …
+TWO_WORD_FREE = 1  # … but a chapter may always have one
 CLIPPED_MIN = 12   # only judge the share when a chapter has at least this many spoken lines
 COMMAS = 6         # commas in one sentence -> choppy run of pauses
 INTERRUPTERS = r"by all accounts|of course|in fact|after all|apparently|it seemed|at least|for once|for a moment|in the end"
@@ -41,9 +45,12 @@ def words(s):
 
 
 def spoken(par):
-    """The words a character says in a paragraph (all quoted parts joined), or None if nobody speaks."""
-    qs = re.findall(r'"([^"]+)"|“([^”]+)”', par)
-    return " ".join(a or b for a, b in qs) or None
+    """The words a character says in a paragraph (all quoted parts joined), or None if nobody speaks.
+    A quoted word that is only mentioned (`She said "um" four times`: no closing punctuation inside, and the
+    sentence runs straight on) is not speech."""
+    qs = [m for m in re.finditer(r'"([^"]+)"|“([^”]+)”', par)
+          if re.search(r"[.,!?…—-]$", (m.group(1) or m.group(2)).strip()) or not re.match(r"\s+[a-z]", par[m.end():])]
+    return " ".join(m.group(1) or m.group(2) for m in qs) or None
 
 
 def clipped(speech):
@@ -132,9 +139,14 @@ def scan_text(text, kind="fiction"):
     if len(run) >= 2:
         hits.append((run[0][0], f"clipped exchange ({len(run)} terse lines in a row)", " / ".join(x for _, x in run)))
     n_clip = sum(c for _, _, c in lines)
-    if len(lines) >= CLIPPED_MIN and n_clip / len(lines) > CLIPPED_SHARE:
+    if len(lines) >= CLIPPED_MIN and n_clip > max(CLIPPED_FREE, CLIPPED_SHARE * len(lines)):
         hits.append((0, f"clipped-dialogue share {n_clip}/{len(lines)} = {n_clip / len(lines):.0%} (> {CLIPPED_SHARE:.0%})",
                      "¶" + " ¶".join(str(n) for n, _, c in lines if c)))
+    # two-word lines (case 10): the emptiest kind of clipped line, held to a tighter share
+    two = [n for n, sp, _ in lines if words(sp) <= TWO_WORD]
+    if len(lines) >= CLIPPED_MIN and len(two) > max(TWO_WORD_FREE, TWO_WORD_SHARE * len(lines)):
+        hits.append((0, f"two-word-line share {len(two)}/{len(lines)} = {len(two) / len(lines):.0%} (> {TWO_WORD_SHARE:.0%})",
+                     "¶" + " ¶".join(map(str, two))))
     return sorted(hits, key=lambda h: h[0])
 
 
