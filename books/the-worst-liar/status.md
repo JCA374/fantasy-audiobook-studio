@@ -1,8 +1,8 @@
 # Status: The Worst Liar in Pennyford (book 4)
 
-**Stage:** COMPLETE 2026-10-22. Audiobook: audio/The Worst Liar in Pennyford.m4b (84.6 min, 8 chapters, cover, −19.4 LUFS) + audio/chNN.mp3; copied to export/Audiobooks/. Published to the website in two steps: full text + ch01 audio (2026-10-21), then the full audiobook (2026-10-22). Chapter WAVs deleted (kokoro-narrate rebuilds them from the cache in seconds).
+**Stage:** COMPLETE 2026-10-22, second edition (review loop + two rule fixes, see below). Audiobook: audio/The Worst Liar in Pennyford.m4b (85.3 min, was 84.6 in the first edition; 8 chapters, cover, −19.4 LUFS) + audio/chNN.mp3; copied to export/Audiobooks/. Published to the website in two steps: full text + ch01 audio (2026-10-21), then the full audiobook (2026-10-22). Chapter WAVs deleted (kokoro-narrate rebuilds them from the cache in seconds).
 
-Pipeline evidence (`verify.py`, 2026-10-22, exit 0):
+Pipeline evidence (`verify.py`, 2026-10-22, second edition, exit 0):
 
 | # | Stage | State | Detail |
 |---|---|---|---|
@@ -10,13 +10,13 @@ Pipeline evidence (`verify.py`, 2026-10-22, exit 0):
 | 1 | story bible | MANUAL | story-bible.md, glossary.md present; 16 numbered rules; reveal ladder |
 | 2 | structure | MANUAL | outline.md present |
 | 3 | draft | MANUAL | 8 chapters |
-| 4 | edit | MANUAL | judgement stage: no file proves an edit pass |
+| 4 | edit | MANUAL | reviewed 3/8; not reviewed: ch01 ch02 ch04 ch05 ch07 (they pass the gate; the loop was run only on the chapters that failed it) |
 | 5 | reader test | MANUAL | summary in status.md |
 | 6 | speech flow | PASS | last scan of every chapter matches the manuscript (8 chapters) |
 | 7 | audio prep | PASS | every audio/chNN.txt equals prep.py's output for the current manuscript (8) |
-| 8 | narrate | PASS | rendered 2026-10-22T01:09:03 from the current scripts, every paragraph cached |
+| 8 | narrate | PASS | rendered 2026-10-22T09:00:39 from the current scripts, every paragraph cached |
 | 9 | listen check | PASS | every report was made from the current script and audio (8) |
-| 10 | package | PASS | assembled 2026-10-22T01:08:16 from the current scripts' renders; MP3s and .m4b unchanged since |
+| 10 | package | PASS | assembled 2026-10-22T09:26:07 from the current scripts' renders; MP3s and .m4b unchanged since |
 
 **Listen check (all chapters):** 21 flags left after the second model, none needing a re-render. "Lucan" heard as "Luke and" (4×; that is LOO-kun, as intended). "Hollin" heard as "Holland"/"hauling" (3×; Kokoro's phonemes are right, /hˈɑlᵻn/; Whisper prefers a familiar word; added to the glossary). "Nell" heard as "now" (4× out of about 150; isolated, worth one listen at ch01 10:38, ch02 9:10, ch04 0:37). "Weigher" heard as "wear" at ch07 8:57 (phonemes right, /wˈAəɹ/). ch02 7:25 "seventeen hundred and twelve" written by Whisper as "one thousand seven…" (number noise). Slow-pace flags are all short dialogue lines or one-line paragraphs.
 
@@ -47,6 +47,20 @@ Pipeline evidence (`verify.py`, 2026-10-22, exit 0):
 | 07 | The Moot | 1,971 | 11.1 min |
 | 08 | True Weight | 1,976 | 10.8 min |
 | | **Total** | **15,147** | **84.6 min** |
+
+## Review loop (2026-10-22, manuscript-review, first book through it)
+
+The author asked to run the new loop on the chapters that fail the tighter dialogue rule (≤2-word lines ≤1 in 20, clipped ≤1 in 10): ch03, ch06, ch08. Each got a fresh reviewer (never edits), fixes, the gate, and a verify-mode reviewer. All three closed after **one round**, with nothing must-fix left. Every issue is in `review.md`.
+
+| Ch | Issues (must / should / nit) | Changed | Main fixes |
+|---|---|---|---|
+| 03 | 4 / 6 / 2 | 5.4% | Nell passed the church before crossing the bridge (reordered); "four days" → three (Saturday to Tuesday); filler "Morning, Nell." / "Oyez, oyez." grown or narrated; POV slip; ending now uses the hook that the Reeve swore him in herself |
+| 06 | 3 / 6 / 3 | 2.8% | "I made the free bridge up" no longer sounds like his own confession; "Who?" and "Nell," turned to narration; Fairweather's exit line made his; Gran's false memory now clearly a lie |
+| 08 | 2 / 8 / 2 | 4.7% | Hobday's "Oh," to narration; the blue coat over the green one; opener names the Moot and Fairweather; Nell's speech uses Gran's specific whoppers; Gran's last line hers again |
+
+Dialogue after the loop: ≤2-word lines 9 of 167 → 6 of 164 spoken lines across the book (all chapters within the limits). **Book loop: the two queued rule issues fixed** (author asked, 2026-10-22). Rule 10 now says that practising a lie to a mirror isn't a lie, because nobody is meant to believe it. Its danger is that it makes the real lie at the Moot possible, and ch06's fear now looks ahead to the Moot. Rule 11 now says that when a Crier stands down, the Reeve swears the next one at once, so ch08 shows Mrs Thorne swearing Nell in (Amos and Mr Hobday witnesses) before she rings the bell. Both chapters went through the gate again (0.7% and 1.4% changed; drift from the first edition 3.5% and 6.1%). A fresh rule reader found no problem with either fix.
+
+Audio for ch03, ch06 and ch08 re-rendered from the cache (only changed paragraphs). Listen check on those three: 3 flags, none needing a re-render (ch06 9:11 "Gammidge her" heard as "gammeter"; ch08 0:04 "Pardy" as "parties", ch08 9:42 "Nell" as "now", both known from the first edition).
 
 ## Reader test 1 (2026-10-21), summary
 

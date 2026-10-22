@@ -27,3 +27,5 @@ Append-only facts established in the draft. `chNN | fact`.
 | 07 | Nell: "He's Luke Sallow… and he's a thief." Mrs Thorne: lemon cake, "too much flour". The doubt count passes two hundred and twenty; all tellings slip. |
 | 08 | Toll house gone; Amos takes back the bell; Book page restored. Luke Sallow banished from sunrise next day, repays tolls (purse to Mr Hobday; Nell counts). Nell fined one penny. |
 | 08 | Gran gives him two onion pies. "The drowned children… That part was true." Amos gives Nell the bell; Nell becomes Crier, keeps the weigh-house. |
+| 08 | (second edition) Nell sworn in as Crier by Mrs Thorne on the next market day, morning, in the tall house by the church; hand on the Book; Amos and Mr Hobday witnesses. Then cries at noon. |
+| 06 | (second edition) The mirror rehearsal is not a lie (rule 10); Nell's fear is that practice makes the lie at the Moot possible. |
