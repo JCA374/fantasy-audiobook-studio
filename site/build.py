@@ -35,8 +35,8 @@ STAGES = [  # n, name, group, skills, output
     (0, "Seed", "write", ["story-seed"], "seed.md"),
     (1, "Story bible", "write", ["fantasy-novella", "fiction-workshop", "world-rules"], "story-bible.md · glossary.md"),
     (2, "Structure", "write", ["story-structure", "world-rules"], "outline.md"),
-    (3, "Draft", "write", ["fantasy-novella", "avoid-ai-writing", "world-rules"], "chNN.md"),
-    (4, "Edit", "write", ["fiction-workshop", "world-rules", "character-archetypes", "prose-mechanics", "avoid-ai-writing"], "revised chapters"),
+    (3, "Draft + review loop", "write", ["fantasy-novella", "manuscript-review", "avoid-ai-writing", "world-rules"], "chNN.md · review.md"),
+    (4, "Edit (book loop)", "write", ["manuscript-review", "fiction-workshop", "world-rules", "character-archetypes", "prose-mechanics", "avoid-ai-writing"], "revised chapters"),
     (5, "Reader test", "write", ["fiction-workshop", "world-rules"], "fresh-reader report"),
     (6, "Speech flow", "voice", ["speech-flow"], "chapters fixed for the ear"),
     (7, "Narration prep", "voice", ["narration-prep"], "audio/chNN.txt"),
@@ -609,6 +609,18 @@ def build_home(skills, books, cases):
         ok = sum(r["state"] == "PASS" for r in auto)
         proof = (f'<li><b>{ok}/{len(auto)}</b> audio stages of <i>{esc(b["meta"]["title"])}</i> proven from the '
                  f'<a href="pipeline.html#proof">evidence log</a>, the rest checked by the author</li>')
+    review = ""
+    rb = next((x for x in sorted(books, key=lambda x: (BOOKS / x["slug"] / "review.md").stat().st_mtime
+                                 if (BOOKS / x["slug"] / "review.md").exists() else 0, reverse=True)
+               if (BOOKS / x["slug"] / "review.md").exists()), None)   # the book most recently through the review loop
+    if rb:
+        rv = BOOKS / rb["slug"] / "review.md"
+        rows = [[c.strip() for c in l.strip().strip("|").split("|")] for l in rv.read_text(encoding="utf-8").splitlines()
+                if re.match(r"\|\s*ch\d\d-\d+\s*\|", l)]
+        done = sum(r[7].startswith("fixed") for r in rows if len(r) >= 8)
+        chs = len({r[1] for r in rows})
+        review = (f'<li><b>{len(rows)}</b> issues found by the independent <a href="skills/manuscript-review.html">reviewer</a> '
+                  f'in {chs} chapters of <i>{esc(rb["meta"]["title"])}</i>, {done} fixed, the rest judged nits or kept on purpose</li>')
     video = ""
     if VIDEO.exists():  # rendered locally by site/video/make_video.py
         webm = VIDEO.with_suffix(".webm")
@@ -657,7 +669,9 @@ document.querySelectorAll(".copybtn").forEach(b => b.addEventListener("click", a
 <a href="skills/index.html">skills</a>, then narrated by <a href="https://huggingface.co/hexgrad/Kokoro-82M">Kokoro</a>,
 a small open TTS model running locally on the CPU, and packaged as a chaptered audiobook. The author makes the creative
 calls; everything else is a repeatable pipeline. Every passage that sounded wrong becomes a
-<a href="improvements.html">training case</a> that improves the next book. And every stage leaves proof: each script
+<a href="improvements.html">training case</a> that improves the next book. Each chapter goes through a
+<a href="skills/manuscript-review.html">review loop</a>: a separate reviewer that never edits sends it back with a short list
+of fixes, up to three rounds, with brakes so the revisions can't drift away from the story. And every stage leaves proof: each script
 logs what it read and wrote, and a checker confirms the finished audiobook was made from the current text.</p>
 </section>
 {video}
@@ -674,6 +688,7 @@ logs what it read and wrote, and a checker confirms the finished audiobook was m
 <li><b>{len(cases)}</b> training cases, {fixed} turned into rules</li>
 <li><b>{sum(t["ok"] for t in tests)}/{len(tests)}</b> rule tests passing</li>
 {proof}
+{review}
 <li><b>~1 h</b> to narrate a 15k-word book on a laptop CPU</li>
 <li><b>−19 LUFS</b> audiobook loudness standard</li></ul>
 {f'<h2>Recent changes</h2><ul class="log">{log}</ul>' if log else ""}
